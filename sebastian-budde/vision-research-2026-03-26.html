@@ -7,271 +7,421 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:       #0D0D0D;
-  --s1:       #141414;
-  --s2:       #1A1A1A;
-  --s3:       #222222;
-  --border:   #2A2A2A;
-  --red:      #CB0F33;
-  --red-dim:  rgba(203,15,51,0.15);
-  --green:    #22C55E;
-  --green-dim:rgba(34,197,94,0.12);
-  --amber:    #F59E0B;
-  --amber-dim:rgba(245,158,11,0.12);
-  --blue:     #3B82F6;
-  --text:     #F0EEE8;
-  --t2:       #9A9690;
-  --t3:       #4A4844;
-  --serif:    Georgia, 'Times New Roman', serif;
-  --sans:     -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --accent:    #CB0F33;
+  --accent2:   #E8203F;
+  --navy:      #0A1525;
+  --navy2:     #0D1E3A;
+  --white:     #FFFFFF;
+  --bg:        #F5F4F1;
+  --card:      #FFFFFF;
+  --border:    #E5E3DF;
+  --text:      #0D0D0D;
+  --t2:        #4B4B4B;
+  --t3:        #8B8A87;
+  --t4:        #C0BFB9;
+  --green:     #16A34A;
+  --green-bg:  #F0FDF4;
+  --red-bg:    #FFF1F2;
+  --amber:     #D97706;
+  --amber-bg:  #FFFBEB;
+  --blue:      #2563EB;
+  --blue-bg:   #EFF6FF;
+  --serif:     Georgia, 'Times New Roman', serif;
+  --sans:      -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 }
-html { font-size: 16px; }
+html { font-size: 16px; scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-/* ─── Layout ─── */
-.w { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+/* ─── HERO WRAP ─── */
+.hero-wrap {
+  background: linear-gradient(145deg, #060D1A 0%, #0A1525 35%, #0D1E3A 65%, #080F1E 100%);
+  position: relative; overflow: hidden;
+}
+.hero-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 700px 500px at 75% 60%, rgba(203,15,51,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 500px 350px at 15% 85%, rgba(37,99,235,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 300px 200px at 50% 10%, rgba(255,255,255,0.02) 0%, transparent 60%);
+  animation: heroGlow 10s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}
 
-/* ─── Topbar ─── */
-.topbar { background: var(--s1); border-bottom: 1px solid var(--border); padding: 0; }
-.topbar-inner { max-width: 800px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: stretch; }
-.topbar-brand { display: flex; align-items: center; gap: 10px; padding: 16px 0; }
-.topbar-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
-.topbar-name { font-family: var(--serif); font-size: 14px; color: var(--text); }
-.topbar-pipeline { display: flex; }
-.tp { padding: 16px 14px; font-size: 10px; letter-spacing: 0.06em; color: var(--t3); border-left: 1px solid var(--border); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-.tp.active { color: var(--text); background: var(--s2); }
-.tp-n { width: 16px; height: 16px; border-radius: 50%; background: var(--t3); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: var(--bg); flex-shrink: 0; }
-.tp.active .tp-n { background: var(--red); }
+/* TOPBAR */
+.topbar {
+  position: relative; z-index: 10;
+  max-width: 1000px; margin: 0 auto;
+  padding: 22px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon { width: 30px; height: 30px; flex-shrink: 0; }
+.brand-name { font-size: 16px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; }
+.brand-name em { color: var(--accent); font-style: normal; }
+.stage-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 40px; padding: 7px 16px;
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
+  letter-spacing: 0.07em; text-transform: uppercase;
+}
+.stage-dot {
+  width: 7px; height: 7px;
+  background: var(--accent); border-radius: 50%;
+  box-shadow: 0 0 8px rgba(203,15,51,0.8);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-/* ─── Hero ─── */
-.hero { padding: 64px 0 56px; border-bottom: 1px solid var(--border); }
-.hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 16px; font-weight: 700; }
-.hero-title { font-family: var(--serif); font-size: 62px; font-weight: normal; line-height: 1.05; color: var(--text); letter-spacing: -0.02em; }
-.hero-sub { font-size: 16px; color: var(--t2); max-width: 520px; margin-top: 20px; line-height: 1.65; }
+/* HERO CONTENT */
+.hero-content {
+  position: relative; z-index: 10;
+  max-width: 1000px; margin: 0 auto;
+  padding: 44px 48px 0;
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); display: block; margin-bottom: 22px; font-weight: 700;
+}
+.hero-title {
+  font-family: var(--serif); font-size: 68px; font-weight: normal;
+  color: #FFFFFF; line-height: 1.0; letter-spacing: -0.025em; margin-bottom: 22px;
+}
+.hero-title .dim { color: rgba(255,255,255,0.3); }
+.hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.5);
+  max-width: 540px; line-height: 1.75; margin-bottom: 44px;
+}
+.hero-divider {
+  border: none; height: 1px;
+  background: rgba(255,255,255,0.07); margin-bottom: 36px;
+}
 
-/* ─── Section ─── */
+/* CLIENT ROW */
+.hero-client { display: flex; align-items: center; gap: 22px; padding-bottom: 44px; }
+.client-avatar-wrap { position: relative; }
+.client-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, #CB0F33 0%, #7A051C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 22px; font-weight: 700; color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(203,15,51,0.2), 0 0 24px rgba(203,15,51,0.35);
+  flex-shrink: 0;
+}
+.client-avatar-ring {
+  position: absolute; inset: -5px; border-radius: 50%;
+  border: 1px solid rgba(203,15,51,0.3);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+@keyframes ringPulse { 0%,100%{opacity:0.6;transform:scale(1);} 50%{opacity:0.2;transform:scale(1.08);} }
+.client-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; margin-bottom: 7px; }
+.client-name { font-size: 20px; font-weight: 700; color: #FFFFFF; display: block; line-height: 1; }
+.client-sub { font-size: 12px; color: rgba(255,255,255,0.4); display: block; margin-top: 6px; letter-spacing: 0.02em; }
+
+/* NAV TABS */
+.nav-tabs {
+  position: relative; z-index: 10;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex; overflow-x: auto;
+  padding: 0 48px; max-width: none;
+}
+.nav-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 16px 20px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap; cursor: default;
+  letter-spacing: 0.01em;
+}
+.nav-tab.active { color: #FFFFFF; border-bottom-color: var(--accent); }
+.nav-tab-n {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; flex-shrink: 0;
+}
+.nav-tab.active .nav-tab-n { background: var(--accent); color: #FFFFFF; }
+
+/* ─── CONTENT AREA ─── */
+.content { max-width: 1000px; margin: 0 auto; padding: 0 48px 80px; }
+
+/* SECTION */
 .section { padding: 52px 0; border-top: 1px solid var(--border); }
-.section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 28px; font-weight: 700; }
-h2 { font-family: var(--serif); font-size: 26px; font-weight: normal; color: var(--text); margin-bottom: 20px; }
-p { font-size: 14.5px; color: var(--t2); line-height: 1.7; margin-bottom: 12px; }
-p strong { color: var(--text); }
+.section:first-child { border-top: none; padding-top: 56px; }
+.section-label { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; font-weight: 700; }
+.section-title { font-family: var(--serif); font-size: 28px; font-weight: normal; color: var(--text); margin-bottom: 8px; line-height: 1.2; }
+.section-desc { font-size: 14px; color: var(--t3); line-height: 1.65; margin-bottom: 28px; max-width: 620px; }
 
-/* ─── Score Block ─── */
-.score-block { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; }
-.score-chart { position: relative; flex-shrink: 0; }
-.score-stats { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.score-verdict { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--green); background: var(--green-dim); padding: 6px 14px; margin-bottom: 14px; }
+/* SCORE BLOCK */
+.score-block { display: grid; grid-template-columns: auto 1fr; gap: 52px; align-items: start; }
+.score-stats { display: flex; flex-direction: column; gap: 18px; padding-top: 6px; }
+.score-verdict {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+  color: var(--green); background: var(--green-bg); padding: 6px 14px; border-radius: 4px;
+  border: 1px solid rgba(22,163,74,0.2); margin-bottom: 6px;
+}
 .score-desc { font-size: 14.5px; color: var(--t2); line-height: 1.65; }
 
-/* Progress rows */
-.metric { margin-bottom: 0; }
-.metric-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-.metric-label { font-size: 12px; color: var(--t2); }
-.metric-val { font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
-.bar-track { height: 8px; background: var(--s3); border-radius: 4px; overflow: hidden; }
-.bar-fill { height: 100%; border-radius: 4px; animation: barIn 1s ease-out both; }
-.bar-red   { background: linear-gradient(90deg, #A00828 0%, #CB0F33 60%, #E8203F 100%); }
+/* PROGRESS BARS */
+.metric { }
+.metric-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+.metric-label { font-size: 12px; color: var(--t3); }
+.metric-val { font-size: 13px; font-weight: 700; color: var(--text); }
+.bar-track { height: 8px; background: #EAEAE8; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; animation: barIn 1.3s cubic-bezier(0.4,0,0.2,1) both; }
+.bar-red   { background: linear-gradient(90deg, #A00828 0%, #CB0F33 55%, #E8203F 100%); }
 .bar-green { background: linear-gradient(90deg, #15803D 0%, #22C55E 100%); }
-.bar-amber { background: linear-gradient(90deg, #B45309 0%, #F59E0B 100%); }
-.bar-blue  { background: linear-gradient(90deg, #1D4ED8 0%, #3B82F6 100%); }
+.bar-amber { background: linear-gradient(90deg, #92400E 0%, #D97706 60%, #F59E0B 100%); }
+.bar-blue  { background: linear-gradient(90deg, #1D4ED8 0%, #2563EB 60%, #3B82F6 100%); }
 @keyframes barIn { from { width: 0 !important; } }
 
-/* ─── Stats Row ─── */
-.stats3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin: 32px 0; }
-.stat3 { background: var(--s1); padding: 28px 24px; position: relative; overflow: hidden; }
-.stat3::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+/* STATS ROW */
+.stats3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 32px 0; }
+.stat3 {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 28px 24px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.stat3::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 10px 10px 0 0; }
 .stat3.green::before { background: linear-gradient(90deg, #15803D, #22C55E); }
-.stat3.amber::before { background: linear-gradient(90deg, #B45309, #F59E0B); }
-.stat3.red::before   { background: linear-gradient(90deg, #A00828, #CB0F33); }
-.stat3-n { font-family: var(--serif); font-size: 40px; color: var(--text); display: block; line-height: 1; }
-.stat3-l { font-size: 11.5px; color: var(--t2); margin-top: 8px; line-height: 1.4; display: block; }
-.stat3-change { font-size: 11px; color: var(--green); margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+.stat3.amber::before { background: linear-gradient(90deg, #92400E, #D97706, #F59E0B); }
+.stat3.red::before   { background: linear-gradient(90deg, #A00828, #CB0F33, #E8203F); }
+.stat3-n { font-family: var(--serif); font-size: 38px; color: var(--text); display: block; line-height: 1; }
+.stat3-l { font-size: 11.5px; color: var(--t3); margin-top: 10px; line-height: 1.4; display: block; }
+.stat3-change { font-size: 11px; color: var(--green); margin-top: 10px; display: flex; align-items: center; gap: 5px; font-weight: 500; }
 
-/* ─── Audit Grid ─── */
-.audit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin: 16px 0; }
-.audit-item { background: var(--s1); padding: 16px 20px; display: flex; align-items: center; gap: 14px; transition: background 0.15s; }
-.audit-item:hover { background: var(--s2); }
+/* AUDIT GRID */
+.audit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 16px 0; }
+.audit-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.audit-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); transform: translateY(-1px); }
 .audit-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.audit-icon.ok    { background: var(--green-dim); box-shadow: 0 0 12px rgba(34,197,94,0.15); }
-.audit-icon.fail  { background: var(--red-dim);   box-shadow: 0 0 12px rgba(203,15,51,0.15); }
-.audit-icon.warn  { background: var(--amber-dim); box-shadow: 0 0 12px rgba(245,158,11,0.15); }
-.audit-icon svg   { width: 16px; height: 16px; }
+.audit-icon.ok   { background: var(--green-bg); }
+.audit-icon.fail { background: var(--red-bg); }
+.audit-icon.warn { background: var(--amber-bg); }
+.audit-icon svg  { width: 15px; height: 15px; }
 .audit-text { flex: 1; }
 .audit-name { font-size: 13px; color: var(--text); font-weight: 500; }
-.audit-val  { font-size: 11.5px; color: var(--t2); margin-top: 3px; }
-.audit-badge { font-size: 9px; letter-spacing: 0.1em; font-weight: 700; padding: 3px 8px; text-transform: uppercase; margin-left: auto; flex-shrink: 0; }
-.audit-badge.ok   { color: var(--green); background: var(--green-dim); }
-.audit-badge.fail { color: var(--red);   background: var(--red-dim); }
-.audit-badge.warn { color: var(--amber); background: var(--amber-dim); }
+.audit-val  { font-size: 11.5px; color: var(--t3); margin-top: 2px; }
+.audit-badge { font-size: 9px; letter-spacing: 0.1em; font-weight: 700; padding: 3px 8px; text-transform: uppercase; flex-shrink: 0; border-radius: 3px; }
+.audit-badge.ok   { color: var(--green); background: var(--green-bg); }
+.audit-badge.fail { color: var(--accent); background: var(--red-bg); }
+.audit-badge.warn { color: var(--amber); background: var(--amber-bg); }
 
-/* ─── Table ─── */
+/* TABLE */
 table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0 20px; }
-thead th { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--t3); font-weight: 600; padding: 0 0 10px; text-align: left; border-bottom: 1px solid var(--border); }
-td { padding: 12px 8px 12px 0; border-bottom: 1px solid var(--s3); color: var(--t2); vertical-align: top; line-height: 1.4; }
+thead th { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--t3); font-weight: 600; padding: 0 0 10px; text-align: left; border-bottom: 2px solid var(--border); }
+td { padding: 13px 10px 13px 0; border-bottom: 1px solid var(--border); color: var(--t2); vertical-align: top; line-height: 1.4; }
 tr:last-child td { border-bottom: none; }
-td:first-child { color: var(--text); font-weight: 500; }
+td:first-child { color: var(--text); font-weight: 600; }
 
-/* ─── Competitor Bars ─── */
-.comp-strength { display: flex; align-items: center; gap: 8px; }
-.comp-bar { flex: 1; height: 4px; background: var(--s3); border-radius: 2px; overflow: hidden; }
-.comp-pct { font-size: 10px; color: var(--t3); width: 28px; text-align: right; flex-shrink: 0; }
+/* COMPETITOR BARS */
+.comp-strength { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.comp-bar { flex: 1; height: 5px; background: #EAEAE8; border-radius: 3px; overflow: hidden; }
+.comp-pct { font-size: 11px; color: var(--t3); width: 32px; text-align: right; flex-shrink: 0; font-weight: 600; }
 
-/* ─── Audience Platform ─── */
-.platform-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin: 16px 0; }
-.platform-card { background: var(--s1); padding: 26px 22px; position: relative; }
-.platform-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
-.platform-card.p1::before { background: linear-gradient(180deg, #A00828, #CB0F33); }
-.platform-card.p2::before { background: linear-gradient(180deg, #B45309, #F59E0B); }
-.platform-card.p3::before { background: linear-gradient(180deg, #1D4ED8, #3B82F6); }
+/* PLATFORM CARDS */
+.platform-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 16px 0; }
+.platform-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 24px 20px; position: relative; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.platform-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.platform-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 10px 10px 0 0; }
+.platform-card.p1::before { background: linear-gradient(90deg, #A00828, #CB0F33, #E8203F); }
+.platform-card.p2::before { background: linear-gradient(90deg, #92400E, #D97706, #F59E0B); }
+.platform-card.p3::before { background: linear-gradient(90deg, #1D4ED8, #2563EB, #3B82F6); }
 .platform-prio { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; display: block; }
-.platform-prio.p1 { color: var(--red); }
+.platform-prio.p1 { color: var(--accent); }
 .platform-prio.p2 { color: var(--amber); }
 .platform-prio.p3 { color: var(--blue); }
-.platform-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: block; }
-.platform-desc { font-size: 12px; color: var(--t2); line-height: 1.5; }
+.platform-name { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: block; }
+.platform-desc { font-size: 12px; color: var(--t3); line-height: 1.55; }
 .platform-meter { margin-top: 16px; }
 
-/* ─── Insight ─── */
-.insight { border-left: 2px solid var(--red); padding: 16px 0 16px 22px; margin: 24px 0; }
-.insight-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
+/* INSIGHT */
+.insight { border-left: 3px solid var(--accent); padding: 18px 0 18px 24px; margin: 24px 0; background: #FFFBF5; border-radius: 0 6px 6px 0; }
+.insight-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; font-weight: 700; }
 .insight p { font-size: 14.5px; color: var(--text); font-style: italic; margin: 0; line-height: 1.65; }
 
-/* ─── Advantage List ─── */
-.advantage-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin: 20px 0; }
-.adv-item { background: var(--s1); padding: 24px 22px; display: flex; gap: 14px; }
-.adv-num { font-family: var(--serif); font-size: 32px; color: var(--red); line-height: 1; flex-shrink: 0; opacity: 0.4; }
+/* ADVANTAGE */
+.advantage-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+.adv-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 24px 22px; display: flex; gap: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+.adv-item:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.adv-num { font-family: var(--serif); font-size: 36px; color: var(--accent); line-height: 1; flex-shrink: 0; opacity: 0.22; }
 .adv-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.adv-desc { font-size: 12.5px; color: var(--t2); line-height: 1.5; }
+.adv-desc { font-size: 12.5px; color: var(--t3); line-height: 1.5; }
 
-/* ─── Recommendation ─── */
-.rec { background: var(--s1); border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 40px 44px; margin: 52px 0; }
-.rec-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 20px; font-weight: 700; }
-.rec-body { font-family: var(--serif); font-size: 22px; color: var(--text); line-height: 1.55; margin-bottom: 32px; }
-.rec-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; border-top: 1px solid var(--border); padding-top: 28px; }
-.rec-item-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--t3); display: block; margin-bottom: 8px; }
-.rec-item-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+/* RECOMMENDATION */
+.rec {
+  background: linear-gradient(145deg, #060D1A 0%, #0A1525 50%, #0D1E3A 100%);
+  border-radius: 12px; padding: 44px 48px; margin: 0 0 0;
+  position: relative; overflow: hidden;
+}
+.rec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 500px 350px at 90% 50%, rgba(203,15,51,0.12) 0%, transparent 65%);
+}
+.rec-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 20px; font-weight: 700; position: relative; z-index: 1; }
+.rec-body { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.88); line-height: 1.55; margin-bottom: 32px; position: relative; z-index: 1; }
+.rec-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; position: relative; z-index: 1; }
+.rec-item-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; margin-bottom: 8px; }
+.rec-item-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
 
-/* ─── Pipeline Visual ─── */
-.pipe-viz { display: flex; align-items: center; gap: 0; margin: 32px 0; background: var(--s1); border: 1px solid var(--border); padding: 24px 28px; overflow-x: auto; }
-.pv { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 84px; }
-.pv-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; border: 2px solid var(--border); color: var(--t3); flex-shrink: 0; }
-.pv-circle.done { background: var(--red); border-color: var(--red); color: white; }
-.pv-label { font-size: 10px; color: var(--t3); text-align: center; line-height: 1.3; }
-.pv-label.done { color: var(--text); }
-.pv-line { flex: 1; height: 2px; background: var(--s3); min-width: 20px; margin-bottom: 20px; }
-.pv-line.done { background: var(--red); }
+/* PIPELINE */
+.pipe-viz {
+  display: flex; align-items: center;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 28px 32px; overflow-x: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin: 28px 0 0;
+}
+.pv { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 88px; }
+.pv-circle { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; border: 2px solid var(--border); color: var(--t4); flex-shrink: 0; background: var(--bg); }
+.pv-circle.done { background: linear-gradient(135deg, #A00828, #CB0F33); border-color: var(--accent); color: white; box-shadow: 0 2px 10px rgba(203,15,51,0.3); }
+.pv-label { font-size: 10px; color: var(--t4); text-align: center; line-height: 1.3; }
+.pv-label.done { color: var(--text); font-weight: 500; }
+.pv-line { flex: 1; height: 2px; background: var(--border); min-width: 24px; margin-bottom: 24px; }
 
-/* ─── Legal / Footer ─── */
-.legal { border-top: 1px solid var(--border); padding: 28px 0 40px; }
-.legal-title { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--t3); margin-bottom: 12px; display: block; }
-.legal p { font-size: 11.5px; color: var(--t3); margin-bottom: 6px; line-height: 1.6; }
-.footer { background: var(--s1); border-top: 1px solid var(--border); }
-.footer-inner { max-width: 800px; margin: 0 auto; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
-.footer-brand { font-family: var(--serif); font-size: 13px; color: var(--t2); }
-.footer-meta { font-size: 10px; letter-spacing: 0.08em; color: var(--t3); text-transform: uppercase; }
+/* LEGAL */
+.legal { padding: 28px 0 40px; }
+.legal-box { background: #FFFBEF; border: 1px solid #FDE68A; border-radius: 8px; padding: 20px 24px; }
+.legal-title { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #B45309; margin-bottom: 10px; display: block; font-weight: 700; }
+.legal p { font-size: 11.5px; color: #78716C; margin-bottom: 6px; line-height: 1.6; }
+.legal p:last-child { margin-bottom: 0; }
 
-@media (max-width: 680px) {
-  .w, .topbar-inner, .footer-inner { padding: 0 20px; }
-  .hero-title { font-size: 40px; }
+/* FOOTER */
+.footer { background: var(--navy); }
+.footer-inner { max-width: 1000px; margin: 0 auto; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; }
+.footer-brand { font-family: var(--serif); font-size: 13px; color: rgba(255,255,255,0.45); }
+.footer-meta { font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .topbar, .hero-content, .content, .footer-inner { padding-left: 20px; padding-right: 20px; }
+  .nav-tabs { padding: 0 20px; }
+  .hero-title { font-size: 42px; }
   .score-block { grid-template-columns: 1fr; }
-  .stats3, .audit-grid, .advantage-list, .platform-grid { grid-template-columns: 1fr; }
-  .rec-grid { grid-template-columns: 1fr; }
-  .topbar-pipeline { display: none; }
+  .stats3, .platform-grid, .advantage-list, .audit-grid, .rec-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-brand">
-      <span class="topbar-dot"></span>
-      <span class="topbar-name">Sebastian Budde</span>
+<!-- ═══════ HERO ═══════ -->
+<div class="hero-wrap">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 30 30" fill="none">
+        <polygon points="2,2 20,2 28,15 20,28 2,28 10,15" fill="#CB0F33" opacity="0.95"/>
+        <polygon points="6,7 16,7 21,15 16,23 6,23 11,15" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <text x="11" y="20" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" fill="white">F</text>
+      </svg>
+      <span class="brand-name">FIlm<em>labor</em></span>
     </div>
-    <div class="topbar-pipeline">
-      <div class="tp active"><span class="tp-n">1</span> Markt</div>
-      <div class="tp"><span class="tp-n">2</span> Strategie</div>
-      <div class="tp"><span class="tp-n">3</span> Content</div>
-      <div class="tp"><span class="tp-n">4</span> Magnets</div>
-      <div class="tp"><span class="tp-n">5</span> Outreach</div>
-      <div class="tp"><span class="tp-n">6</span> QA</div>
-      <div class="tp"><span class="tp-n">7</span> Messen</div>
+    <div class="stage-badge">
+      <span class="stage-dot"></span>
+      STUFE 01 VON 07
     </div>
   </div>
-</div>
 
-<div class="w">
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <span class="hero-eyebrow">Vision Pipeline &middot; Marktanalyse</span>
+    <h1 class="hero-title">Marktforschung<br><span class="dim">&amp;</span> Validierung</h1>
+    <p class="hero-sub">Datengetriebene Analyse des Markts, der Wettbewerber und der digitalen Pr&auml;senz &mdash; als Grundlage f&uuml;r eine skalierbare Marketing-Strategie.</p>
+    <hr class="hero-divider">
+    <div class="hero-client">
+      <div class="client-avatar-wrap">
+        <div class="client-avatar">SB</div>
+        <div class="client-avatar-ring"></div>
+      </div>
+      <div>
+        <span class="client-label">Erstellt f&uuml;r</span>
+        <span class="client-name">Sebastian Budde</span>
+        <span class="client-sub">Filmemacher &middot; Storyteller &middot; Bremen</span>
+      </div>
+    </div>
+  </div>
 
-<!-- HERO -->
-<div class="hero">
-  <span class="hero-eyebrow">Vision &middot; Stufe 01 von 07</span>
-  <h1 class="hero-title">Markt&shy;forschung</h1>
-  <p class="hero-sub">Marktvalidierung, Tech-Audit der digitalen Pr&auml;senz und Competitive Intelligence als Grundlage f&uuml;r eine skalierbare Marketing-Strategie.</p>
-</div>
+  <!-- Nav Tabs -->
+  <div class="nav-tabs">
+    <div class="nav-tab active"><span class="nav-tab-n">1</span> Marktforschung</div>
+    <div class="nav-tab"><span class="nav-tab-n">2</span> Strategie</div>
+    <div class="nav-tab"><span class="nav-tab-n">3</span> Content</div>
+    <div class="nav-tab"><span class="nav-tab-n">4</span> Lead Magnets</div>
+    <div class="nav-tab"><span class="nav-tab-n">5</span> Outreach</div>
+    <div class="nav-tab"><span class="nav-tab-n">6</span> Qualit&auml;t</div>
+    <div class="nav-tab"><span class="nav-tab-n">7</span> Messung</div>
+  </div>
+
+</div><!-- /hero-wrap -->
+
+<!-- ═══════ CONTENT ═══════ -->
+<div class="content">
 
 <!-- SCORE -->
 <div class="section">
   <span class="section-label">Markt-Validierung</span>
+  <h2 class="section-title">Starving Crowd Score</h2>
 
   <div class="score-block">
-    <!-- SVG Donut Chart -->
-    <div class="score-chart">
+    <div>
       <svg width="210" height="210" viewBox="0 0 210 210">
         <defs>
-          <!-- Gradient for arc: red → amber -->
           <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#F59E0B"/>
-            <stop offset="50%" stop-color="#E8203F"/>
+            <stop offset="45%" stop-color="#E8203F"/>
             <stop offset="100%" stop-color="#CB0F33"/>
           </linearGradient>
-          <!-- Glow filter -->
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="6" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <!-- Subtle inner shadow -->
-          <filter id="innerGlow" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
+          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="7" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-        <!-- Outer subtle ring -->
-        <circle cx="105" cy="105" r="95" fill="none" stroke="#1A1A1A" stroke-width="1" opacity="0.6"/>
-        <!-- Background track -->
-        <circle cx="105" cy="105" r="80" fill="none" stroke="#1E1E1E" stroke-width="18"/>
-        <!-- Glow arc (blurred, behind) -->
-        <circle cx="105" cy="105" r="80" fill="none" stroke="rgba(203,15,51,0.35)" stroke-width="22"
-          stroke-dasharray="452 50"
-          stroke-linecap="round"
-          transform="rotate(-90 105 105)"
-          filter="url(#glow)"/>
-        <!-- Main arc: 9/10 = 90% | circ = 2π×80 ≈ 502.7 | 90% = 452.4 -->
+        <circle cx="105" cy="105" r="80" fill="none" stroke="#E8E7E4" stroke-width="18"/>
+        <circle cx="105" cy="105" r="80" fill="none" stroke="rgba(203,15,51,0.2)" stroke-width="26"
+          stroke-dasharray="452 51" stroke-linecap="round"
+          transform="rotate(-90 105 105)" filter="url(#glow)"/>
         <circle cx="105" cy="105" r="80" fill="none" stroke="url(#arcGrad)" stroke-width="18"
-          stroke-dasharray="452 50"
-          stroke-linecap="round"
+          stroke-dasharray="452 51" stroke-linecap="round"
           transform="rotate(-90 105 105)"/>
-        <!-- Inner fill circle -->
-        <circle cx="105" cy="105" r="68" fill="#0D0D0D"/>
-        <circle cx="105" cy="105" r="67" fill="none" stroke="#1E1E1E" stroke-width="1"/>
-        <!-- Score number -->
-        <text x="105" y="97" text-anchor="middle" font-family="Georgia,serif" font-size="58" fill="#F0EEE8">9</text>
-        <text x="105" y="120" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" fill="#9A9690" letter-spacing="1">von 10</text>
-        <!-- VOLLGAS label at bottom -->
-        <text x="105" y="165" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9" fill="#CB0F33" letter-spacing="3" font-weight="700">VOLLGAS</text>
+        <circle cx="105" cy="105" r="67" fill="white"/>
+        <circle cx="105" cy="105" r="67" fill="none" stroke="#F0EFEB" stroke-width="1"/>
+        <text x="105" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="58" fill="#0D0D0D">9</text>
+        <text x="105" y="118" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#9CA3AF" letter-spacing="1">von 10</text>
+        <text x="105" y="162" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9" fill="#CB0F33" letter-spacing="3" font-weight="700">VOLLGAS</text>
       </svg>
     </div>
 
-    <!-- Metrics -->
     <div class="score-stats">
       <div>
         <span class="score-verdict">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Starving Crowd — Vollgas
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Starving Crowd &mdash; Vollgas
         </span>
-        <p class="score-desc">Forschungsinstitute und B2B-Unternehmen haben das Budget und den Bedarf. Das Segment professionalisiert sich rapide.</p>
+        <p class="score-desc">Forschungsinstitute und B2B-Unternehmen haben das Budget und den Bedarf. Das Segment professionalisiert sich rapide &mdash; institutionelle Kommunikationsbudgets sind vorhanden.</p>
       </div>
-
       <div class="metric">
         <div class="metric-head"><span class="metric-label">Internetvideo-Wachstum 2025</span><span class="metric-val">+14,6%</span></div>
         <div class="bar-track"><div class="bar-fill bar-red" style="width:73%"></div></div>
@@ -287,13 +437,12 @@ td:first-child { color: var(--text); font-weight: 500; }
     </div>
   </div>
 
-  <!-- Stats -->
   <div class="stats3">
     <div class="stat3 green">
       <span class="stat3-n">5.000+</span>
       <span class="stat3-l">potenzielle Auftraggeber in Deutschland</span>
       <span class="stat3-change">
-        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#22C55E"/></svg>
+        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#16A34A"/></svg>
         400+ Hochschulen, 1.000+ Institute
       </span>
     </div>
@@ -301,15 +450,15 @@ td:first-child { color: var(--text); font-weight: 500; }
       <span class="stat3-n">50.000 €</span>
       <span class="stat3-l">max. Auftragsvolumen Imagefilm institutionell</span>
       <span class="stat3-change" style="color:var(--amber)">
-        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#F59E0B"/></svg>
-        5.000–50.000 € pro Projekt
+        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#D97706"/></svg>
+        5.000&ndash;50.000 &euro; pro Projekt
       </span>
     </div>
     <div class="stat3 red">
       <span class="stat3-n">9/10</span>
-      <span class="stat3-l">Starving Crowd Score</span>
+      <span class="stat3-l">Starving Crowd Score &mdash; Gate bestanden</span>
       <span class="stat3-change">
-        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#22C55E"/></svg>
+        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1l4 4H6v4H4V5H1z" fill="#16A34A"/></svg>
         Gate: Vollgas
       </span>
     </div>
@@ -319,149 +468,88 @@ td:first-child { color: var(--text); font-weight: 500; }
 <!-- TECH AUDIT -->
 <div class="section">
   <span class="section-label">Tech-Audit</span>
-  <h2>Digitale Pr&auml;senz</h2>
+  <h2 class="section-title">Digitale Pr&auml;senz</h2>
 
   <div class="audit-grid">
     <div class="audit-item">
-      <div class="audit-icon ok">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Website</div>
-        <div class="audit-val">sebastianbudde.de — erreichbar</div>
-      </div>
+      <div class="audit-icon ok"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Website</div><div class="audit-val">sebastianbudde.de &mdash; erreichbar</div></div>
       <span class="audit-badge ok">OK</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon ok">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">SSL / HTTPS</div>
-        <div class="audit-val">Zertifikat aktiv</div>
-      </div>
+      <div class="audit-icon ok"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">SSL / HTTPS</div><div class="audit-val">Zertifikat aktiv</div></div>
       <span class="audit-badge ok">OK</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Meta Pixel</div>
-        <div class="audit-val">Nicht installiert</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Meta Pixel</div><div class="audit-val">Nicht installiert</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Google Analytics</div>
-        <div class="audit-val">Nicht installiert</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Google Analytics</div><div class="audit-val">Nicht installiert</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">LinkedIn Insight Tag</div>
-        <div class="audit-val">Nicht installiert</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">LinkedIn Insight Tag</div><div class="audit-val">Nicht installiert</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">TikTok Pixel</div>
-        <div class="audit-val">Nicht installiert</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">TikTok Pixel</div><div class="audit-val">Nicht installiert</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon warn">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v5M7 10v1" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Cookie Banner</div>
-        <div class="audit-val">Teilweise — DSGVO-Risiko</div>
-      </div>
+      <div class="audit-icon warn"><svg viewBox="0 0 14 14" fill="none"><path d="M7 4v4M7 10v1" stroke="#D97706" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Cookie Banner</div><div class="audit-val">Teilweise &mdash; DSGVO-Risiko</div></div>
       <span class="audit-badge warn">WARN</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon ok">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Instagram</div>
-        <div class="audit-val">@sebastian.budde verlinkt</div>
-      </div>
+      <div class="audit-icon ok"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Instagram</div><div class="audit-val">@sebastian.budde verlinkt</div></div>
       <span class="audit-badge ok">OK</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon ok">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">LinkedIn</div>
-        <div class="audit-val">/in/sebastianbudde verlinkt</div>
-      </div>
+      <div class="audit-icon ok"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">LinkedIn</div><div class="audit-val">/in/sebastianbudde verlinkt</div></div>
       <span class="audit-badge ok">OK</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">YouTube / TikTok</div>
-        <div class="audit-val">Nicht verlinkt — Kan&auml;le aktiv</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">YouTube / TikTok</div><div class="audit-val">Nicht verlinkt &mdash; Kan&auml;le aktiv</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Meta Description</div>
-        <div class="audit-val">Leer — kostet SEO-Traffic</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Meta Description</div><div class="audit-val">Leer &mdash; kostet SEO-Traffic</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
     <div class="audit-item">
-      <div class="audit-icon fail">
-        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div class="audit-text">
-        <div class="audit-name">Hotjar / Heatmap</div>
-        <div class="audit-val">Nicht installiert</div>
-      </div>
+      <div class="audit-icon fail"><svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#CB0F33" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="audit-text"><div class="audit-name">Hotjar / Heatmap</div><div class="audit-val">Nicht installiert</div></div>
       <span class="audit-badge fail">FEHLT</span>
     </div>
   </div>
 
-  <!-- Audit summary bar -->
-  <div style="margin: 20px 0 8px; display: flex; align-items: center; gap: 10px;">
-    <span style="font-size:11px;color:var(--t2);">Audit Score</span>
-    <div style="flex:1;height:8px;background:var(--s3);border-radius:4px;overflow:hidden;display:flex;">
-      <div style="width:33%;background:var(--green);"></div>
-      <div style="width:8%;background:var(--amber);"></div>
-      <div style="width:59%;background:var(--red);"></div>
+  <div style="margin:16px 0 0;display:flex;align-items:center;gap:12px;">
+    <span style="font-size:11px;color:var(--t3);flex-shrink:0;">Audit Score</span>
+    <div style="flex:1;height:8px;background:#EAEAE8;border-radius:4px;overflow:hidden;display:flex;">
+      <div style="width:33%;background:linear-gradient(90deg,#15803D,#22C55E);"></div>
+      <div style="width:8%;background:linear-gradient(90deg,#92400E,#F59E0B);"></div>
+      <div style="width:59%;background:linear-gradient(90deg,#A00828,#CB0F33);"></div>
     </div>
-    <span style="font-size:11px;color:var(--green);">4 OK</span>
-    <span style="font-size:11px;color:var(--amber);">1 Warn</span>
-    <span style="font-size:11px;color:var(--red);">7 Fehlen</span>
+    <span style="font-size:11px;color:var(--green);font-weight:600;">4 OK</span>
+    <span style="font-size:11px;color:var(--amber);font-weight:600;">1 Warn</span>
+    <span style="font-size:11px;color:var(--accent);font-weight:600;">7 Fehlen</span>
   </div>
 </div>
 
 <!-- REFERENZEN -->
 <div class="section">
   <span class="section-label">Referenzen</span>
-  <h2>Bisherige Projekte</h2>
+  <h2 class="section-title">Bisherige Projekte</h2>
   <table>
     <thead><tr><th>Projekt</th><th>Typ</th><th>Auftraggeber</th></tr></thead>
     <tbody>
@@ -473,14 +561,13 @@ td:first-child { color: var(--text); font-weight: 500; }
       <tr><td>EHPS</td><td>Event-Aftermovie</td><td>EHPS-Jahreskonferenz Bremen</td></tr>
     </tbody>
   </table>
-  <!-- Branchen-Mix -->
-  <div style="margin:20px 0;">
-    <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;">Branchen-Mix</div>
+  <div style="margin:20px 0 0;">
+    <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;font-weight:600;">Branchen-Mix</div>
     <div class="metric">
       <div class="metric-head"><span class="metric-label">Wissenschaft / Forschung</span><span class="metric-val">67%</span></div>
       <div class="bar-track"><div class="bar-fill bar-red" style="width:67%"></div></div>
     </div>
-    <div class="metric" style="margin-top:10px;">
+    <div class="metric" style="margin-top:12px;">
       <div class="metric-head"><span class="metric-label">Corporate / B2B</span><span class="metric-val">33%</span></div>
       <div class="bar-track"><div class="bar-fill bar-blue" style="width:33%"></div></div>
     </div>
@@ -490,11 +577,9 @@ td:first-child { color: var(--text); font-weight: 500; }
 <!-- KONKURRENZ -->
 <div class="section">
   <span class="section-label">Konkurrenz</span>
-  <h2>Top 4 Wettbewerber</h2>
+  <h2 class="section-title">Top 4 Wettbewerber</h2>
   <table>
-    <thead>
-      <tr><th>Firma</th><th>St&auml;rke</th><th>Social Media</th><th>Ads</th></tr>
-    </thead>
+    <thead><tr><th>Firma</th><th>St&auml;rke</th><th>Social Media</th><th>Ads</th></tr></thead>
     <tbody>
       <tr>
         <td>Sterntaucher Filmproduktion</td>
@@ -503,9 +588,9 @@ td:first-child { color: var(--text); font-weight: 500; }
             <div class="comp-bar"><div class="bar-fill bar-amber" style="width:80%"></div></div>
             <span class="comp-pct">80%</span>
           </div>
-          <span style="font-size:11px;color:var(--t2);">900+ Produktionen, DFG/Fraunhofer</span>
+          <span style="font-size:11px;color:var(--t3);">900+ Produktionen, DFG/Fraunhofer</span>
         </td>
-        <td><span style="color:var(--red);font-size:12px;">306 LinkedIn</span></td>
+        <td><span style="color:var(--accent);font-size:12px;font-weight:500;">306 LinkedIn</span></td>
         <td><span style="color:var(--t3);font-size:12px;">Nein</span></td>
       </tr>
       <tr>
@@ -515,7 +600,7 @@ td:first-child { color: var(--text); font-weight: 500; }
             <div class="comp-bar"><div class="bar-fill bar-blue" style="width:55%"></div></div>
             <span class="comp-pct">55%</span>
           </div>
-          <span style="font-size:11px;color:var(--t2);">Seit 2002, MedTech-Nische</span>
+          <span style="font-size:11px;color:var(--t3);">Seit 2002, MedTech-Nische</span>
         </td>
         <td><span style="color:var(--t3);font-size:12px;">Minimal</span></td>
         <td><span style="color:var(--t3);font-size:12px;">Nein</span></td>
@@ -527,7 +612,7 @@ td:first-child { color: var(--text); font-weight: 500; }
             <div class="comp-bar"><div class="bar-fill bar-blue" style="width:65%"></div></div>
             <span class="comp-pct">65%</span>
           </div>
-          <span style="font-size:11px;color:var(--t2);">Bundesweit, Unis/Stiftungen</span>
+          <span style="font-size:11px;color:var(--t3);">Bundesweit, Unis/Stiftungen</span>
         </td>
         <td><span style="color:var(--t3);font-size:12px;">Mittel</span></td>
         <td><span style="color:var(--t3);font-size:12px;">Nein</span></td>
@@ -539,10 +624,10 @@ td:first-child { color: var(--text); font-weight: 500; }
             <div class="comp-bar"><div class="bar-fill bar-amber" style="width:75%"></div></div>
             <span class="comp-pct">75%</span>
           </div>
-          <span style="font-size:11px;color:var(--t2);">Marktf&uuml;hrer Unternehmensfilme</span>
+          <span style="font-size:11px;color:var(--t3);">Marktf&uuml;hrer Unternehmensfilme</span>
         </td>
         <td><span style="color:var(--t3);font-size:12px;">Aktiv</span></td>
-        <td><span style="color:var(--green);font-size:12px;">Ja</span></td>
+        <td><span style="color:var(--green);font-size:12px;font-weight:600;">Ja</span></td>
       </tr>
     </tbody>
   </table>
@@ -555,80 +640,81 @@ td:first-child { color: var(--text); font-weight: 500; }
 <!-- AUDIENCE -->
 <div class="section">
   <span class="section-label">Audience Intelligence</span>
+  <h2 class="section-title">Plattform-Strategie</h2>
   <div class="platform-grid">
     <div class="platform-card p1">
       <span class="platform-prio p1">Prim&auml;r &mdash; Fokus</span>
       <span class="platform-name">LinkedIn</span>
       <span class="platform-desc">Kommunikationsabteilungen von Forschungsinstituten, Hochschulen, B2B-Unternehmen</span>
       <div class="platform-meter">
-        <div class="metric-head" style="margin-top:10px;"><span class="metric-label">Potential</span><span class="metric-val">90%</span></div>
+        <div class="metric-head" style="margin-top:12px;"><span class="metric-label">Potenzial</span><span class="metric-val">90%</span></div>
         <div class="bar-track"><div class="bar-fill bar-red" style="width:90%"></div></div>
       </div>
     </div>
     <div class="platform-card p2">
       <span class="platform-prio p2">Sekund&auml;r</span>
       <span class="platform-name">Instagram</span>
-      <span class="platform-desc">Kreativszene, Referenz-Kunden, Behind-the-Scenes — 1.063 Follower bereits</span>
+      <span class="platform-desc">Kreativszene, Referenz-Kunden, Behind-the-Scenes &mdash; 1.063 Follower bereits</span>
       <div class="platform-meter">
-        <div class="metric-head" style="margin-top:10px;"><span class="metric-label">Potential</span><span class="metric-val">60%</span></div>
+        <div class="metric-head" style="margin-top:12px;"><span class="metric-label">Potenzial</span><span class="metric-val">60%</span></div>
         <div class="bar-track"><div class="bar-fill bar-amber" style="width:60%"></div></div>
       </div>
     </div>
     <div class="platform-card p3">
       <span class="platform-prio p3">Wachstum</span>
       <span class="platform-name">TikTok</span>
-      <span class="platform-desc">Noch ungenutzt — Chance f&uuml;r Nischen-Viralit&auml;t mit Wissenschafts-Content</span>
+      <span class="platform-desc">Noch ungenutzt &mdash; Chance f&uuml;r Nischen-Viralit&auml;t mit Wissenschafts-Content</span>
       <div class="platform-meter">
-        <div class="metric-head" style="margin-top:10px;"><span class="metric-label">Potential</span><span class="metric-val">40%</span></div>
+        <div class="metric-head" style="margin-top:12px;"><span class="metric-label">Potenzial</span><span class="metric-val">40%</span></div>
         <div class="bar-track"><div class="bar-fill bar-blue" style="width:40%"></div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- UNFAIR ADVANTAGE -->
+<!-- ADVANTAGE -->
 <div class="section">
   <span class="section-label">Marktl&uuml;cke</span>
-  <h2>Das Unfair Advantage</h2>
-  <p>Niemand in dieser Nische verbindet alle vier Punkte gleichzeitig:</p>
+  <h2 class="section-title">Das Unfair Advantage</h2>
+  <p class="section-desc">Niemand in dieser Nische verbindet alle vier Punkte gleichzeitig:</p>
   <div class="advantage-list">
     <div class="adv-item">
       <span class="adv-num">1</span>
       <div>
         <div class="adv-title">Doppel-Expertise</div>
-        <div class="adv-desc">Filmproduktion + Wissenschaftskommunikation — kein Konkurrent hat beides</div>
+        <div class="adv-desc">Filmproduktion + Wissenschaftskommunikation &mdash; kein Konkurrent hat beides</div>
       </div>
     </div>
     <div class="adv-item">
       <span class="adv-num">2</span>
       <div>
         <div class="adv-title">Pers&ouml;nliche Marke</div>
-        <div class="adv-desc">Regelm&auml;&szlig;iger Content — baut Vertrauen wo Agenturen anonym bleiben</div>
+        <div class="adv-desc">Regelm&auml;&szlig;iger Content &mdash; baut Vertrauen wo Agenturen anonym bleiben</div>
       </div>
     </div>
     <div class="adv-item">
       <span class="adv-num">3</span>
       <div>
         <div class="adv-title">BIPS / Leibniz</div>
-        <div class="adv-desc">Institut-Verbindung als Glaubw&uuml;rdigkeitssignal — versteht Wissenschaft von innen</div>
+        <div class="adv-desc">Institut-Verbindung als Glaubw&uuml;rdigkeitssignal &mdash; versteht Wissenschaft von innen</div>
       </div>
     </div>
     <div class="adv-item">
       <span class="adv-num">4</span>
       <div>
         <div class="adv-title">Preisvorteil</div>
-        <div class="adv-desc">Freelancer vs. Agentur — direkter Kontakt, kein Overhead</div>
+        <div class="adv-desc">Freelancer vs. Agentur &mdash; direkter Kontakt, kein Overhead</div>
       </div>
     </div>
   </div>
   <div class="insight">
     <span class="insight-label">Fazit</span>
-    <p>Sebastian Budde lebt in beiden Welten — das ist sein Unfair Advantage.</p>
+    <p>Sebastian Budde lebt in beiden Welten &mdash; das ist sein Unfair Advantage.</p>
   </div>
 </div>
 
-<!-- PIPELINE VISUAL -->
-<div class="section" style="padding-bottom: 0;">
+<!-- PIPELINE -->
+<div class="section" style="padding-bottom:0;">
   <span class="section-label">Fortschritt</span>
   <div class="pipe-viz">
     <div class="pv">
@@ -652,40 +738,46 @@ td:first-child { color: var(--text); font-weight: 500; }
   </div>
 </div>
 
+</div><!-- /content -->
+
 <!-- RECOMMENDATION -->
-<div class="rec">
-  <span class="rec-label">Empfehlung &mdash; Stufe 01 abgeschlossen</span>
-  <p class="rec-body">Markt viable: 9/10. Gr&ouml;&szlig;te Chance ist LinkedIn-Pr&auml;senz — direkte Anfragen von Kommunikationsabteilungen. Gr&ouml;&szlig;tes Risiko: Bremer Lokalfokus. N&auml;chster Schritt: Strategie.</p>
-  <div class="rec-grid">
-    <div>
-      <span class="rec-item-label">Gr&ouml;&szlig;te Chance</span>
-      <span class="rec-item-text">LinkedIn-Pr&auml;senz als "Filmemacher f&uuml;r Wissenschaft" aufbauen</span>
-    </div>
-    <div>
-      <span class="rec-item-label">Gr&ouml;&szlig;tes Risiko</span>
-      <span class="rec-item-text">Bremer Lokalfokus — nationale Kunden k&ouml;nnten Reichweite bezweifeln</span>
-    </div>
-    <div>
-      <span class="rec-item-label">N&auml;chster Schritt</span>
-      <span class="rec-item-text">Strategie starten — Positionierung und Content-Plan</span>
+<div style="max-width:1000px;margin:0 auto;padding:0 48px 52px;">
+  <div class="rec">
+    <span class="rec-label">Empfehlung &mdash; Stufe 01 abgeschlossen</span>
+    <p class="rec-body">Markt viable: 9/10. Gr&ouml;&szlig;te Chance ist LinkedIn-Pr&auml;senz &mdash; direkte Anfragen von Kommunikationsabteilungen. Gr&ouml;&szlig;tes Risiko: Bremer Lokalfokus. N&auml;chster Schritt: Strategie.</p>
+    <div class="rec-grid">
+      <div>
+        <span class="rec-item-label">Gr&ouml;&szlig;te Chance</span>
+        <span class="rec-item-text">LinkedIn-Pr&auml;senz als &bdquo;Filmemacher f&uuml;r Wissenschaft&ldquo; aufbauen</span>
+      </div>
+      <div>
+        <span class="rec-item-label">Gr&ouml;&szlig;tes Risiko</span>
+        <span class="rec-item-text">Bremer Lokalfokus &mdash; nationale Kunden k&ouml;nnten Reichweite bezweifeln</span>
+      </div>
+      <div>
+        <span class="rec-item-label">N&auml;chster Schritt</span>
+        <span class="rec-item-text">Strategie starten &mdash; Positionierung und Content-Plan</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- LEGAL -->
-<div class="legal">
-  <span class="legal-title">Rechtliche Hinweise &amp; DSGVO</span>
-  <p>Dieser Report basiert ausschlie&szlig;lich auf &ouml;ffentlich zug&auml;nglichen Daten (LinkedIn-Profil, Website, Social Media). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO — Berechtigtes Interesse f&uuml;r Marktforschung mit &ouml;ffentlichen B2B-Daten.</p>
-  <p>Nur f&uuml;r internen Gebrauch. Kontaktdaten nicht ohne Einwilligung an Dritte weitergeben. Outreach nur mit klarer Opt-out-M&ouml;glichkeit (§ 7 UWG). Bei Widerspruch: alle Daten l&ouml;schen (DSGVO Art. 17). Erstellt von FIlmlabor OS (Koren Pollak), 26. M&auml;rz 2026.</p>
+<div style="max-width:1000px;margin:0 auto;padding:0 48px;">
+  <div class="legal">
+    <div class="legal-box">
+      <span class="legal-title">Rechtliche Hinweise &amp; DSGVO</span>
+      <p>Dieser Report basiert ausschlie&szlig;lich auf &ouml;ffentlich zug&auml;nglichen Daten (LinkedIn-Profil, Website, Social Media). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO &mdash; Berechtigtes Interesse f&uuml;r Marktforschung mit &ouml;ffentlichen B2B-Daten.</p>
+      <p>Nur f&uuml;r internen Gebrauch. Kontaktdaten nicht ohne Einwilligung an Dritte weitergeben. Outreach nur mit klarer Opt-out-M&ouml;glichkeit (&sect; 7 UWG). Bei Widerspruch: alle Daten l&ouml;schen (DSGVO Art. 17). Erstellt von FIlmlabor OS (Koren Pollak), 26. M&auml;rz 2026.</p>
+    </div>
+  </div>
 </div>
-
-</div><!-- /wrap -->
 
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-inner">
     <span class="footer-brand">FIlmlabor OS</span>
-    <span class="footer-meta">Vision &middot; 01 / 07 &middot; Sebastian Budde &middot; 26.03.2026 &middot; Vertraulich</span>
+    <span class="footer-meta">Vision &middot; 01&nbsp;/&nbsp;07 &middot; Sebastian Budde &middot; 26.03.2026 &middot; Vertraulich</span>
   </div>
 </div>
 
