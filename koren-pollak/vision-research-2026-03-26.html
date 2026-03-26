@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research — Film-labor / Koren Pollak — 2026-03-26</title>
+<style>
+  :root {
+    --accent: #1a1a2e;
+    --accent-mid: #3d5a80;
+    --black: #0D0D0D;
+    --gray-dark: #3a3a3a;
+    --gray-mid: #6b6b6b;
+    --gray-light: #b0b0b0;
+    --border: #d8d8d8;
+    --bg: #FFFFFF;
+    --bg-off: #F9F8F6;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid var(--black);
+    margin-bottom: 28px;
+  }
+  .header-brand { display: flex; flex-direction: column; gap: 3px; }
+  .header-brand .name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    color: var(--black);
+  }
+  .header-brand .tagline {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .header-meta { text-align: right; }
+  .header-meta .pipeline-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 3px;
+  }
+  .header-meta .report-title {
+    font-size: 13px;
+    color: var(--gray-dark);
+  }
+
+  /* STAGE BADGE */
+  .stage {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding: 14px 18px;
+    background: var(--bg-off);
+  }
+  .stage-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--black);
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  .stage-desc {
+    font-size: 13px;
+    color: var(--gray-dark);
+  }
+  .stage-progress {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--gray-mid);
+    white-space: nowrap;
+  }
+
+  /* HERO */
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .lead {
+    font-size: 17px;
+    color: var(--gray-dark);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-top: 52px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .section h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  /* SCORE BLOCK */
+  .score-block {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+  .score-number {
+    font-family: var(--font-serif);
+    font-size: 80px;
+    font-weight: normal;
+    line-height: 1;
+    color: var(--black);
+  }
+  .score-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-top: 6px;
+  }
+  .score-detail { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; }
+  .score-detail p { font-size: 14px; color: var(--gray-dark); line-height: 1.6; }
+  .score-detail strong { color: var(--black); }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    margin: 24px 0;
+  }
+  .stat {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-value {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-mid);
+    line-height: 1.4;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight {
+    border-left: 3px solid var(--accent-mid);
+    padding: 14px 20px;
+    margin: 20px 0;
+    background: var(--bg-off);
+  }
+  .insight p {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gray-dark);
+    line-height: 1.65;
+  }
+  .insight strong { color: var(--black); font-style: normal; }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-weight: normal;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--gray-dark);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--black); font-weight: 600; }
+  .tag-yes { color: #1a7a3a; font-weight: 600; }
+  .tag-no { color: #b0301a; font-weight: 600; }
+  .tag-warn { color: #a05c00; font-weight: 600; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--bg-off);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .callout h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: normal;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  .callout p, .callout li {
+    font-size: 14px;
+    color: var(--gray-dark);
+    line-height: 1.65;
+    margin-bottom: 6px;
+  }
+  .callout ul { padding-left: 16px; }
+
+  /* RECOMMENDATION */
+  .recommendation {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 28px 0;
+    margin-top: 40px;
+  }
+  .recommendation h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+  .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .rec-item h4 {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 8px;
+  }
+  .rec-item p { font-size: 14px; color: var(--gray-dark); line-height: 1.6; }
+  .rec-item p strong { color: var(--black); }
+
+  /* LEGAL */
+  .legal {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .legal-title {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 10px;
+  }
+  .legal-box {
+    background: #fffbf0;
+    border: 1px solid #e8d88a;
+    padding: 16px 20px;
+    font-size: 11px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+  .legal-box strong { color: var(--black); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-light);
+  }
+
+  .gate-vollgas {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1a7a3a;
+    background: #e8f5eb;
+    padding: 4px 12px;
+    margin-top: 4px;
+  }
+
+  .audience-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--gray-dark);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    background: var(--bg-off);
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 24px 20px 60px; }
+    .score-block { grid-template-columns: 1fr; gap: 16px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .rec-grid { grid-template-columns: 1fr; gap: 20px; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .header { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-brand">
+    <span class="name">Film-labor</span>
+    <span class="tagline">Koren Pollak — Frankfurt am Main</span>
+  </div>
+  <div class="header-meta">
+    <div class="pipeline-label">Vision Pipeline</div>
+    <div class="report-title">Markt-Research Report</div>
+  </div>
+</header>
+
+<div class="stage">
+  <span class="stage-badge">Stufe 01 von 07</span>
+  <span class="stage-desc">Deep Research — Markt, Konkurrenz, Audience</span>
+  <span class="stage-progress">26. März 2026</span>
+</div>
+
+<h1>Videoproduktion für die technische Industrie —<br>ein Markt mit klarem Hunger</h1>
+<p class="lead">Film-labor hat einen seltenen Vorteil: Koren Pollak versteht die Industrie von innen. Biochemiker. Filmemacher. Was generische Agenturen in langen Feedbackschleifen erarbeiten müssen, bringt Film-labor von Anfang mit.</p>
+
+<!-- MARKT-VALIDIERUNG -->
+<div class="section">
+  <span class="section-label">01 — Markt-Validierung</span>
+  <h2>Starving Crowd Score</h2>
+
+  <div class="score-block">
+    <div>
+      <div class="score-number">8</div>
+      <div class="score-label">von 10</div>
+      <div class="gate-vollgas">Vollgas</div>
+    </div>
+    <div class="score-detail">
+      <p><strong>Problem:</strong> B2B-Unternehmen in Maschinenbau, Chemie, Pharma und Fertigung brauchen professionelle Videos — haben aber keine interne Filmkompetenz und werden von Generalistagenturen nicht fachlich verstanden.</p>
+      <p><strong>Zahlungsbereitschaft belegt:</strong> Imagefilm 5.000–15.000 EUR, Erklärvideos 3.000–8.000 EUR, Pakete bis 30.000 EUR. Markt zahlt nachweislich.</p>
+      <p><strong>Trend:</strong> Extern beauftragte Videoproduktion stieg von 11% auf 24% (2023→2025). 47% der Unternehmen erhöhen Video-Output 2025.</p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-value">50.000+</div>
+      <div class="stat-label">Technische KMU in Deutschland — potenzielle Kunden</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">+118%</div>
+      <div class="stat-label">Wachstum extern beauftr. Videoproduktion 2023→2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">73%</div>
+      <div class="stat-label">B2B-Entscheider bevorzugen Video vor Text</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p><strong>Einzigartiger Vorteil:</strong> Kein anderer Anbieter im Wettbewerbsfeld kombiniert Biochemie-Studium mit Filmproduktions-Expertise. Das ist nicht nur ein Pitch-Argument — das eliminiert eine echte Reibung, die Industriekunden kennen.</p>
+  </div>
+</div>
+
+<!-- TECH AUDIT -->
+<div class="section">
+  <span class="section-label">02 — Tech-Audit</span>
+  <h2>Website & Tracking</h2>
+
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Status</th>
+      <th>Bewertung</th>
+    </tr>
+    <tr>
+      <td>Website erreichbar</td>
+      <td><span class="tag-yes">✓ Aktiv</span></td>
+      <td>film-labor.de lädt korrekt</td>
+    </tr>
+    <tr>
+      <td>SSL / HTTPS</td>
+      <td><span class="tag-yes">✓ Aktiv</span></td>
+      <td>Sicher</td>
+    </tr>
+    <tr>
+      <td>Google Tag Manager</td>
+      <td><span class="tag-yes">✓ GTM-59GSBNS5</span></td>
+      <td>Tracking-Infrastruktur vorhanden</td>
+    </tr>
+    <tr>
+      <td>Meta Pixel</td>
+      <td><span class="tag-yes">✓ ID 932777712356915</span></td>
+      <td>Facebook/Instagram-Retargeting möglich</td>
+    </tr>
+    <tr>
+      <td>LinkedIn Insight Tag</td>
+      <td><span class="tag-no">✗ Fehlt</span></td>
+      <td>Kritische Lücke — kein B2B-Retargeting auf Website-Besucher</td>
+    </tr>
+    <tr>
+      <td>Social-Links auf Homepage</td>
+      <td><span class="tag-no">✗ Nicht sichtbar</span></td>
+      <td>LinkedIn-Profil nicht verlinkt — Conversion-Killer für Interessenten</td>
+    </tr>
+    <tr>
+      <td>Cookie-Banner</td>
+      <td><span class="tag-warn">⚠ Nicht erkannt</span></td>
+      <td>DSGVO-Risiko prüfen</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <h3>Sofortmaßnahmen (vor der Content-Offensive)</h3>
+    <ul>
+      <li>LinkedIn Insight Tag auf website einbinden — 10 Minuten Aufwand, signifikanter Retargeting-Hebel</li>
+      <li>LinkedIn-Profil-Link prominent in Navigation und Footer platzieren</li>
+      <li>Cookie-Banner DSGVO-konform prüfen und nachrüsten</li>
+    </ul>
+  </div>
+</div>
+
+<!-- KONKURRENZ -->
+<div class="section">
+  <span class="section-label">03 — Konkurrenzanalyse</span>
+  <h2>Wettbewerb Frankfurt + DACH</h2>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Firma</th>
+      <th>Stärke</th>
+      <th>Schwäche</th>
+      <th>Nische?</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>muthmedia</strong><br><small>nur-muth.com</small></td>
+      <td>2.000+ Kunden, 6.000+ Produktionen. SAP, Porsche, Merck als Referenzen. "Schnellste Produktion".</td>
+      <td>Generalist. Kein Industrie-Fokus. Kein persönlicher USP. Preisführer-Strategie.</td>
+      <td><span class="tag-no">Nein</span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>KG Media Factory</strong><br><small>kgmediafactory.com</small></td>
+      <td>Seit 2006, 8 DACH-Standorte, Content Marketing Gold Winner 2023. BMW, Siemens, Bosch.</td>
+      <td>Zu breit aufgestellt. Premium-Segment, kaum zugänglich für KMU.</td>
+      <td><span class="tag-no">Nein</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>creativeframe</strong><br><small>creativeframe.de</small></td>
+      <td>Explizit Pharma + Industrie. Strategischer Ansatz. Nächster Konkurrent in der Nische.</td>
+      <td>Klein. Wenig sichtbarer Social-Proof. Schwache LinkedIn-Präsenz.</td>
+      <td><span class="tag-yes">Ja — ähnlich</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Die Filmagentur</strong><br><small>diefilmagentur.de</small></td>
+      <td>LinkedIn-Videospezialist. Starke SEO. Gute Statistik-Kommunikation.</td>
+      <td>Berlin-fokussiert. Kein wissenschaftlicher USP.</td>
+      <td><span class="tag-no">Nein</span></td>
+    </tr>
+  </table>
+
+  <div class="insight">
+    <p><strong>Marktlücke:</strong> Niemand positioniert sich explizit als Videoproduktion von jemandem, der die Chemie, Biochemie und technische Industrie auch fachlich versteht. creativeframe kommt am nächsten — aber ohne den Gründer-Biochemiker-USP. Das ist Film-labor's uneinholbarer Vorteil.</p>
+  </div>
+</div>
+
+<!-- ERFOLGSMODELLE -->
+<div class="section">
+  <span class="section-label">04 — Erfolgsmodelle</span>
+  <h2>Was in dieser Branche funktioniert</h2>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Firma / Quelle</th>
+      <th>Was sie richtig machen</th>
+      <th>Übertragbar?</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Die Filmagentur Berlin</strong></td>
+      <td>Positionierung als Experte durch Branchenstatistiken: "81% der Unternehmen nutzen Video", "92% der Marketer sehen Video als essenziell". Vertrauen durch Zahlen statt Eigenlob.</td>
+      <td>Ja — Koren sollte Video-ROI-Statistiken für Industrie in LinkedIn-Posts kommunizieren</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>muthmedia</strong></td>
+      <td>Klares Social Proof prominent auf Homepage: "2.000+ Kunden, 6.000+ Produktionen". Zahlen schaffen Vertrauen ohne Aufwand.</td>
+      <td>Ja — Konkrete Projektzahlen und Kundennamen auf film-labor.de kommunizieren</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Maschinenbau-Fallstudie (allg.)</strong></td>
+      <td>Kurzvideos von Produktionen (Behind-the-Scenes) auf LinkedIn + YouTube gingen viral — zahlreiche Produktanfragen direkt.</td>
+      <td>Ja — Produktions-BTS und fertige Ergebnisse regelmäßig posten</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>creativeframe</strong></td>
+      <td>Knackiges Wort-Trio für den USP: "Wissen sichern. Vertrauen schaffen. Awareness stärken." — sofort verständlich, kein Fülltext.</td>
+      <td>Ja — Film-labor braucht ein eigenes Wort-Trio (Vorschlag in Strategie-Stufe)</td>
+    </tr>
+  </table>
+</div>
+
+<!-- AUDIENCE INTELLIGENCE -->
+<div class="section">
+  <span class="section-label">05 — Audience Intelligence</span>
+  <h2>Wo die Zielgruppe ist und was sie will</h2>
+
+  <div class="callout">
+    <h3>Zielgruppen-Portrait</h3>
+    <p>Marketing-Leiter oder HR-Manager in technischem KMU (100–2.000 MA), DACH-Region. Hat Budget-Verantwortung, aber wenig Zeit. Sucht einen Partner, der "die Sprache spricht" — technisch korrekt, professionell in der Wirkung, zuverlässig in der Lieferung. Häufige Frustration mit Generalistagenturen: lange Briefings, fachlich falsche Videos, teures Nacharbeiten.</p>
+  </div>
+
+  <table>
+    <tr>
+      <th>Kanal</th>
+      <th>Rolle</th>
+      <th>Was performt</th>
+    </tr>
+    <tr>
+      <td><strong>LinkedIn</strong></td>
+      <td>Primär (73% B2B-Entscheider)</td>
+      <td>Behind-the-Scenes, fachliche Insights, Video-ROI-Statistiken, Case Studies. Video erzeugt 5× mehr Engagement als Text.</td>
+    </tr>
+    <tr>
+      <td><strong>YouTube</strong></td>
+      <td>Sekundär (Recherche)</td>
+      <td>Prozess-Erklärvideos, "Was kostet ein Imagefilm", Industrie-Tutorials</td>
+    </tr>
+    <tr>
+      <td><strong>Instagram</strong></td>
+      <td>Portfolio/Branding</td>
+      <td>Visuelle Ergebnisse, Produktionsmomente, Team-Einblicke</td>
+    </tr>
+    <tr>
+      <td><strong>Fachmessen</strong></td>
+      <td>Offline-Lead-Generierung</td>
+      <td>Hannover Messe, Achema, automatica — direkte Zielgruppen-Konzentration</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 16px;">
+    <span class="section-label" style="margin-bottom: 10px;">Relevante Hashtags</span>
+    <div class="audience-tags">
+      <span class="tag">#Imagefilm</span>
+      <span class="tag">#Recruiting</span>
+      <span class="tag">#B2BMarketing</span>
+      <span class="tag">#Industrie</span>
+      <span class="tag">#Maschinenbau</span>
+      <span class="tag">#Chemie</span>
+      <span class="tag">#Pharma</span>
+      <span class="tag">#Filmproduktion</span>
+      <span class="tag">#VideoMarketing</span>
+      <span class="tag">#EmployerBranding</span>
+      <span class="tag">#Mittelstand</span>
+      <span class="tag">#HR</span>
+      <span class="tag">#Industriefilm</span>
+    </div>
+  </div>
+</div>
+
+<!-- EMPFEHLUNG -->
+<div class="recommendation">
+  <h2>Empfehlung</h2>
+  <div class="rec-grid">
+    <div class="rec-item">
+      <h4>Markt viable?</h4>
+      <p><strong>Ja.</strong> Nachfrage nachgewiesen, Zahlungsbereitschaft klar, USP einzigartig positionierbar. Wachstumstrend stark.</p>
+    </div>
+    <div class="rec-item">
+      <h4>Größte Chance</h4>
+      <p>Den "Ich verstehe Ihre Branche von innen"-USP aggressiv kommunizieren. <strong>Kein anderer Wettbewerber in DACH</strong> hat Biochemie-Studium + Filmproduktion kombiniert.</p>
+    </div>
+    <div class="rec-item">
+      <h4>Größtes Risiko</h4>
+      <p>Zu niedrige LinkedIn-Posting-Frequenz. Ohne konsistenten Content (3–4x/Woche) bleibt der Kanal für Generalistagenturen.</p>
+    </div>
+    <div class="rec-item">
+      <h4>Nächster Schritt</h4>
+      <p><strong>Strategie starten.</strong> StoryBrand ausarbeiten, Content Fortress aufbauen, LinkedIn zum primären Lead-Kanal entwickeln.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LEGAL -->
+<div class="legal">
+  <div class="legal-title">Rechtliche Grundlage & Disclaimer</div>
+  <div class="legal-box">
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse). Alle verwendeten Daten stammen aus öffentlich zugänglichen Quellen (Websites, LinkedIn-Profile, öffentliche Marktdaten).<br><br>
+    <strong>Nur für internen Gebrauch.</strong> Dieser Report darf nicht ohne Einwilligung der genannten Personen/Unternehmen an Dritte weitergegeben werden.<br><br>
+    <strong>Löschpflicht:</strong> Widerspricht eine genannte Person der Verarbeitung, sind alle Daten zu dieser Person unverzüglich zu löschen (DSGVO Art. 17).<br><br>
+    <strong>Outreach-Grenzen:</strong> Erstkontakt nur mit klarer Opt-out-Möglichkeit (§ 7 UWG). Kein Massenversand ohne Einwilligung. Keine sensiblen Daten (Gesundheit, Religion, Politik).
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Film-labor — Vision Pipeline</span>
+  <span>Stufe 01/07 — Deep Research</span>
+  <span>Vertraulich — 2026-03-26</span>
+</footer>
+
+</body>
+</html>

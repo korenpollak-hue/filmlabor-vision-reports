@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Strategie — Film-labor / Koren Pollak — 2026-03-26</title>
+<style>
+  :root {
+    --accent: #1a1a2e;
+    --accent-mid: #3d5a80;
+    --black: #0D0D0D;
+    --gray-dark: #3a3a3a;
+    --gray-mid: #6b6b6b;
+    --gray-light: #b0b0b0;
+    --border: #d8d8d8;
+    --bg: #FFFFFF;
+    --bg-off: #F9F8F6;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid var(--black);
+    margin-bottom: 28px;
+  }
+  .header-brand .name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; }
+  .header-brand .tagline { font-size: 11px; color: var(--gray-mid); letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-meta { text-align: right; }
+  .header-meta .pipeline-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 3px; }
+  .header-meta .report-title { font-size: 13px; color: var(--gray-dark); }
+  .stage {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding: 14px 18px;
+    background: var(--bg-off);
+  }
+  .stage-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--black); padding: 5px 12px; white-space: nowrap; }
+  .stage-desc { font-size: 13px; color: var(--gray-dark); }
+  .stage-progress { margin-left: auto; font-size: 11px; color: var(--gray-mid); white-space: nowrap; }
+  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.2; color: var(--black); margin-bottom: 16px; }
+  .lead { font-size: 17px; color: var(--gray-dark); max-width: 620px; line-height: 1.7; margin-bottom: 48px; }
+  .section { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 20px; display: block; }
+  .section h2 { font-family: var(--font-serif); font-size: 22px; font-weight: normal; color: var(--black); margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 20px 0; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: normal; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border); }
+  td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--border); color: var(--gray-dark); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--black); font-weight: 600; }
+  .insight { border-left: 3px solid var(--accent-mid); padding: 14px 20px; margin: 20px 0; background: var(--bg-off); }
+  .insight p { font-style: italic; font-size: 15px; color: var(--gray-dark); line-height: 1.65; }
+  .insight strong { color: var(--black); font-style: normal; }
+  .callout { background: var(--bg-off); padding: 24px 28px; margin: 24px 0; }
+  .callout h3 { font-family: var(--font-serif); font-size: 17px; font-weight: normal; color: var(--black); margin-bottom: 10px; }
+  .callout p, .callout li { font-size: 14px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 6px; }
+  .callout ul { padding-left: 16px; }
+  .position-box {
+    border: 2px solid var(--black);
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .position-box .trio {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: normal;
+    color: var(--black);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .position-box .full {
+    font-size: 15px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+  .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  .pillar { padding: 18px 20px; border: 1px solid var(--border); }
+  .pillar-num { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 6px; }
+  .pillar-title { font-family: var(--font-serif); font-size: 16px; font-weight: normal; color: var(--black); margin-bottom: 8px; }
+  .pillar-body { font-size: 13px; color: var(--gray-dark); line-height: 1.55; }
+  .innovation { padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .innovation:last-child { border-bottom: none; }
+  .innovation-num { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 8px; }
+  .innovation h3 { font-family: var(--font-serif); font-size: 18px; font-weight: normal; color: var(--black); margin-bottom: 8px; }
+  .innovation p { font-size: 14px; color: var(--gray-dark); line-height: 1.6; }
+  .platform-row td:first-child { font-weight: 600; color: var(--black); }
+  .priority-1 { background: #f0f4f8; }
+  .next-steps { counter-reset: steps; margin: 0; padding: 0; list-style: none; }
+  .next-steps li { counter-increment: steps; padding: 14px 0 14px 48px; border-bottom: 1px solid var(--border); position: relative; font-size: 14px; color: var(--gray-dark); line-height: 1.5; }
+  .next-steps li:last-child { border-bottom: none; }
+  .next-steps li::before { content: counter(steps); position: absolute; left: 0; top: 14px; font-family: var(--font-serif); font-size: 22px; font-weight: normal; color: var(--gray-light); }
+  .next-steps li strong { color: var(--black); }
+  .recommendation { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 28px 0; margin-top: 40px; }
+  .recommendation h2 { font-family: var(--font-serif); font-size: 22px; font-weight: normal; margin-bottom: 16px; }
+  .legal { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .legal-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 10px; }
+  .legal-box { background: #fffbf0; border: 1px solid #e8d88a; padding: 16px 20px; font-size: 11px; color: var(--gray-dark); line-height: 1.7; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-light); }
+  @media (max-width: 640px) {
+    body { padding: 24px 20px 60px; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-brand">
+    <div class="name">Film-labor</div>
+    <div class="tagline">Koren Pollak — Frankfurt am Main</div>
+  </div>
+  <div class="header-meta">
+    <div class="pipeline-label">Vision Pipeline</div>
+    <div class="report-title">Kreative Strategie</div>
+  </div>
+</header>
+
+<div class="stage">
+  <span class="stage-badge">Stufe 02 von 07</span>
+  <span class="stage-desc">Kreative Strategie — StoryBrand, Hormozi, Content Fortress</span>
+  <span class="stage-progress">26. März 2026</span>
+</div>
+
+<h1>Der Biochemiker, der filmt —<br>eine Positionierung die niemand kopieren kann</h1>
+<p class="lead">Strategie ist die Entscheidung, was man nicht tut. Film-labor ist keine Videoproduktion für alle. Film-labor ist die Videoproduktion für technische Industrien — von jemandem, der selbst Naturwissenschaftler ist.</p>
+
+<!-- POSITIONIERUNG -->
+<div class="section">
+  <span class="section-label">01 — Positionierungs-Statement</span>
+  <div class="position-box">
+    <div class="trio">Verstehen. Filmen. Wirken.</div>
+    <div class="full">
+      Für Marketing- und HR-Verantwortliche in technischen B2B-Unternehmen, die professionelle Videos brauchen ohne der Agentur erst die Branche erklären zu müssen, bietet Film-labor Imagefilme, Recruiting-Videos und Erklärvideos — im Gegensatz zu Generalistagenturen, weil der Gründer Biochemiker und Filmemacher in einem ist.
+    </div>
+  </div>
+</div>
+
+<!-- STORYBRAND -->
+<div class="section">
+  <span class="section-label">02 — StoryBrand-Framework</span>
+  <h2>Der Kunde ist der Held — Film-labor ist der Guide</h2>
+
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Film-labor Ausfüllung</th>
+    </tr>
+    <tr>
+      <td><strong>Hero</strong></td>
+      <td>Marketing-Leiter oder HR-Manager im technischen Mittelstand (Maschinenbau, Chemie, Pharma). Hat Video-Budget, aber kein internes Filmteam.</td>
+    </tr>
+    <tr>
+      <td><strong>External Problem</strong></td>
+      <td>Braucht ein Video, das technische Produkte oder das Unternehmen als Arbeitgeber glaubwürdig zeigt. Generalistagenturen verstehen die Branche nicht.</td>
+    </tr>
+    <tr>
+      <td><strong>Internal Problem</strong></td>
+      <td>Angst, viel Geld für ein Video zu zahlen, das fachlich falsch oder wirkungslos ist. Frustration über vergangene Enttäuschungen.</td>
+    </tr>
+    <tr>
+      <td><strong>Philosophical Problem</strong></td>
+      <td>Technische Unternehmen verdienen Kommunikation auf demselben Qualitätsniveau wie ihre Produkte — nicht generischen Content.</td>
+    </tr>
+    <tr>
+      <td><strong>Guide (Empathie)</strong></td>
+      <td>"Wir wissen, wie es ist, wenn man nach dem Briefing drei Stunden das Grundprinzip erklären muss. Deshalb fangen wir da nicht an."</td>
+    </tr>
+    <tr>
+      <td><strong>Guide (Autorität)</strong></td>
+      <td>Koren Pollak: Biochemie-Studium + Filmproduktions-Expertise. Projekthistorie in Maschinenbau, Chemie, Pharma.</td>
+    </tr>
+    <tr>
+      <td><strong>Plan (3 Schritte)</strong></td>
+      <td>1. Kostenloses Erstgespräch (30 Min) → 2. Konzept & Kalkulation in 48h → 3. Produktion & Lieferung</td>
+    </tr>
+    <tr>
+      <td><strong>CTA Direkt</strong></td>
+      <td>"Kostenloses Erstgespräch buchen" (Calendly-Link)</td>
+    </tr>
+    <tr>
+      <td><strong>CTA Transitional</strong></td>
+      <td>"Gratis Video-Checkliste für Industrieunternehmen holen"</td>
+    </tr>
+    <tr>
+      <td><strong>Failure</strong></td>
+      <td>Qualifizierte Bewerber gehen an Wettbewerber mit starkem Employer-Branding. Kunden verstehen das Produkt online nicht und springen ab.</td>
+    </tr>
+    <tr>
+      <td><strong>Success</strong></td>
+      <td>Recruiting-Videos, die qualifizierte Bewerbungen anziehen. Imagefilme, die Vertrauen in Vertriebsgesprächen schaffen. Erklärvideos, die den Außendienst entlasten.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- HORMOZI VALUE EQUATION -->
+<div class="section">
+  <span class="section-label">03 — Hormozi Value Equation</span>
+  <h2>Warum der Preis keinen Widerstand erzeugt</h2>
+
+  <div class="callout">
+    <h3>Wahrgenommener Wert = (Traumresultat × Wahrscheinlichkeit) / (Zeitaufwand × Mühe)</h3>
+    <p><strong>Traumresultat:</strong> "Ein Video, das Kunden überzeugt und neue Mitarbeiter anzieht — ohne dass ich die Agentur erst einlernen muss."</p>
+    <p><strong>Wahrscheinlichkeit erhöhen:</strong> Case Studies mit konkreten Ergebnissen (Bewerbungszahlen, Kundengewinnungen). Korens Biochemie-Hintergrund als institutioneller Vertrauensbeweis.</p>
+    <p><strong>Zeitaufwand reduzieren:</strong> "Du musst uns das Produkt nicht erklären — wir verstehen es." Turnaround 3–4 Wochen statt Branchendurchschnitt 6–8.</p>
+    <p><strong>Mühe minimieren:</strong> Koren übernimmt Konzept, Briefing-Vorbereitung, Interviewführung und Verteilungsstrategie. Der Kunde bringt nur sein Unternehmen mit.</p>
+  </div>
+</div>
+
+<!-- BIG 5 -->
+<div class="section">
+  <span class="section-label">04 — They Ask You Answer: Big 5</span>
+  <h2>Content-Themen, die qualifizierte Leads anziehen</h2>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Thema</th>
+      <th>Konkreter Titel</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Pricing</strong></td>
+      <td>"Was kostet ein Imagefilm für ein Industrieunternehmen wirklich?" — Ehrliche Antwort mit Preisspannen und Begründungen. Dieser Post allein bringt qualifizierte Leads.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Problems</strong></td>
+      <td>"Was kann bei einer Filmproduktion für Industrieunternehmen schiefgehen?" — Eigene Grenzen kommunizieren: nicht der günstigste, kein Livestreaming-Team.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Versus</strong></td>
+      <td>"Film-labor vs. Großagentur — wann ist welche Wahl sinnvoll?" — Ehrlicher Vergleich ohne Schönfärberei.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Reviews</strong></td>
+      <td>"Was sagen Kunden, die vorher schlechte Erfahrungen mit anderen Agenturen gemacht haben?" — Testimonials mit konkreten Vorher/Nachher.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Best in Class</strong></td>
+      <td>"Welche Videoproduktion versteht technische Industrie wirklich?" — Film-labor als Antwort mit Argumenten, nicht Eigenlob.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- CONTENT FORTRESS -->
+<div class="section">
+  <span class="section-label">05 — Content Fortress</span>
+  <h2>8 Säulen — ein Fundament, das nie leer läuft</h2>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-num">Säule 1 — Repelling</div>
+      <div class="pillar-title">Für wen wir NICHT geeignet sind</div>
+      <div class="pillar-body">Hält Zeitfresser fern, zieht Ernsthafte an. "Wer ein Overnight-Video für 500 EUR sucht, ist hier falsch."</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 2 — Attracting</div>
+      <div class="pillar-title">Transformation zeigen</div>
+      <div class="pillar-body">Case Study: X Bewerbungen nach Recruiting-Video. Vorher/Nachher Zustand des Kunden.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 3 — Sales</div>
+      <div class="pillar-title">Case Study mit Zahlen</div>
+      <div class="pillar-body">"Erklärfilm für Laborausrüstung — Konzept bis Lieferung in 4 Wochen." Prozess + messbares Ergebnis.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 4 — Pricing</div>
+      <div class="pillar-title">Transparente Preiskommunikation</div>
+      <div class="pillar-body">"Was ein Industriefilm kostet — und warum." Mit Begründung, nicht nur Zahlen.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 5 — Guiding</div>
+      <div class="pillar-title">Expertenwissen teilen</div>
+      <div class="pillar-body">"5 Dinge, die dein Recruiting-Video falsch macht." How-to, der Koren als Experten positioniert.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 6 — Process</div>
+      <div class="pillar-title">Prozess transparent machen</div>
+      <div class="pillar-body">"So läuft eine Produktion bei Film-labor ab — in 6 Schritten." Nimmt Briefing-Unsicherheit.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 7 — Culture</div>
+      <div class="pillar-title">Gründer-Story erzählen</div>
+      <div class="pillar-body">"Warum ich Biochemie studiert habe — und trotzdem Filme mache." Authentisch. Menschen folgen Menschen.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Säule 8 — Opinion</div>
+      <div class="pillar-title">Kontroverse Meinung</div>
+      <div class="pillar-body">"KI-Videos in der Industrie: nützliches Tool oder Reputationsrisiko?" Löst Diskussion aus.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CREATIVE INNOVATIONS -->
+<div class="section">
+  <span class="section-label">06 — Creative Innovations</span>
+  <h2>Top 3 Content-Formate</h2>
+
+  <div class="innovation">
+    <div class="innovation-num">Innovation 1 — Founder-LED Content</div>
+    <h3>"Der Biochemiker dreht"</h3>
+    <p>Koren positioniert sich persönlich auf LinkedIn als die Person, die Biochemie UND Film kann. Nicht Film-labor als Marke — sondern Koren Pollak als Experte. 2x/Woche persönliche Einblicke aus Produktionen, kombiniert mit Branchenexpertise. Menschen folgen Menschen, nicht Logos.</p>
+  </div>
+
+  <div class="innovation">
+    <div class="innovation-num">Innovation 2 — Branchen-Insider Content</div>
+    <h3>"Technische Themen, die ich verstehe"</h3>
+    <p>Posts zu: "Wie erklärt man ein Zentrifugationsverfahren in 60 Sekunden?" oder "Was Marketing-Leiter im Pharmasektor von Video erwarten." Die Zielgruppe sieht sofort: dieser Mensch versteht meinen Alltag. Keine andere Videoproduktion in DACH macht das.</p>
+  </div>
+
+  <div class="innovation">
+    <div class="innovation-num">Innovation 3 — Briefing-Transparenz</div>
+    <h3>"Vorher / Nachher Brief-Analyse"</h3>
+    <p>Anonymisiertes reales Briefing zeigen + erklären, was gut war, was fehlte, wie Film-labor damit umgegangen ist. Extrem hoher Praxiswert. Differenziert von jedem Wettbewerber, der nur fertige Videos zeigt.</p>
+  </div>
+</div>
+
+<!-- PLATFORM STRATEGY -->
+<div class="section">
+  <span class="section-label">07 — Platform-Strategie</span>
+  <h2>Wo und wie viel</h2>
+
+  <table>
+    <tr>
+      <th>Plattform</th>
+      <th>Priorität</th>
+      <th>Content-Mix</th>
+      <th>Frequenz</th>
+      <th>Ziel</th>
+    </tr>
+    <tr class="priority-1">
+      <td><strong>LinkedIn</strong></td>
+      <td>#1</td>
+      <td>Persönliche Texte, Behind-the-Scenes, Statistiken, Meinungen, Case Studies</td>
+      <td>4×/Woche Di–Do 7:30–9 Uhr oder 17–19 Uhr</td>
+      <td>Lead-Generierung, Netzwerk aufbauen</td>
+    </tr>
+    <tr>
+      <td><strong>YouTube</strong></td>
+      <td>#2</td>
+      <td>"Was kostet X"-Videos, Prozessvideos, Tutorials</td>
+      <td>2×/Monat</td>
+      <td>SEO, Recherche-Phase der Kunden</td>
+    </tr>
+    <tr>
+      <td><strong>Instagram</strong></td>
+      <td>#3</td>
+      <td>Produktionsmomente, fertige Clips, Team</td>
+      <td>3×/Woche</td>
+      <td>Portfolio, Branding</td>
+    </tr>
+  </table>
+
+  <div class="insight">
+    <p><strong>Wichtig:</strong> LinkedIn ist Primärkanal für B2B — 73% der Entscheider konsumieren Videos dort, LinkedIn-Videos erzeugen 5× mehr Engagement als Text. Korens persönliches Profil ist wichtiger als die Unternehmensseite.</p>
+  </div>
+</div>
+
+<!-- NEXT STEPS -->
+<div class="recommendation">
+  <h2>Sofortmaßnahmen — Bevor Stufe 03 startet</h2>
+  <ul class="next-steps">
+    <li><strong>LinkedIn Insight Tag einbinden</strong> — 10 Minuten, signifikanter Retargeting-Hebel für Ads</li>
+    <li><strong>LinkedIn-Link auf film-labor.de</strong> — Prominent in Navigation und Footer</li>
+    <li><strong>Wort-Trio auf Homepage</strong> — "Verstehen. Filmen. Wirken." als neuen Hero-Text</li>
+    <li><strong>Posting-Rhythmus starten</strong> — 4×/Woche LinkedIn ab nächster Woche (Stufe 03 liefert die Posts)</li>
+    <li><strong>Lead Magnet vorbereiten</strong> — "Video-Checkliste für Industrieunternehmen" (Stufe 04)</li>
+  </ul>
+</div>
+
+<div class="legal">
+  <div class="legal-title">Rechtliche Grundlage & Disclaimer</div>
+  <div class="legal-box">
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse). Strategiedokument für internen Gebrauch.<br><br>
+    <strong>Nur für internen Gebrauch.</strong> Enthält Wettbewerbsanalysen und strategische Planungen — vertraulich zu behandeln.
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Film-labor — Vision Pipeline</span>
+  <span>Stufe 02/07 — Kreative Strategie</span>
+  <span>Vertraulich — 2026-03-26</span>
+</footer>
+
+</body>
+</html>
