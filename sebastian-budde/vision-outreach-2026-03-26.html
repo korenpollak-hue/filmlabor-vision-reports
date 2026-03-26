@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Outreach — Sebastian Budde | 2026-03-26</title>
+<style>
+  :root{--bg:#0d0d0f;--bg2:#141418;--bg3:#1a1a21;--border:#2a2a35;--text:#e8e8f0;--muted:#7a7a8c;--accent:#6c63ff;--accent2:#ff6b6b;--green:#43d08a;--yellow:#f5c842;--blue:#4da6ff;--orange:#ff8c42;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;padding:40px 20px;}
+  .container{max-width:960px;margin:0 auto;}
+  .header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:48px;}
+  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+  .draft-banner{background:rgba(245,200,66,0.1);border:2px solid rgba(245,200,66,0.5);border-radius:10px;padding:16px 20px;margin-bottom:32px;display:flex;gap:12px;align-items:center;}
+  .draft-icon{font-size:20px;}
+  .draft-text{font-size:13px;color:var(--yellow);font-weight:600;}
+  h1{font-size:32px;font-weight:800;color:#fff;margin-bottom:8px;}
+  .subtitle{color:var(--muted);font-size:14px;}
+  h2{font-size:18px;font-weight:700;color:#fff;margin:40px 0 16px;display:flex;align-items:center;gap:10px;}
+  h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--accent);border-radius:2px;}
+  h3{font-size:14px;font-weight:700;color:var(--accent);margin:20px 0 10px;}
+  .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
+  .tag-green{background:rgba(67,208,138,0.15);color:var(--green);}
+  .tag-blue{background:rgba(77,166,255,0.15);color:var(--blue);}
+  .tag-yellow{background:rgba(245,200,66,0.15);color:var(--yellow);}
+  .tag-red{background:rgba(255,107,107,0.15);color:var(--accent2);}
+  .tag-purple{background:rgba(108,99,255,0.15);color:var(--accent);}
+  .tag-orange{background:rgba(255,140,66,0.15);color:var(--orange);}
+  .opener-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
+  .opener-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .opener-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .opener-text{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:16px;font-size:14px;color:var(--text);line-height:1.8;font-style:italic;}
+  .char-count{font-size:12px;color:var(--muted);margin-top:8px;}
+  .email-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
+  .email-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+  .email-day{font-size:24px;font-weight:800;color:var(--accent);}
+  .email-subject{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:13px;color:var(--yellow);margin-bottom:12px;}
+  .email-subject span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px;}
+  .email-body{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:14px;color:var(--muted);line-height:1.8;white-space:pre-wrap;}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+  th{background:var(--bg3);color:var(--accent);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .checklist{list-style:none;padding:0;}
+  .checklist li{padding:8px 0;font-size:14px;color:var(--muted);display:flex;align-items:flex-start;gap:10px;}
+  .checklist li::before{content:'□';color:var(--accent);font-size:16px;flex-shrink:0;}
+  .disclaimer{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:20px;margin-top:60px;}
+  .disclaimer h4{color:var(--yellow);font-size:13px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+  .disclaimer p{font-size:12px;color:var(--muted);line-height:1.6;}
+  .footer{text-align:center;margin-top:40px;color:var(--muted);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="badge">Stufe 05 — Outreach-Sequenzen</div>
+    <h1>Sebastian Budde</h1>
+    <div class="subtitle">3 LinkedIn Opener + 5-Email-Sequenz | Nur Entwürfe — kein automatischer Versand</div>
+  </div>
+
+  <div class="draft-banner">
+    <div class="draft-icon">⚠️</div>
+    <div class="draft-text">DRAFT — Alle Texte sind Entwürfe. Kein automatischer Versand. Nur zur manuellen Prüfung und Freigabe durch Sebastian Budde.</div>
+  </div>
+
+  <h2>LinkedIn Opener — 3 Varianten</h2>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Zielgruppe: Kommunikationsleiter / Leiterinnen Öffentlichkeitsarbeit bei Forschungsinstituten (Helmholtz, Leibniz, Fraunhofer, Max-Planck, Hochschulen)</p>
+
+  <div class="opener-card">
+    <div class="opener-meta">
+      <span class="tag tag-green">Opener A</span>
+      <span class="tag tag-blue">Empfohlen</span>
+      <span class="tag tag-purple">Anknüpfung an Tätigkeit</span>
+    </div>
+    <div class="opener-label">Text (DRAFT)</div>
+    <div class="opener-text">Ich arbeite selbst als Advisor of Digital Media beim Leibniz-Institut BIPS — daher kenne ich die Herausforderung Forschungsergebnisse für ein breiteres Publikum zugänglich zu machen. Was ist bei euch gerade das schwierigste daran?</div>
+    <div class="char-count">~240 Zeichen | Ton: Kollegial, neugierig | Kein Pitch, keine Erwähnung von Dienstleistungen</div>
+  </div>
+
+  <div class="opener-card">
+    <div class="opener-meta">
+      <span class="tag tag-yellow">Opener B</span>
+      <span class="tag tag-orange">Personalisiert</span>
+      <span class="tag tag-purple">Reaktion auf Post/Artikel</span>
+    </div>
+    <div class="opener-label">Text (DRAFT) — [Platzhalter für echte Personalisierung]</div>
+    <div class="opener-text">[Vorname], euer Artikel/Post über [konkretes Thema] war sehr gut. Die Frage wie man [spezifisches Forschungsthema] für Nicht-Fachleute greifbar macht, beschäftigt mich auch — ich produziere seit Jahren Videos genau dafür. Was sind eure größten Hürden dabei?</div>
+    <div class="char-count">~270 Zeichen | Nur verwenden nach LinkedIn-Post des Kontakts | Konkreter Bezug zwingend erforderlich</div>
+  </div>
+
+  <div class="opener-card">
+    <div class="opener-meta">
+      <span class="tag tag-blue">Opener C</span>
+      <span class="tag tag-green">Direkte Verbindung</span>
+      <span class="tag tag-purple">Über Referenz</span>
+    </div>
+    <div class="opener-label">Text (DRAFT)</div>
+    <div class="opener-text">Ich habe das Aftermovie für [Konferenz/Projekt] gemacht — ich glaube wir sind über [gemeinsamer Kontakt/Konferenz] verbunden. Habt ihr ähnliche Kommunikationsprojekte geplant oder ist das jetzt erstmal abgeschlossen?</div>
+    <div class="char-count">~230 Zeichen | Nur verwenden wenn tatsächliche Verbindung existiert</div>
+  </div>
+
+  <h2>Email-Sequenz — 5 Emails</h2>
+
+  <div class="email-card">
+    <div class="email-header">
+      <div><span class="tag tag-blue">Email 1</span></div>
+      <div class="email-day">Tag 1</div>
+    </div>
+    <div class="email-subject"><span>Betreff</span>Wissenschaftsvideos für [Institut-Name] — kurze Frage</div>
+    <div class="email-body">Guten Tag [Vorname],
+
+ich bin Filmemacher und produziere Videos für Forschungsinstitute und Hochschulen — mit einer etwas ungewöhnlichen Kombination: ich arbeite selbst als Advisor of Digital Media beim Leibniz-Institut BIPS in Bremen.
+
+Ich habe gesehen, dass ihr gerade [konkretes Projekt / aktuelle Kommunikation] macht. Habt ihr dafür bereits jemanden für die Video-Kommunikation, oder ist das noch offen?
+
+Ich frage direkt, weil ich glaube, dass wir weniger Briefing-Aufwand hätten als üblich — ich kenne die Wissenschaftswelt von innen.
+
+Falls es passt: 15 Minuten wären genug für ein erstes Gespräch.
+
+Mit freundlichen Grüßen,
+Sebastian Budde
+business@sebastianbudde.de | +49 151 503 09163
+
+P.S.: Meine Referenzen gibt es auf sebastianbudde.de — darunter AI-in-Health, EHPS und VetTrust.</div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-header">
+      <div><span class="tag tag-blue">Email 2</span></div>
+      <div class="email-day">Tag 5</div>
+    </div>
+    <div class="email-subject"><span>Betreff</span>Kurzer Nachtrag — und ein kostenloses PDF</div>
+    <div class="email-body">Guten Tag [Vorname],
+
+ich wollte kurz nachhaken — und gleichzeitig etwas Nützliches mitschicken, falls die erste Email nicht der richtige Moment war.
+
+Ich habe ein PDF zusammengestellt: "5 häufigste Fehler bei Wissenschaftsvideos". Keine Werbung — sondern das was ich wirklich beobachte, wenn Produktionen nicht das leisten was sie sollen.
+
+Hier der direkte Link: [Link zum PDF]
+
+Und falls ihr gerade tatsächlich etwas plant: Ich bin für 15 Minuten erreichbar.
+
+Mit freundlichen Grüßen,
+Sebastian Budde</div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-header">
+      <div><span class="tag tag-yellow">Email 3</span></div>
+      <div class="email-day">Tag 8</div>
+    </div>
+    <div class="email-subject"><span>Betreff</span>Eine konkrete Idee für [Institut-Name]</div>
+    <div class="email-body">Guten Tag [Vorname],
+
+ich habe mir eure Website und LinkedIn-Präsenz noch einmal genauer angeschaut.
+
+[Konkrete personalisierte Beobachtung — Beispiele:
+- "Ihr habt starke Inhalte, aber kein Video das eure Kernarbeit in 2 Minuten erklärt."
+- "Euer letztes Event [Name] verdient einen Aftermovie der zeigt was dort passiert ist."
+- "Eure Forschung zu [Thema] hat enormes Public-Engagement-Potenzial — und noch keine visuelle Aufbereitung."]
+
+Ich würde mir dazu gerne 15 Minuten nehmen — kein Pitch, nur ein Gespräch darüber was möglich wäre.
+
+Passt das irgendwann diese Woche?
+
+Mit freundlichen Grüßen,
+Sebastian Budde</div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-header">
+      <div><span class="tag tag-orange">Email 4</span></div>
+      <div class="email-day">Tag 12</div>
+    </div>
+    <div class="email-subject"><span>Betreff</span>Was die EHPS über ihr Aftermovie gesagt hat</div>
+    <div class="email-body">Guten Tag [Vorname],
+
+ich schreibe noch einmal — diesmal mit einem konkreten Beispiel.
+
+Die European Health Psychology Society (EHPS) hatte 2024 ihre Jahrestagung in Bremen. Über 800 Forschende, fünf Tage, internationales Fachpublikum.
+
+Mein Auftrag: den Geist dieser Konferenz einfangen — nicht das Programm, sondern was sie bedeutet.
+
+Reaktion des Veranstalters: Mehr Rückmeldungen als auf alle bisherigen Posts zusammen. Das Video wird jetzt genutzt um die nächste Tagung zu bewerben.
+
+Wenn ihr ähnliches habt oder plant, freue ich mich auf ein Gespräch.
+
+Mit freundlichen Grüßen,
+Sebastian Budde
+
+P.S.: Das Video schicke ich gerne direkt zu — kurze Antwort genügt.</div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-header">
+      <div><span class="tag tag-red">Email 5</span></div>
+      <div class="email-day">Tag 18</div>
+    </div>
+    <div class="email-subject"><span>Betreff</span>Letzte Nachricht von mir — Versprechen</div>
+    <div class="email-body">Guten Tag [Vorname],
+
+das ist meine letzte Nachricht zu diesem Thema — ich melde mich nicht noch einmal, wenn es jetzt nicht passt.
+
+Falls ihr gerade kein Projekt plant, kein Budget habt oder einfach nicht der richtige Moment ist: alles verständlich.
+
+Falls sich das ändert — hier sind meine Kontaktdaten:
+business@sebastianbudde.de | +49 151 503 09163 | sebastianbudde.de
+
+Für alle anderen: viel Erfolg mit euren Projekten. Ich verfolge eure Arbeit weiterhin mit Interesse.
+
+Mit freundlichen Grüßen,
+Sebastian Budde</div>
+  </div>
+
+  <h2>Adaptive Sequenz-Übersicht</h2>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;">
+    <table>
+      <thead><tr><th>Schritt</th><th>Kanal</th><th>Tag</th><th>Ziel</th><th>Reaktion → Nächster Schritt</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>LinkedIn Opener</td><td>0</td><td>Antwort oder Profilbesuch</td><td>Antwort → Gespräch | Profilbesuch → Email</td></tr>
+        <tr><td>2</td><td>Email 1</td><td>1</td><td>Erstgespräch buchen</td><td>Antwort → Skip zu Gespräch | Keine → Email 2</td></tr>
+        <tr><td>3</td><td>Email 2</td><td>5</td><td>PDF-Mehrwert, Vertrauen</td><td>Download → Email 3 personalisieren</td></tr>
+        <tr><td>4</td><td>Email 3</td><td>8</td><td>Konkrete Idee setzen</td><td>Interesse → Gespräch | Keine → Email 4</td></tr>
+        <tr><td>5</td><td>Email 4</td><td>12</td><td>Social Proof / Referenz</td><td>Anfrage → Gespräch | Keine → Email 5</td></tr>
+        <tr><td>6</td><td>Email 5</td><td>18</td><td>Ruhig, Tür offenlassen</td><td>Irgendwann → "Wir hätten ein Projekt"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Qualitäts-Checkliste vor dem Senden</h2>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;">
+    <ul class="checklist">
+      <li>Ist die Nachricht personalisiert (kein Copy-Paste erkennbar)?</li>
+      <li>Keine Erwähnung von Preisen im ersten Kontakt?</li>
+      <li>Kein "Ich freue mich zu connecten" oder "Ich hoffe diese Nachricht findet Sie wohlauf"?</li>
+      <li>Gibt es einen konkreten Gesprächs-Einstieg (Frage oder Beobachtung)?</li>
+      <li>Ist der CTA maximal 1 klarer Schritt?</li>
+      <li>Ist die Email unter 150 Wörter?</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    <h4>Rechtlicher Hinweis — DSGVO + DRAFT</h4>
+    <p>Alle Outreach-Texte sind ENTWÜRFE und wurden nicht versendet. Cold Email im B2B-Kontext ist unter DSGVO Art. 6(1)(f) grundsätzlich möglich, erfordert aber eine sorgfältige Interessenabwägung. LinkedIn-Outreach unterliegt den Nutzungsbedingungen von LinkedIn. Es wird empfohlen, vor aktivem Outreach eine rechtliche Prüfung durchzuführen. Die Verwendung dieser Texte liegt in der alleinigen Verantwortung von Sebastian Budde. Film-labor übernimmt keine Haftung für eventuelle Verletzungen von Datenschutz- oder Plattformrichtlinien.</p>
+  </div>
+  <div class="footer"><p>Erstellt: 2026-03-26 | Film-labor Business OS | Vision Pipeline Stufe 05</p></div>
+</div>
+</body>
+</html>
