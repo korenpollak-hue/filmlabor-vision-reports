@@ -1,0 +1,60 @@
+{
+  "deliverables": [
+    {
+      "title": "Vision Research Report — Marktanalyse & Starving Crowd",
+      "type": "research",
+      "date": "2026-03-26",
+      "url": "../../vision-research-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Vision Strategy — Kreativstrategie & Positionierung",
+      "type": "strategy",
+      "date": "2026-03-26",
+      "url": "../../vision-strategy-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Platform Strategy Matrix — LinkedIn & YouTube",
+      "type": "strategy",
+      "date": "2026-03-26",
+      "url": "../../vision-research-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Content-Strategie — Formate & Redaktionsplan",
+      "type": "content",
+      "date": "2026-03-26",
+      "url": "../../vision-content-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Lead Magnets — Freebie-Konzepte & Download-Assets",
+      "type": "content",
+      "date": "2026-03-26",
+      "url": "../../vision-magnets-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Outreach-Strategie — Kaltakquise & Partnership",
+      "type": "strategy",
+      "date": "2026-03-26",
+      "url": "../../vision-outreach-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Messbarkeit & KPIs — Tracking-Framework",
+      "type": "research",
+      "date": "2026-03-26",
+      "url": "../../vision-measure-2026-03-26.html",
+      "status": "delivered"
+    },
+    {
+      "title": "Quality Gate — Qualitäts-Checkliste",
+      "type": "research",
+      "date": "2026-03-26",
+      "url": "../../vision-quality-2026-03-26.html",
+      "status": "delivered"
+    }
+  ]
+}

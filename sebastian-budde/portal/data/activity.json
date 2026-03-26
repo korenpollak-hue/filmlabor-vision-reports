@@ -1,0 +1,48 @@
+{
+  "activity": [
+    {
+      "timestamp": "2026-03-26T02:13:00",
+      "type": "note",
+      "message": "Client Portal eingerichtet — Command Center ist live"
+    },
+    {
+      "timestamp": "2026-03-26T02:11:00",
+      "type": "deliverable",
+      "message": "Alle 8 Vision-Deliverables deployt und im Portal verlinkt"
+    },
+    {
+      "timestamp": "2026-03-26T02:10:00",
+      "type": "deliverable",
+      "message": "Vision Strategy Report (Kreativstrategie & Positionierung) erstellt"
+    },
+    {
+      "timestamp": "2026-03-26T02:05:00",
+      "type": "deliverable",
+      "message": "Platform Strategy Matrix (LinkedIn & YouTube) fertiggestellt"
+    },
+    {
+      "timestamp": "2026-03-26T01:10:00",
+      "type": "deliverable",
+      "message": "Vision Research Report veröffentlicht — Starving Crowd Score: 9/10"
+    },
+    {
+      "timestamp": "2026-03-26T01:00:00",
+      "type": "automation",
+      "message": "Vision Marketing Orchestrator gestartet — 7-stufige KI-Pipeline läuft"
+    }
+  ],
+  "next_steps": [
+    {
+      "text": "LinkedIn Content Kalender für April besprechen",
+      "date": "2026-04-01"
+    },
+    {
+      "text": "Erstes LinkedIn-Post-Format finalisieren und Feedback einholen",
+      "date": "2026-04-03"
+    },
+    {
+      "text": "Tracking-Setup: UTM-Parameter und LinkedIn Analytics konfigurieren",
+      "date": "2026-04-07"
+    }
+  ]
+}

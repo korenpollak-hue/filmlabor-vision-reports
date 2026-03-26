@@ -1,0 +1,24 @@
+{
+  "automations": [
+    {
+      "name": "Vision Marketing Orchestrator",
+      "description": "7-stufige KI-Pipeline: Research → Strategy → Content → Magnets → Outreach → Measure → Quality",
+      "status": "active",
+      "last_run": "2026-03-26T02:00:00",
+      "runs_total": 1
+    },
+    {
+      "name": "LinkedIn Content Pipeline",
+      "description": "Wöchentliche LinkedIn-Posts basierend auf Vision Strategy",
+      "status": "setup",
+      "runs_total": 0
+    },
+    {
+      "name": "GitHub Pages Report Deployment",
+      "description": "Automatisches Deployen neuer Berichte auf filmlabor-vision-reports",
+      "status": "active",
+      "last_run": "2026-03-26T02:11:00",
+      "runs_total": 8
+    }
+  ]
+}
