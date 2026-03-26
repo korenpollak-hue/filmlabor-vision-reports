@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research — Dani Neubauer / Keep Shining Consulting</title>
+<style>
+  :root {
+    --accent: #C4922A;
+    --black: #0D0D0D;
+    --gray-dark: #3A3A3A;
+    --gray-mid: #6B6B6B;
+    --gray-light: #ADADAD;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    padding: 36px 64px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-brand {
+    display: flex;
+    flex-direction: column;
+  }
+  .header-brand .firm-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .header-brand .firm-tagline {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .header-meta {
+    text-align: right;
+  }
+  .header-meta .pipeline-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .header-meta .report-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--gray-dark);
+    margin-top: 3px;
+  }
+  .header-divider {
+    height: 1px;
+    background: var(--black);
+    margin: 0 64px;
+  }
+
+  /* ─── STAGE BADGE ─── */
+  .stage {
+    padding: 20px 64px;
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .stage-badge {
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    font-family: var(--sans);
+    white-space: nowrap;
+  }
+  .stage-desc {
+    font-size: 12px;
+    color: var(--gray-mid);
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 64px 80px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: normal;
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  .lead {
+    font-size: 17px;
+    color: var(--gray-dark);
+    max-width: 620px;
+    margin-top: 16px;
+    line-height: 1.65;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #E8E8E8;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  /* ─── SCORE DISPLAY ─── */
+  .score-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 28px;
+  }
+  .score-number {
+    font-family: var(--serif);
+    font-size: 88px;
+    line-height: 0.85;
+    color: var(--black);
+    letter-spacing: -0.04em;
+  }
+  .score-out-of {
+    font-size: 24px;
+    color: var(--gray-light);
+    font-family: var(--serif);
+    margin-left: 2px;
+  }
+  .score-details {
+    padding-top: 6px;
+    flex: 1;
+  }
+  .score-gate {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  /* ─── STATS GRID ─── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid #E8E8E8;
+    margin: 24px 0;
+  }
+  .stat-item {
+    padding: 20px 22px;
+    border-right: 1px solid #E8E8E8;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--black);
+    line-height: 1.2;
+  }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--gray-mid);
+    margin-top: 4px;
+  }
+
+  /* ─── TABLES ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13.5px;
+  }
+  thead tr {
+    border-bottom: 2px solid var(--black);
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px 10px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #EBEBEB;
+    vertical-align: top;
+    color: var(--gray-dark);
+    line-height: 1.45;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ─── INSIGHT BLOCK ─── */
+  .insight {
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: none;
+  }
+  .insight p {
+    font-style: italic;
+    color: var(--gray-dark);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .insight cite {
+    display: block;
+    font-size: 11px;
+    color: var(--gray-mid);
+    margin-top: 6px;
+    font-style: normal;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    background: var(--off-white);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .callout strong {
+    font-family: var(--serif);
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+  .callout ul {
+    list-style: none;
+    padding: 0;
+  }
+  .callout ul li {
+    padding: 5px 0;
+    color: var(--gray-dark);
+    font-size: 13.5px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .callout ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* ─── AUDIENCE GRID ─── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .audience-item {
+    padding: 16px 20px;
+    border: 1px solid #E8E8E8;
+  }
+  .audience-item .a-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 8px;
+  }
+  .audience-item .a-value {
+    font-size: 13.5px;
+    color: var(--gray-dark);
+    line-height: 1.5;
+  }
+
+  /* ─── USP BLOCK ─── */
+  .usp-list {
+    counter-reset: usp;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  .usp-list li {
+    counter-increment: usp;
+    display: flex;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #EBEBEB;
+    align-items: flex-start;
+  }
+  .usp-list li:last-child { border-bottom: none; }
+  .usp-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--accent);
+    min-width: 24px;
+    line-height: 1.2;
+  }
+  .usp-text strong {
+    display: block;
+    font-size: 14px;
+    color: var(--black);
+    margin-bottom: 3px;
+  }
+  .usp-text span {
+    font-size: 13px;
+    color: var(--gray-mid);
+  }
+
+  /* ─── RECOMMENDATION ─── */
+  .recommendation {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 28px 0;
+    margin: 32px 0 0;
+  }
+  .recommendation h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+  .rec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .rec-item {
+    padding: 0;
+  }
+  .rec-item .r-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 6px;
+  }
+  .rec-item .r-text {
+    font-size: 13.5px;
+    color: var(--gray-dark);
+    line-height: 1.5;
+  }
+
+  /* ─── LEGAL ─── */
+  .legal {
+    background: #FFFBF0;
+    border: 1px solid #E8D89A;
+    margin: 48px 64px 0;
+    padding: 20px 28px;
+  }
+  .legal h4 {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8A7000;
+    margin-bottom: 8px;
+  }
+  .legal p, .legal ul {
+    font-size: 11px;
+    color: #6B5E00;
+    line-height: 1.6;
+  }
+  .legal ul { padding-left: 14px; margin-top: 6px; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 20px 64px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E8E8E8;
+    margin-top: 24px;
+  }
+  .footer span {
+    font-size: 11px;
+    color: var(--gray-light);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 700px) {
+    .header, .stage, .content, .legal, .footer { padding-left: 24px; padding-right: 24px; }
+    .header-divider { margin: 0 24px; }
+    .header { flex-direction: column; gap: 16px; }
+    .rec-grid, .audience-grid, .stats-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid #E8E8E8; }
+    .score-block { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <span class="firm-name">Keep Shining</span>
+    <span class="firm-tagline">Dr. Daniel Neubauer Consulting · Zürich</span>
+  </div>
+  <div class="header-meta">
+    <div class="pipeline-label">Vision Pipeline</div>
+    <div class="report-title">Marketing Research Report · 26.03.2026</div>
+  </div>
+</header>
+<div class="header-divider"></div>
+
+<!-- STAGE BADGE -->
+<div class="stage">
+  <span class="stage-badge">Stufe 01 von 07 — Deep Research</span>
+  <span class="stage-desc">Marktvalidierung · Wettbewerb · Audience Intelligence · Strategische Empfehlung</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+
+  <h1>Executive Coaching<br>in der DACH-Region</h1>
+  <p class="lead">Eine vollständige Marktanalyse für Keep Shining Consulting — mit Wettbewerbs-Mapping, Audience Intelligence und strategischer Positionierungsempfehlung.</p>
+
+  <!-- 1. MARKTVALIDIERUNG -->
+  <div class="section">
+    <span class="section-label">01 — Marktvalidierung</span>
+
+    <div class="score-block">
+      <div>
+        <span class="score-number">9</span><span class="score-out-of">/10</span>
+      </div>
+      <div class="score-details">
+        <span class="score-gate">Vollgas</span>
+        <p style="font-size:14px;color:var(--gray-dark);line-height:1.6;">Starker Markt mit bewiesener Zahlungsbereitschaft. Führungskräfte in Corporates kämpfen mit Effektivität, Transformation und Talent-Retention — aber kein Wettbewerber in CH baut systematisch Thought Leadership Content auf. Die Marktlücke ist nicht das Produkt — sondern die Sichtbarkeit.</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-label">Zahlungsbereitschaft</div>
+        <div class="stat-value">CHF 200–500</div>
+        <div class="stat-sub">pro Stunde, nachgewiesen (CH Markt 2024)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Globaler Markt</div>
+        <div class="stat-value">USD 17,64 Mrd.</div>
+        <div class="stat-sub">Executive Coaching 2024, CAGR 5,71%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Coaches Westeuropa</div>
+        <div class="stat-value">30.800+</div>
+        <div class="stat-sub">ICF Global Coaching Study 2023</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <p>"Führungskräfte in Top-Corporates wissen, dass ihre Leadership-Effektivität entscheidend ist. Aber die meisten investieren immer noch reaktiv — erst wenn eine Krise sie zwingt. Wer proaktiv Content liefert, der diese Führungskräfte genau in diesem Moment abholt, gewinnt."</p>
+      <cite>Beobachtung aus Marktanalyse CH Executive Coaching 2026</cite>
+    </div>
+  </div>
+
+  <!-- 2. TECH-AUDIT -->
+  <div class="section">
+    <span class="section-label">02 — Tech-Audit keepshining.ch</span>
+    <table>
+      <thead>
+        <tr><th>Kriterium</th><th>Status</th><th>Kommentar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Website erreichbar</td><td style="color:#2A8A2A;font-weight:600;">✓ Ja</td><td>Stabil, internationaler Aufruf möglich</td></tr>
+        <tr><td>SSL / HTTPS</td><td style="color:#2A8A2A;font-weight:600;">✓ Ja</td><td>Korrekt konfiguriert</td></tr>
+        <tr><td>Plattform</td><td>Wix Thunderbolt</td><td>Limitiert für technisches SEO; keine Schema.org-Daten</td></tr>
+        <tr><td>Sprachen</td><td>DE + EN</td><td>Positiv für CH + internationale Leads</td></tr>
+        <tr><td>Mobile</td><td style="color:#2A8A2A;font-weight:600;">✓ Optimiert</td><td>Wix responsive</td></tr>
+        <tr><td>Tracking</td><td style="color:#C04A00;font-weight:600;">⚠ Nicht sichtbar</td><td>Kein Meta-Pixel, kein GA sichtbar — Conversions nicht messbar</td></tr>
+        <tr><td>Social Media</td><td>LinkedIn</td><td>linkedin.com/in/danineubauer — primärer Kanal</td></tr>
+        <tr><td>SEO-Risiko</td><td style="color:#C04A00;font-weight:600;">⚠ Mittel</td><td>Wix-SEO ist limitiert; kein strukturiertes Daten-Markup</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. KONKURRENZ -->
+  <div class="section">
+    <span class="section-label">03 — Wettbewerbs-Mapping</span>
+    <h2>Fünf Anbieter. Einer fehlt: Thought Leadership.</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Anbieter</th><th>Stärke</th><th>Schwäche</th><th>Content</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">1</td>
+          <td><strong>LEAD Excellence</strong><br><span style="font-size:11px;color:var(--gray-mid)">kasparconsulting.ch</span></td>
+          <td>10.000h Erfahrung, 500+ Executives, Multi-Location CH</td>
+          <td>Institutionell, keine persönliche Online-Marke</td>
+          <td>Website only</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">2</td>
+          <td><strong>Hofmann.coach</strong><br><span style="font-size:11px;color:var(--gray-mid)">hofmann.coach</span></td>
+          <td>"Success guaranteed", C-Suite-Fokus, SEO-stark</td>
+          <td>Transaktional, wenig Thought Leadership</td>
+          <td>LinkedIn präsent, SEO</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">3</td>
+          <td><strong>Christen Consulting</strong><br><span style="font-size:11px;color:var(--gray-mid)">christenconsulting.ch</span></td>
+          <td>Award-winning, international, Zürich+Zug</td>
+          <td>Englisch-fokussiert, unpersönlich</td>
+          <td>Statisch</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">4</td>
+          <td><strong>MPW Beratungsteam AG</strong><br><span style="font-size:11px;color:var(--gray-mid)">mpw.ch</span></td>
+          <td>Methodenvielfalt, Outplacement</td>
+          <td>Altes Design, null Social-Content</td>
+          <td>Statisch</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">5</td>
+          <td><strong>Trans-In Coaching</strong><br><span style="font-size:11px;color:var(--gray-mid)">trans-in.ch</span></td>
+          <td>Empathie + Challenge klar positioniert</td>
+          <td>Geringe Bekanntheit, keine Content-Strategie</td>
+          <td>Minimal</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <p>Kein einziger direkter Konkurrent in der Schweiz baut ernsthaften Thought Leadership Content auf LinkedIn. Der Markt ist für qualitativ hochwertige Coaching-Dienstleistungen kompetitiv — aber im Content-Raum ist er vollständig offen.</p>
+      <cite>Wettbewerbsanalyse LinkedIn + Websites, März 2026</cite>
+    </div>
+  </div>
+
+  <!-- 4. ERFOLGSMODELLE -->
+  <div class="section">
+    <span class="section-label">04 — Erfolgsmodelle</span>
+    <h2>Was die Besten anders machen</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Person / Firma</th><th>Was sie richtig machen</th><th>Übertragbar?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">1</td>
+          <td><strong>Marshall Goldsmith</strong><br><span style="font-size:11px;color:var(--gray-mid)">marshallgoldsmith.com</span></td>
+          <td>Kostenloses Wissen massenhaft teilen (100 Mio. Abrufe). LinkedIn #1 Content Creator für Leadership. Klares Framework (Stakeholder Coaching).</td>
+          <td style="color:#2A8A2A;font-weight:600;">Ja — Dani kann PhD + IMD-Wissen gratis teilen, Thought Leadership aufbauen.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">2</td>
+          <td><strong>Brené Brown</strong><br><span style="font-size:11px;color:var(--gray-mid)">brenebrown.com</span></td>
+          <td>Verletzlichkeit als Stärke. Insider-Geschichten aus echter Erfahrung. Netflix-Doku als viraler Content-Anker.</td>
+          <td style="color:#2A8A2A;font-weight:600;">Ja — 15 Jahre Deutsche Bank, HSBC, UBS: echte Storys, die niemand sonst erzählen kann.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">3</td>
+          <td><strong>Simon Sinek</strong><br><span style="font-size:11px;color:var(--gray-mid)">simonsinek.com</span></td>
+          <td>Eigenes Framework ("Why"), YouTube + LinkedIn dominant, Bücher als Lead-Magnets.</td>
+          <td style="color:#2A8A2A;font-weight:600;">Ja — eigenes Framework ("Keep Shining Methode") entwickeln und als Content-Fundament nutzen.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--serif);font-size:16px;">4</td>
+          <td><strong>Jenewein AG (lokal)</strong><br><span style="font-size:11px;color:var(--gray-mid)">jenewein.ch</span></td>
+          <td>Etablierte CH-Marke, klare Zielgruppe, Case Studies.</td>
+          <td style="color:#C4922A;font-weight:600;">Kann Dani besser: persönlicher, authentischer, mit aktivem Social-Content dominieren.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. AUDIENCE INTELLIGENCE -->
+  <div class="section">
+    <span class="section-label">05 — Audience Intelligence</span>
+    <h2>Wer kauft. Wo. Wie.</h2>
+
+    <div class="audience-grid">
+      <div class="audience-item">
+        <div class="a-label">Primär-Plattform</div>
+        <div class="a-value"><strong style="color:var(--black);">LinkedIn</strong><br>C-Level, HR Directors, VPs in CH-Corporates: Banking, Pharma, Consulting, Insurance</div>
+      </div>
+      <div class="audience-item">
+        <div class="a-label">Sekundär-Plattform</div>
+        <div class="a-value"><strong style="color:var(--black);">XING</strong> (DACH-Expansion)<br><strong style="color:var(--black);">Instagram</strong> (persönliche Marke, Authentizität)</div>
+      </div>
+      <div class="audience-item">
+        <div class="a-label">Top-Hashtags</div>
+        <div class="a-value" style="font-size:12px;">#leadership · #executivecoaching · #coaching · #talentdevelopment · #führung · #personalentwicklung · #swissleadership · #IMD</div>
+      </div>
+      <div class="audience-item">
+        <div class="a-label">Suchen nach</div>
+        <div class="a-value" style="font-size:12px;">"executive coach Zürich" · "leadership coaching Schweiz" · "Führungskräfte Entwicklung" · "Career Coaching Zürich"</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Community-Hebelstellen</strong>
+      <ul>
+        <li>IMD Alumni Network — direkter Zugang zu Entscheidern weltweit</li>
+        <li>UBS / Deutsche Bank / HSBC Alumni — persönliche Netzwerke mit hohem Vertrauen</li>
+        <li>Swiss HR Association (SHPA) — Zielgruppe der Entscheider die Coaches beauftragen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 6. UNFAIRER VORTEIL -->
+  <div class="section">
+    <span class="section-label">06 — Dani's Unfairer Vorteil</span>
+    <h2>Diese Kombination hat kein Konkurrent in der Schweiz.</h2>
+
+    <ul class="usp-list">
+      <li>
+        <div class="usp-num">1</div>
+        <div class="usp-text">
+          <strong>Tier-1 Banking Insider</strong>
+          <span>15 Jahre Deutsche Bank + HSBC + UBS + Zurich Insurance — genau die Welt, in der seine Kunden leben. Vertrauen ist vorgebaut.</span>
+        </div>
+      </li>
+      <li>
+        <div class="usp-num">2</div>
+        <div class="usp-text">
+          <strong>PhD Universität St. Gallen</strong>
+          <span>Akademische Glaubwürdigkeit für Research-backed Methoden — differenziert von "Erfahrungs-Coaches" ohne Substanz.</span>
+        </div>
+      </li>
+      <li>
+        <div class="usp-num">3</div>
+        <div class="usp-text">
+          <strong>IMD "Care to Dare" Zertifikat</strong>
+          <span>IMD ist eine der Top 5 Business Schools weltweit — das Zertifikat trägt international Gewicht und öffnet Corporate-Türen.</span>
+        </div>
+      </li>
+      <li>
+        <div class="usp-num">4</div>
+        <div class="usp-text">
+          <strong>"Keep Shining" Marke</strong>
+          <span>Positive, menschliche Energie — kein graues Consulting-Deutsch. In einem Markt voller institutioneller Kälte ist das ein Differenzierungsfaktor.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 7. EMPFEHLUNG -->
+  <div class="section">
+    <span class="section-label">07 — Strategische Empfehlung</span>
+
+    <div class="recommendation">
+      <h3>Markt viable: Ja. Lücke: Content. Hebel: LinkedIn Thought Leadership.</h3>
+      <div class="rec-grid">
+        <div class="rec-item">
+          <div class="r-label">Grösste Chance</div>
+          <div class="r-text">LinkedIn Thought Leadership aufbauen — als einziger Banking-Insider mit PhD + IMD Credential. Persönliche Geschichten aus 15 Jahren Top-Finance posten. Kein Wettbewerber tut das.</div>
+        </div>
+        <div class="rec-item">
+          <div class="r-label">Grösstes Risiko</div>
+          <div class="r-text">Unsichtbarkeit. Ohne Content-Strategie ist Dani einer von 30.000 Coaches in Westeuropa. Der Markt belohnt nicht das beste Produkt — sondern das sichtbarste.</div>
+        </div>
+        <div class="rec-item">
+          <div class="r-label">Nächster Schritt</div>
+          <div class="r-text">Kreative Strategie (Stufe 02): StoryBrand-Framework ausarbeiten, Content-Fortress aufbauen, Platform-Strategie definieren.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- LEGAL DISCLAIMER -->
+<div class="legal">
+  <h4>Rechtlicher Hinweis — DSGVO Art. 6 Abs. 1 lit. f</h4>
+  <p>Dieser Report basiert ausschliesslich auf öffentlich zugänglichen Daten (Websites, öffentliche LinkedIn-Profile, Marktforschungsdaten). Rechtsgrundlage: Art. 6(1)(f) DSGVO (Berechtigtes Interesse: Marktforschung, B2B-Daten). <strong>Nur für internen Gebrauch.</strong></p>
+  <ul>
+    <li>Keine Weitergabe von Kontaktdaten an Dritte ohne Einwilligung der Betroffenen.</li>
+    <li>Bei Widerspruch einer Person: Alle Daten zu dieser Person sofort löschen (DSGVO Art. 17).</li>
+    <li>Outreach nur mit klarer Opt-out-Möglichkeit (§ 7 UWG). Kein Massenversand ohne rechtliche Prüfung.</li>
+    <li>Keine Verarbeitung sensibler Daten (Gesundheit, Religion, politische Meinung).</li>
+  </ul>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>Keep Shining · Dr. Daniel Neubauer Consulting · Zürich</span>
+  <span>Vision Pipeline — FilmLabor OS · 26.03.2026</span>
+  <span>Vertraulich — Nicht zur Weitergabe</span>
+</footer>
+
+</body>
+</html>
