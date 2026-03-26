@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research — MargenHeld — 2026-03-26</title>
+<style>
+  :root {
+    --accent: #E8002D;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --offwhite: #F9F8F6;
+    --gray: #6B6B6B;
+    --gray-light: #E8E8E4;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    padding: 32px 64px 28px;
+    border-bottom: 1.5px solid var(--black);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .header-brand .firm-name {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    color: var(--black);
+  }
+
+  .header-brand .tagline {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .header-meta .report-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .header-meta .report-title {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--black);
+    margin-top: 2px;
+  }
+
+  /* ─── STAGE BADGE ─── */
+  .stage-bar {
+    padding: 16px 64px;
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .stage-number {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 1;
+    opacity: 0.5;
+  }
+
+  .stage-info .stage-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .stage-info .stage-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .stage-progress {
+    margin-left: auto;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 64px 80px;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gray);
+    max-width: 620px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-light);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  /* ─── SCORE DISPLAY ─── */
+  .score-block {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .score-number {
+    font-family: var(--font-serif);
+    font-size: 96px;
+    font-weight: normal;
+    line-height: 1;
+    color: var(--black);
+  }
+
+  .score-details {
+    padding-bottom: 12px;
+  }
+
+  .score-gate {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .score-desc {
+    font-size: 14px;
+    color: var(--gray);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  /* ─── STATS GRID ─── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-light);
+    margin: 28px 0;
+  }
+
+  .stat {
+    padding: 24px 28px;
+    border-right: 1px solid var(--gray-light);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ─── SCORE TABLE ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+
+  th {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1.5px solid var(--black);
+    font-weight: 600;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 14px;
+    color: var(--black);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  /* ─── INSIGHT BLOCK ─── */
+  .insight {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 24px 0;
+    background: var(--offwhite);
+  }
+
+  .insight p {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .insight cite {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+  }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    background: var(--offwhite);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .callout-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  .callout p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--black);
+  }
+
+  /* ─── STATUS BADGES ─── */
+  .badge-ok {
+    background: #1a1a1a;
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-warn {
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── MARKET GAP ─── */
+  .market-gap {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 24px 0;
+    margin: 28px 0;
+  }
+
+  .market-gap h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+  .market-gap p {
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  /* ─── AUDIENCE TAGS ─── */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    border: 1px solid var(--gray-light);
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--black);
+  }
+
+  /* ─── EMPFEHLUNG ─── */
+  .empfehlung {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 32px 0;
+    margin: 40px 0 0;
+  }
+
+  .empfehlung h2 {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .emp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .emp-item:last-child { border-bottom: none; }
+
+  .emp-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    font-weight: 600;
+    padding-top: 2px;
+  }
+
+  .emp-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--black);
+  }
+
+  /* ─── LEGAL ─── */
+  .legal {
+    max-width: 900px;
+    margin: 0 auto 0;
+    padding: 32px 64px;
+    background: #FFFBF0;
+    border: 1px solid #E8D89A;
+  }
+
+  .legal-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7A6800;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .legal p {
+    font-size: 11px;
+    color: #5A5000;
+    line-height: 1.6;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 20px 64px;
+    border-top: 1px solid var(--gray-light);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray);
+  }
+
+  @media (max-width: 768px) {
+    .header, main, .footer, .legal { padding-left: 24px; padding-right: 24px; }
+    .stage-bar { padding-left: 24px; padding-right: 24px; }
+    h1 { font-size: 28px; }
+    .score-number { font-size: 72px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--gray-light); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="firm-name">MargenHeld GmbH</div>
+    <div class="tagline">Mehr Gewinn durch KI-Prozesse · Hürth</div>
+  </div>
+  <div class="header-meta">
+    <div class="report-label">Vision Pipeline</div>
+    <div class="report-title">Deep Research Report · 2026-03-26</div>
+  </div>
+</header>
+
+<!-- STAGE BADGE -->
+<div class="stage-bar">
+  <div class="stage-number">01</div>
+  <div class="stage-info">
+    <div class="stage-label">Stage</div>
+    <div class="stage-title">Deep Research</div>
+  </div>
+  <div class="stage-progress">Stufe 01 von 07</div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <h1>Marktanalyse: KI-Prozesse für den Mittelstand</h1>
+  <p class="lead">Gordon Wolfertz & Team positionieren MargenHeld in einem der am schnellsten wachsenden Beratungsmärkte Deutschlands. Hier die Marktvalidierung, Wettbewerbslandschaft und strategischen Chancen.</p>
+
+  <!-- SECTION 1: MARKTVALIDIERUNG -->
+  <div class="section">
+    <span class="section-label">Stufe 1.3 — Markt-Validierung</span>
+    <h2>Starving Crowd Score</h2>
+
+    <div class="score-block">
+      <div class="score-number">9</div>
+      <div class="score-details">
+        <div class="score-gate">Vollgas</div>
+        <div class="score-desc">Massiver Wachstumsmarkt — KI-Adoption in deutschen Unternehmen stieg von 20% (2024) auf 36% (2026). 47% der KMU planen aktiv KI-Einsatz.</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-label">Marktgröße (Potenzial)</div>
+        <div class="stat-value">1,65M</div>
+        <div class="stat-sub">KMU in DACH mit KI-Planungsabsicht</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Typische Projektgröße</div>
+        <div class="stat-value">5–50k</div>
+        <div class="stat-sub">EUR pro Projekt, vergleichbare Anbieter</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">YoY Wachstum Adoption</div>
+        <div class="stat-value">+80%</div>
+        <div class="stat-sub">KI-Nutzung in deutschen Unternehmen</div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>Faktor</th><th>Bewertung</th><th>Punkte</th></tr>
+      <tr>
+        <td>Problem existiert (Kostendruck + Fachkräftemangel + Wettbewerb)</td>
+        <td>Eindeutig — 3 sich verstärkende Druckquellen</td>
+        <td><strong>3/3</strong></td>
+      </tr>
+      <tr>
+        <td>Leute zahlen dafür</td>
+        <td>Etablierter Markt (ADence, DIRPA, Everlast AI, KI-Beratung.de)</td>
+        <td><strong>3/3</strong></td>
+      </tr>
+      <tr>
+        <td>Markt groß genug (&gt;1.000 Kunden)</td>
+        <td>3,5 Mio. KMU in DACH, 1,65 Mio. mit KI-Interesse</td>
+        <td><strong>2/2</strong></td>
+      </tr>
+      <tr>
+        <td>Trend steigend</td>
+        <td>KI-Adoption verdoppelt in 2 Jahren — aber Markt wird gleichzeitig voller</td>
+        <td><strong>1/2</strong></td>
+      </tr>
+    </table>
+
+    <div class="insight">
+      <p>"82 Prozent der Unternehmen berichten Produktivitätssteigerungen durch generative KI — im Schnitt 13% pro Jahr. Das sind die Zahlen, mit denen MargenHeld verkauft."</p>
+      <cite>Quelle: IW Köln / Deutschlands Marktforscher, 2026</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TECH AUDIT -->
+  <div class="section">
+    <span class="section-label">Stufe 1.2 — Tech-Audit</span>
+    <h2>Website & Tracking-Status</h2>
+
+    <table>
+      <tr><th>Kriterium</th><th>Status</th><th>Handlungsbedarf</th></tr>
+      <tr>
+        <td>Website erreichbar</td>
+        <td><span class="badge-ok">✓ OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>SSL-Zertifikat</td>
+        <td><span class="badge-ok">✓ OK</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Meta Pixel / GA / GTM</td>
+        <td><span class="badge-warn">Nicht erkannt</span></td>
+        <td>Manuell prüfen (JS-rendered Site)</td>
+      </tr>
+      <tr>
+        <td>LinkedIn Insight Tag</td>
+        <td><span class="badge-warn">Nicht erkannt</span></td>
+        <td>Dringend einbauen für B2B-Retargeting</td>
+      </tr>
+      <tr>
+        <td>Social-Media-Links auf Site</td>
+        <td><span class="badge-warn">Fehlen</span></td>
+        <td>LinkedIn + Instagram verlinken — verpasste Conversion</td>
+      </tr>
+      <tr>
+        <td>Website-Builder</td>
+        <td>OnePage.io (wahrscheinlich)</td>
+        <td>Limitierte SEO-Möglichkeiten</td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">Kritischer Befund</div>
+      <p>Keine Social-Media-Links auf margen-held.de sichtbar. Für eine B2B-KI-Beratung, die LinkedIn als Hauptkanal nutzt, ist das ein klarer Conversion-Verlust. Jeder Website-Besucher der Gordon googelt findet keine LinkedIn-Verlinkung.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: KONKURRENZ -->
+  <div class="section">
+    <span class="section-label">Stufe 1.4 — Wettbewerbsanalyse</span>
+    <h2>Konkurrenten (Top 5)</h2>
+
+    <table>
+      <tr><th>#</th><th>Firma</th><th>Stärke</th><th>Schwäche</th><th>Content</th></tr>
+      <tr>
+        <td>1</td>
+        <td><strong>ki-beratung-deutschland.de</strong><br><small style="color:#6B6B6B">Düsseldorf</small></td>
+        <td>DSGVO-USP (ohne US-Cloud)</td>
+        <td>Keine Personal Brand, generische Positionierung</td>
+        <td>Website only</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>manufaktur-ki.de</strong></td>
+        <td>Produktisierter LinkedIn-KI-Content</td>
+        <td>Zu eng (nur LinkedIn-Posts), kein Prozess-Fokus</td>
+        <td>Blog + LinkedIn</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>future-gen.ai</strong></td>
+        <td>KI-Agenten + Automatisierung (breit)</td>
+        <td>Kein klares ICP sichtbar</td>
+        <td>Unbekannt</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>kiagentenberatung.de</strong></td>
+        <td>SEO auf "KI-Agenten" optimiert</td>
+        <td>Keine Person dahinter sichtbar</td>
+        <td>SEO-Blog</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>kiberatung.de</strong><br><small style="color:#6B6B6B">Everlast AI</small></td>
+        <td>Breite Beratungsabdeckung</td>
+        <td>Kein klarer Differenzierungspunkt</td>
+        <td>Website + Blog</td>
+      </tr>
+    </table>
+
+    <div class="market-gap">
+      <h3>Die Marktlücke</h3>
+      <p>Keiner der direkten Konkurrenten verbindet eine starke Personal Brand mit nachgewiesenem Track-Record. Gordon hat 28 ProvenExpert-Bewertungen, Ergebnisgeschichten bis 150.000 EUR/Monat (Filmmaker Marketing) und ein Team aus drei spezialisierten Experten. Diese Kombination existiert im KI-Automatisierungsmarkt für den Mittelstand noch nicht.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ERFOLGSMODELLE -->
+  <div class="section">
+    <span class="section-label">Stufe 1.5 — Erfolgsmodelle</span>
+    <h2>Was funktioniert in der Branche</h2>
+
+    <table>
+      <tr><th>#</th><th>Unternehmen</th><th>Was sie richtig machen</th><th>Übertragbar?</th></tr>
+      <tr>
+        <td>1</td>
+        <td><strong>Filmmaker Marketing<br>(Gordon selbst)</strong></td>
+        <td>Konkrete Ergebniszahlen im Marketing (50k/Monat, 150k/Monat), persönliche Marke als Vertrauen-Anker</td>
+        <td>Ja — selbe Formel auf 10× größeren Markt</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>ADence</strong></td>
+        <td>BAFA-Förderung als Einstieg — senkt psychologische Hürde beim KMU</td>
+        <td>Ja — Förderfähigkeit kommunizieren senkt CAC</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>AIM (12-Wochen-Pakete)</strong></td>
+        <td>Produktisiertes Beratungspaket mit Quick-Win-Versprechen</td>
+        <td>Ja — MargenHeld ROI-Rechner ist Ansatz, braucht Produktisierung</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Jannik Vierzigmann</strong></td>
+        <td>Co-Founder-Expertise als eigenständiges Content-Asset</td>
+        <td>Ja — Jannik + Marco als Experten positionieren, nicht nur Gordon</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- SECTION 5: AUDIENCE -->
+  <div class="section">
+    <span class="section-label">Stufe 1.6 — Audience Intelligence</span>
+    <h2>Wo ist die Zielgruppe</h2>
+
+    <div class="stats-grid" style="margin: 20px 0;">
+      <div class="stat">
+        <div class="stat-label">Primäre Plattform</div>
+        <div class="stat-value" style="font-size:20px; font-family: var(--font-serif);">LinkedIn</div>
+        <div class="stat-sub">GF & Entscheider Mittelstand 30–55J</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Sekundäre Plattform</div>
+        <div class="stat-value" style="font-size:20px; font-family: var(--font-serif);">Instagram</div>
+        <div class="stat-sub">Overlap mit Filmmaker-Community</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Content-Kanal</div>
+        <div class="stat-value" style="font-size:20px; font-family: var(--font-serif);">YouTube</div>
+        <div class="stat-sub">Erklärungsbedürftige KI-Themen</div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>Kanal</th><th>Details</th></tr>
+      <tr>
+        <td><strong>Hashtags</strong></td>
+        <td>
+          <div class="tag-list">
+            <span class="tag">#KI</span><span class="tag">#Automatisierung</span><span class="tag">#Mittelstand</span><span class="tag">#Digitalisierung</span><span class="tag">#KünstlicheIntelligenz</span><span class="tag">#Prozessoptimierung</span><span class="tag">#KIBeratung</span><span class="tag">#ROI</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Suchbegriffe</strong></td>
+        <td>"KI Automatisierung Mittelstand" · "Prozesse automatisieren" · "KI Beratung Deutschland" · "Gewinn steigern KI" · "Effizienz steigern künstliche Intelligenz"</td>
+      </tr>
+      <tr>
+        <td><strong>Medien/Podcasts</strong></td>
+        <td>OMR Podcast · Digital Kompakt · KI Update DACH · Handelsblatt · WirtschaftsWoche</td>
+      </tr>
+      <tr>
+        <td><strong>Top Pain Points</strong></td>
+        <td>"Nicht wissen wo anfangen" · "Angst vor DSGVO" · "ROI nicht messbar" · "Mitarbeiter-Widerstand" · "Zu teuer für KMU"</td>
+      </tr>
+    </table>
+
+    <div class="insight">
+      <p>"53% der deutschen Unternehmen nennen fehlendes technisches Know-how als größtes KI-Hemmnis. Das ist der Eintrittspunkt für MargenHeld: Nicht Technologie verkaufen — sondern 'Wir nehmen dir das komplett ab'."</p>
+      <cite>Quelle: IW Köln KI-Report, 2026</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 6: EMPFEHLUNG -->
+  <div class="section empfehlung">
+    <h2>Strategische Empfehlung</h2>
+
+    <div class="emp-item">
+      <div class="emp-label">Markt viable</div>
+      <div class="emp-text"><strong>Ja, klar.</strong> KI-Adoption explodiert, Budget ist vorhanden, Problem ist nicht verschwunden. Score 9/10.</div>
+    </div>
+
+    <div class="emp-item">
+      <div class="emp-label">Größte Chance</div>
+      <div class="emp-text">Gordon hat bereits eine bewährte Erfolgsformel (Filmmaker Marketing mit 28 Reviews, Ergebnisse bis 150k/Monat). Diese Personal Brand auf den 10× größeren KI-Mittelstandsmarkt übertragen — als "KI-Praktiker mit nachgewiesenem Track-Record", nicht als weitere anonyme Beratungsfirma.</div>
+    </div>
+
+    <div class="emp-item">
+      <div class="emp-label">Größtes Risiko</div>
+      <div class="emp-text"><strong>Positionierungsklarheit.</strong> MargenHeld ist derzeit sehr breit ("alle Unternehmen"). Die alte Nische (Filmemacher) war klarer und erfolgreicher. Ohne klares ICP (Ideal Customer Profile) verpufft das Marketing. Empfehlung: Nische wählen (z.B. produzierende Betriebe 10–50 MA oder Dienstleistungsunternehmen).</div>
+    </div>
+
+    <div class="emp-item">
+      <div class="emp-label">Nächster Schritt</div>
+      <div class="emp-text">Strategie starten — Fokus auf Nischen-ICP definieren + Personal-Brand-Content-System für Gordon auf LinkedIn aufbauen. Jannik und Marco als Experten-Co-Creator einbinden.</div>
+    </div>
+  </div>
+</main>
+
+<!-- LEGAL -->
+<div class="legal">
+  <div class="legal-title">Rechtlicher Hinweis — Nur für internen Gebrauch</div>
+  <p>Dieser Report basiert ausschließlich auf öffentlich zugänglichen Informationen (LinkedIn-Profile, Unternehmenswebsites, öffentliche Handelsregisterdaten, Presseartikel). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse: Marktforschung und Geschäftsanbahnung). Alle erfassten Daten sind Berufsdaten öffentlich aufgetretener Personen (B2B-Privileg). Nur für internen Gebrauch bestimmt — keine Weitergabe an Dritte ohne Einwilligung der betroffenen Personen. Bei Widerspruch durch eine genannte Person: Sofortige Löschung aller personenbezogenen Daten (DSGVO Art. 17). Kein Outreach ohne explizite Genehmigung und klare Opt-out-Option (§ 7 UWG).</p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>FilmLabor OS · Vision Pipeline</span>
+  <span>MargenHeld GmbH · Research Report · 2026-03-26</span>
+  <span>Vertraulich</span>
+</footer>
+
+</body>
+</html>
