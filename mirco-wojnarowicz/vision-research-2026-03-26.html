@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research — Mirco Wojnarowicz / Rock Tech Lithium</title>
+<style>
+  :root {
+    --accent: #00B35B;
+    --accent-light: #e8f9f0;
+    --black: #0D0D0D;
+    --gray-dark: #3a3a3a;
+    --gray-mid: #888888;
+    --gray-light: #d0d0d0;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 36px 60px 28px;
+    border-bottom: 2px solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-left .brand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .header-left .tagline {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .pipeline-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .header-right .report-title {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--gray-dark);
+    margin-top: 4px;
+  }
+
+  /* STAGE BAND */
+  .stage {
+    padding: 18px 60px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .stage-badge {
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .stage-desc {
+    font-size: 12px;
+    color: var(--gray-mid);
+    letter-spacing: 0.06em;
+  }
+  .stage-progress {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.08em;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 56px 60px 80px;
+  }
+
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gray-dark);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-top: 56px;
+    border-top: 1px solid var(--gray-light);
+    padding-top: 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--black);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  /* SCORE DISPLAY */
+  .score-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+    margin-bottom: 28px;
+  }
+  .score-number {
+    font-family: Georgia, serif;
+    font-size: 88px;
+    font-weight: normal;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .score-meta {
+    padding-top: 12px;
+  }
+  .score-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+    margin-bottom: 6px;
+  }
+  .score-gate {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  .score-desc {
+    font-size: 14px;
+    color: var(--gray-dark);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight {
+    border-left: 3px solid var(--accent);
+    padding: 14px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--gray-dark);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--off-white);
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-dark);
+  }
+  .callout strong {
+    color: var(--black);
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  thead th {
+    border-bottom: 2px solid var(--black);
+    padding: 10px 12px 10px 0;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-weight: 600;
+  }
+  tbody td {
+    border-bottom: 1px solid var(--gray-light);
+    padding: 12px 12px 12px 0;
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--gray-dark);
+  }
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .check-yes { color: var(--accent); font-weight: 600; }
+  .check-no { color: #cc3333; }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-light);
+    margin-top: 16px;
+  }
+  .stat-item {
+    padding: 20px 22px;
+    border-right: 1px solid var(--gray-light);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* RECOMMENDATION BOX */
+  .recommendation {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 28px 0;
+    margin-top: 32px;
+  }
+  .recommendation h3 {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+  .rec-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .rec-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 100px;
+    padding-top: 2px;
+  }
+  .rec-value { color: var(--gray-dark); }
+
+  /* TAGS */
+  .hashtag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .hashtag {
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    letter-spacing: 0.03em;
+  }
+
+  /* LEGAL */
+  .legal {
+    max-width: 820px;
+    margin: 0 auto 0;
+    padding: 0 60px 28px;
+    background: #fffef0;
+    border-top: 3px solid #e6c800;
+  }
+  .legal-inner {
+    padding-top: 20px;
+  }
+  .legal h4 {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a7200;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .legal p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--gray-light);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 680px) {
+    .header, .stage, .content, .legal, .footer { padding-left: 24px; padding-right: 24px; }
+    h1 { font-size: 28px; }
+    .score-number { font-size: 64px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stage { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="brand">Mirco Wojnarowicz · Rock Tech Lithium</div>
+    <div class="tagline">CEO Personal Brand — Vision Pipeline</div>
+  </div>
+  <div class="header-right">
+    <div class="pipeline-label">Vision Pipeline</div>
+    <div class="report-title">Market Research Report · 26 March 2026</div>
+  </div>
+</header>
+
+<!-- STAGE BAND -->
+<div class="stage">
+  <div class="stage-badge">Stage 01 of 07 — Deep Research</div>
+  <div class="stage-desc">Market Validation · Competitive Analysis · Audience Intelligence</div>
+  <div class="stage-progress">Prepared by FIlmlabor OS · Confidential</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+
+  <h1>Building the Voice of European Lithium</h1>
+  <p class="lead">Mirco Wojnarowicz is leading Rock Tech Lithium through its most consequential year — the Final Investment Decision for Guben. This report assesses the opportunity to build his personal LinkedIn brand as a force multiplier for investor confidence, partnership development, and policy influence.</p>
+
+  <!-- SECTION 1: MARKET VALIDATION -->
+  <div class="section">
+    <span class="section-label">01 — Market Validation</span>
+
+    <div class="score-block">
+      <div class="score-number">9</div>
+      <div class="score-meta">
+        <div class="score-label">Starving Crowd Score / 10</div>
+        <div class="score-gate">Vollgas — Execute Now</div>
+        <div class="score-desc">Strong market demand, clear problem, measurable ROI. CEO thought leadership in critical minerals is severely undersupplied in Europe. The Pre-FID window is a unique, time-limited storytelling opportunity.</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">€1–5K</div>
+        <div class="stat-label">per month — agency rate for exec LinkedIn ghostwriting</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Mining / Energy CEOs in Europe needing this</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Strong EU lithium CEO personal brands currently on LinkedIn</div>
+      </div>
+    </div>
+
+    <div class="insight">"No single European lithium CEO has built a compelling personal voice on LinkedIn. Simon Moores speaks from market intelligence. Friedland speaks from legend. The authentic CEO storyteller role in European critical minerals is completely open."</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Assessment</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Problem exists?</strong></td>
+          <td>Newly appointed CEO at critical Pre-FID stage. Personal credibility gap directly impacts investor confidence, offtake negotiations, and EU policy relationships.</td>
+          <td>3 / 3</td>
+        </tr>
+        <tr>
+          <td><strong>People pay for it?</strong></td>
+          <td>Executive LinkedIn branding is an established service. Agencies charge €1,000–5,000/month. ROI measurable via stock sentiment, partnership conversion, media pickup.</td>
+          <td>3 / 3</td>
+        </tr>
+        <tr>
+          <td><strong>Market big enough?</strong></td>
+          <td>500+ energy/mining CEOs in Europe, 5,000+ globally. Growing segment. One strong LinkedIn presence reaches thousands of decision-makers organically.</td>
+          <td>2 / 2</td>
+        </tr>
+        <tr>
+          <td><strong>Trend rising?</strong></td>
+          <td>LinkedIn executive thought leadership is growing strongly in 2026. Study: 81% of thought leadership generates organic traffic, 64% boosts social following, 47% generates direct leads.</td>
+          <td>1 / 2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: TECH AUDIT -->
+  <div class="section">
+    <span class="section-label">02 — Tech Audit · rocktechlithium.com</span>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Status</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Website reachable</td>
+          <td><span class="check-yes">✓ Live</span></td>
+          <td>rocktechlithium.com/en/ — English version</td>
+        </tr>
+        <tr>
+          <td>SSL / HTTPS</td>
+          <td><span class="check-yes">✓ Active</span></td>
+          <td>Valid certificate</td>
+        </tr>
+        <tr>
+          <td>Tech stack</td>
+          <td>WordPress + Bootstrap</td>
+          <td>Standard CMS — customizable</td>
+        </tr>
+        <tr>
+          <td>Meta / Facebook Pixel</td>
+          <td><span class="check-no">✗ Missing</span></td>
+          <td>No retargeting capability</td>
+        </tr>
+        <tr>
+          <td>Google Analytics / GTM</td>
+          <td><span class="check-no">✗ Missing</span></td>
+          <td>Traffic blind spot</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Insight Tag</td>
+          <td><span class="check-no">✗ Missing</span></td>
+          <td>Critical gap — no LinkedIn audience data</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Company Page</td>
+          <td><span class="check-yes">✓ Active</span></td>
+          <td>linkedin.com/company/rocktechlithium</td>
+        </tr>
+        <tr>
+          <td>Instagram / YouTube / Twitter</td>
+          <td><span class="check-no">✗ None</span></td>
+          <td>LinkedIn only social presence</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Critical gap:</strong> No tracking pixels active on any channel. The LinkedIn Insight Tag is missing — Rock Tech cannot analyze which companies or job titles visit their website. Installing it takes 15 minutes and immediately unlocks LinkedIn audience data for targeted content.
+    </div>
+  </div>
+
+  <!-- SECTION 3: COMPETITION -->
+  <div class="section">
+    <span class="section-label">03 — Competitive Analysis · CEO Thought Leaders</span>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Strength</th>
+          <th>Weakness</th>
+          <th>Content Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Simon Moores</strong><br><span style="font-size:11px;color:#888">Benchmark Mineral Intelligence</span></td>
+          <td>Data authority, 25k+ followers, press citation</td>
+          <td>Too analytical — no personal CEO narrative</td>
+          <td>Text + Data</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>JB Straubel</strong><br><span style="font-size:11px;color:#888">Redwood Materials</span></td>
+          <td>Tesla credibility, mission-driven story, authentic voice</td>
+          <td>US-focused, low EU relevance</td>
+          <td>Text + Video</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Robert Friedland</strong><br><span style="font-size:11px;color:#888">Ivanhoe Mines</span></td>
+          <td>Industry legend, massive network, keynote circuit</td>
+          <td>Very mining-specific, not digitally native</td>
+          <td>Speeches + Video</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Paul Charles</strong><br><span style="font-size:11px;color:#888">NAATBatt International</span></td>
+          <td>EU/policy focus, clear opinions, newsletter</td>
+          <td>Organization, not a personal CEO brand</td>
+          <td>Text + Policy</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Keith Phillips</strong><br><span style="font-size:11px;color:#888">Piedmont Lithium</span></td>
+          <td>Active on LinkedIn, regular company updates</td>
+          <td>Too PR-driven — reads like a press release</td>
+          <td>Text</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">"The authentic, Europe-based, personally voiced CEO in the lithium/battery space does not exist yet. Every current thought leader is either too data-driven, too US-centric, or too corporate. This is a blue ocean positioning opportunity."</div>
+  </div>
+
+  <!-- SECTION 4: SUCCESS MODELS -->
+  <div class="section">
+    <span class="section-label">04 — Success Models · What Works</span>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Model</th>
+          <th>What they do right</th>
+          <th>Transferable to Mirco?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Elon Musk (early Tesla)</strong></td>
+          <td>Personal mission told through product. First-person, no PR language, raw and direct.</td>
+          <td>Yes — "European battery independence" as personal mission</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>JB Straubel (Redwood)</strong></td>
+          <td>Authenticity about recycling as a value, not just business. Optimism + realism.</td>
+          <td>Yes — Circular economy + Guben as future narrative</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Andrew Liveris (Dow)</strong></td>
+          <td>Short, opinion-strong posts + policy linkage. Shows CEO as industry statesman.</td>
+          <td>Yes — EU Critical Raw Materials Act is Mirco's home turf</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Simon Moores</strong></td>
+          <td>Data-driven posts with clear personal interpretation. Numbers + narrative.</td>
+          <td>Yes — Mirco has insider knowledge of lithium pricing + supply chain</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Patrick Collison (Stripe)</strong></td>
+          <td>Founder-mode curiosity. Links his field to broader societal questions. Builds trust.</td>
+          <td>Partially — Mirco can link lithium to Europe's industrial future</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: AUDIENCE INTELLIGENCE -->
+  <div class="section">
+    <span class="section-label">05 — Audience Intelligence</span>
+
+    <table>
+      <thead>
+        <tr><th>Attribute</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Primary Platform</strong></td>
+          <td>LinkedIn — automotive C-suite, institutional investors, EU policy makers, battery manufacturers</td>
+        </tr>
+        <tr>
+          <td><strong>Secondary Platform</strong></td>
+          <td>X/Twitter — breaking news, industry discourse, journalists</td>
+        </tr>
+        <tr>
+          <td><strong>Target Segments</strong></td>
+          <td>① Automotive Procurement &amp; Strategy (Mercedes, BMW, VW, Stellantis)<br>② Institutional Investors (ESG funds, green infrastructure, export credit agencies)<br>③ EU Policy Makers (European Commission, CRMA implementers)<br>④ Battery Manufacturers (Northvolt, ACC, SVOLT, Samsung SDI EU)<br>⑤ Energy &amp; Mining Journalists (Reuters, Bloomberg, electrive.com)</td>
+        </tr>
+        <tr>
+          <td><strong>Communities</strong></td>
+          <td>Energy &amp; Mines Forum, Critical Minerals Forum, European Battery Alliance, Battery Council International</td>
+        </tr>
+        <tr>
+          <td><strong>Search Terms</strong></td>
+          <td>lithium hydroxide supplier Europe, battery grade lithium, critical minerals Europe, EV supply chain security</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+      <span class="section-label" style="margin-bottom:10px; display:block;">Key Hashtags</span>
+      <div class="hashtag-list">
+        <span class="hashtag">#CriticalMinerals</span>
+        <span class="hashtag">#LithiumHydroxide</span>
+        <span class="hashtag">#EnergyTransition</span>
+        <span class="hashtag">#BatterySupplyChain</span>
+        <span class="hashtag">#EVIndustry</span>
+        <span class="hashtag">#Guben</span>
+        <span class="hashtag">#EuropeanBattery</span>
+        <span class="hashtag">#CriticalRawMaterials</span>
+        <span class="hashtag">#RockTechLithium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: CURRENT CONTEXT -->
+  <div class="section">
+    <span class="section-label">06 — Company Context · The Pre-FID Window</span>
+
+    <div class="callout">
+      <strong>2026 is the decision year for Rock Tech Lithium.</strong> The Final Investment Decision (FID) for the Guben converter (€680M CapEx) is the most consequential moment in the company's history. Mirco's personal credibility as CEO is not a soft asset — it is a direct input to investor confidence and offtake negotiation outcomes.
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Milestone</th><th>Status</th><th>Significance for Personal Brand</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EU Strategic Project Status</td>
+          <td><span class="check-yes">✓ March 2025</span></td>
+          <td>Legitimacy. Post about what this means for Europe's supply chain.</td>
+        </tr>
+        <tr>
+          <td>Export Credit Letters of Support (€150M)</td>
+          <td><span class="check-yes">✓ May 2025</span></td>
+          <td>Credibility. Show the financing is real, explain how export credit works.</td>
+        </tr>
+        <tr>
+          <td>CapEx reduction -€50M (to €680M)</td>
+          <td><span class="check-yes">✓ Oct 2025</span></td>
+          <td>Leadership signal. Explain the engineering decisions — CEO transparency wins trust.</td>
+        </tr>
+        <tr>
+          <td>OpEx reduction -23%</td>
+          <td><span class="check-yes">✓ Sept 2025</span></td>
+          <td>Execution story. Numbers-backed leadership content.</td>
+        </tr>
+        <tr>
+          <td>Final Investment Decision (FID)</td>
+          <td>Expected 2026</td>
+          <td>The narrative summit. Build the journey → every post is a chapter leading to this.</td>
+        </tr>
+        <tr>
+          <td>Additional 40% offtake</td>
+          <td>Open (in negotiation)</td>
+          <td>Urgency. Creates a compelling "will they make it?" arc for the audience.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">"The Pre-FID window is a natural storytelling arc. Mirco can post about the journey — the decisions, the obstacles, the people — without disclosing material non-public information. This is CEO narrative at its most compelling: real stakes, real timeline."</div>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="section">
+    <span class="section-label">07 — Recommendation</span>
+
+    <div class="recommendation">
+      <h3>Research Verdict</h3>
+      <div class="rec-row">
+        <span class="rec-label">Market Viable</span>
+        <span class="rec-value">Yes — CEO personal brand in critical minerals is undersupplied. The Pre-FID window in 2026 creates a time-limited storytelling opportunity that no competitor can replicate.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">Biggest Opportunity</span>
+        <span class="rec-value">Own the "European battery independence" narrative on LinkedIn. There is no strong CEO voice filling this space. Mirco can become the go-to perspective on Europe's lithium future — before the FID, not after.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">Biggest Risk</span>
+        <span class="rec-value">Listed company compliance. Every post must be reviewed for MNPI (Material Non-Public Information). The IR/legal team needs to be looped in — approval workflow required before any publication.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">Quick Win</span>
+        <span class="rec-value">Install LinkedIn Insight Tag on rocktechlithium.com immediately. 15 minutes of work, instant audience intelligence, enables retargeting of website visitors on LinkedIn.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">Next Step</span>
+        <span class="rec-value">Strategy Phase — StoryBrand Mirco's CEO persona, define 3 content pillars, set posting cadence, establish approval workflow with Rock Tech IR team.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- LEGAL DISCLAIMER -->
+<div class="legal">
+  <div class="legal-inner">
+    <h4>Legal Disclaimer · DSGVO / GDPR</h4>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse) — Marktforschung und Geschäftsanbahnung mit öffentlich zugänglichen B2B-Daten.</p>
+    <p><strong>Datenquellen:</strong> Ausschließlich öffentlich zugängliche Informationen — LinkedIn-Profile (freiwillig veröffentlicht), Unternehmenswebsite, Pressemitteilungen, börsenöffentliche Unterlagen (SEDAR/EDGAR).</p>
+    <p><strong>Nur für internen Gebrauch:</strong> Dieser Report ist vertraulich und darf nicht ohne Genehmigung an Dritte weitergegeben werden.</p>
+    <p><strong>Löschpflicht:</strong> Bei Widerspruch der betroffenen Person werden alle personenbezogenen Daten gemäß DSGVO Art. 17 gelöscht.</p>
+    <p><strong>Outreach-Grenzen:</strong> Jeder Outreach-Kontakt erfolgt mit klarer Opt-out-Möglichkeit gemäß § 7 UWG. Kein Massenversand ohne explizite Genehmigung.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>FIlmlabor OS · Vision Pipeline</span>
+  <span>Stage 01 of 07 · Deep Research</span>
+  <span>Vertraulich · 26 March 2026</span>
+</footer>
+
+</body>
+</html>
