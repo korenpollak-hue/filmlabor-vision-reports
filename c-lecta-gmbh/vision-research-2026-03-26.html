@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research: c-LEcta GmbH — 2026-03-26</title>
+<style>
+  :root {
+    --accent: #005776;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --off-white: #F9F8F6;
+    --gray-light: #E8E6E1;
+    --gray-mid: #A09D98;
+    --gray-dark: #4A4845;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 32px 56px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--black);
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .header-brand-text { line-height: 1.3; }
+
+  .header-brand-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--black);
+  }
+
+  .header-brand-sub {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-meta { text-align: right; }
+
+  .header-pipeline {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .header-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: normal;
+    color: var(--black);
+  }
+
+  /* ── STAGE BADGE ── */
+  .stage {
+    padding: 20px 56px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .stage-badge {
+    display: inline-block;
+    border: 1px solid var(--black);
+    padding: 5px 14px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .stage-desc {
+    font-size: 13px;
+    color: var(--gray-dark);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 56px 80px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gray-dark);
+    max-width: 620px;
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-top: 56px;
+    border-top: 1px solid var(--gray-light);
+    padding-top: 32px;
+  }
+
+  .section-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: normal;
+    margin: 28px 0 12px;
+    color: var(--black);
+  }
+
+  /* ── SCORE DISPLAY ── */
+  .score-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 24px 0;
+  }
+
+  .score-number {
+    font-family: var(--serif);
+    font-size: 96px;
+    line-height: 1;
+    color: var(--black);
+    font-weight: normal;
+    flex-shrink: 0;
+  }
+
+  .score-denom {
+    font-family: var(--serif);
+    font-size: 48px;
+    color: var(--gray-mid);
+    font-weight: normal;
+    line-height: 1;
+    align-self: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .score-details {
+    padding-top: 8px;
+  }
+
+  .score-gate {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    padding: 4px 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  /* ── STATS GRID ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-light);
+    margin: 24px 0;
+  }
+
+  .stat {
+    padding: 20px 24px;
+    border-right: 1px solid var(--gray-light);
+  }
+  .stat:last-child { border-right: none; }
+  .stat:nth-child(n+4) { border-top: 1px solid var(--gray-light); }
+
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: normal;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── INSIGHT BLOCK ── */
+  .insight {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: var(--off-white);
+  }
+
+  .insight p {
+    font-style: italic;
+    color: var(--gray-dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+  }
+
+  td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--gray-light);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--off-white);
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+
+  .callout strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* ── RECOMMENDATION ── */
+  .recommendation {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 28px 0;
+    margin: 32px 0;
+  }
+
+  .recommendation h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+
+  .rec-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .rec-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 120px;
+  }
+
+  /* ── HASHTAG CLOUD ── */
+  .hashtag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .hashtag {
+    padding: 4px 10px;
+    border: 1px solid var(--gray-light);
+    font-size: 12px;
+    color: var(--gray-dark);
+  }
+
+  /* ── COMPETITOR ROW ── */
+  .comp-badge {
+    display: inline-block;
+    background: var(--off-white);
+    border: 1px solid var(--gray-light);
+    padding: 2px 8px;
+    font-size: 11px;
+    color: var(--gray-dark);
+  }
+
+  /* ── TECH AUDIT ── */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .audit-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 13px;
+  }
+
+  .audit-key { color: var(--gray-dark); }
+
+  .audit-val-yes { color: #2D6A4F; font-weight: 600; }
+  .audit-val-no { color: #C1440E; }
+  .audit-val-neutral { color: var(--black); }
+
+  /* ── LEGAL ── */
+  .legal {
+    background: #FFFDE7;
+    border: 1px solid #F0C040;
+    padding: 20px 24px;
+    margin: 48px 0 32px;
+    font-size: 12px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  .legal strong { color: var(--black); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--gray-light);
+    padding: 20px 56px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+
+  p { margin-bottom: 12px; }
+  ul { padding-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+
+  @media print {
+    body { font-size: 12px; }
+    .content { padding: 32px 40px; }
+    .header, .footer { padding: 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="header-brand">
+    <img class="header-logo" src="https://www.c-lecta.com/hs-fs/hubfs/c-LEcta%20Logos/c-LEcta_Logo.png" alt="c-LEcta" onerror="this.style.display='none'">
+    <div class="header-brand-text">
+      <div class="header-brand-name">c-LEcta GmbH</div>
+      <div class="header-brand-sub">Kerry Biotechnology Centre · Leipzig</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="header-pipeline">Vision Pipeline</div>
+    <div class="header-title">Deep Research Report</div>
+    <div style="font-size:11px;color:#A09D98;margin-top:4px;">26. März 2026</div>
+  </div>
+</header>
+
+<!-- ── STAGE BADGE ── -->
+<div class="stage">
+  <span class="stage-badge">Stufe 01 von 07 — Deep Research</span>
+  <span class="stage-desc">Markt-Validierung · Tech-Audit · Konkurrenzanalyse · Audience Intelligence</span>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="content">
+
+  <h1>Biotechnologie für Pharma, Food &amp; Feed — Marktpotenzial validiert</h1>
+  <p class="lead">c-LEcta GmbH entwickelt und produziert Spezialenzyme auf Basis der proprietären ENESYZ®-Plattform für B2B-Kunden in der Pharma-, Lebensmittel- und Futtermittelindustrie. Seit 2022 Teil der Kerry Group (EUR 137 Mio. Akquisition).</p>
+
+  <!-- ── MARKT-VALIDIERUNG ── -->
+  <div class="section">
+    <span class="section-label">01 · Markt-Validierung</span>
+
+    <div class="score-block">
+      <div>
+        <span class="score-number">9</span>
+      </div>
+      <div style="font-family:Georgia,serif;font-size:48px;color:#A09D98;align-self:flex-end;margin-bottom:16px;">/10</div>
+      <div class="score-details">
+        <span class="score-gate">Vollgas</span>
+        <p style="font-size:14px;color:#4A4845;max-width:480px;">Starving Crowd Score — Der Markt ist groß, zahlt Premium und wächst stark. Die Frage ist nicht <em>ob</em>, sondern <em>wie aggressiv</em> man Marketing betreibt.</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-value">6,73<span style="font-size:18px;"> Mrd.</span></div>
+        <div class="stat-label">Specialty Enzymes Market 2025 (USD)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">8,55<span style="font-size:18px;">%</span></div>
+        <div class="stat-label">CAGR bis 2034</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">14,08<span style="font-size:18px;"> Mrd.</span></div>
+        <div class="stat-label">Marktgröße 2034 (Prognose, USD)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">400<span style="font-size:18px;">+</span></div>
+        <div class="stat-label">Bestehende c-LEcta Kunden</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">40<span style="font-size:18px;">+</span></div>
+        <div class="stat-label">Länder (aktuell)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">137<span style="font-size:18px;"> Mio.</span></div>
+        <div class="stat-label">Kerry Akquisitionspreis (EUR, 2022)</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <p>"Codexis erzielte allein Q2/2025 USD 15,3 Mio. Umsatz im Pharma-Biocatalysis-Segment. DSM-Firmenich verkaufte seinen Feed-Enzymes-Anteil an Novonesis für Milliarden — Marktkonsolidierung signalisiert strategische Relevanz."</p>
+    </div>
+
+    <table>
+      <tr>
+        <th>Faktor</th>
+        <th>Score</th>
+        <th>Bewertung</th>
+      </tr>
+      <tr>
+        <td>Problem existiert?</td>
+        <td style="font-family:Georgia,serif;font-size:18px;">3/3</td>
+        <td>65%+ der Pharmaunternehmen nutzen 2024 proprietäre Enzyme. API-Synthese, Gentherapie, Clean-Label-Food brauchen zwingend Spezialenzyme.</td>
+      </tr>
+      <tr>
+        <td>Leute zahlen dafür?</td>
+        <td style="font-family:Georgia,serif;font-size:18px;">3/3</td>
+        <td>Premium-Preise für GMP-konforme Enzyme branchenüblich. Kerry-Übernahme für EUR 137 Mio. belegt Zahlungsbereitschaft.</td>
+      </tr>
+      <tr>
+        <td>Markt groß genug? (&gt;1000 Kunden)</td>
+        <td style="font-family:Georgia,serif;font-size:18px;">2/2</td>
+        <td>Tausende Pharma-, Lebensmittel- und Futtermittelkonzerne weltweit. c-LEcta hat bereits 400+.</td>
+      </tr>
+      <tr>
+        <td>Trend steigend?</td>
+        <td style="font-family:Georgia,serif;font-size:18px;">1/2</td>
+        <td>CAGR 7–9%. Treiber: RNA-Therapeutika, Gentherapie, Clean-Label, Nachhaltigkeitsdruck. Abzug: Markt-Konsolidierung erhöht Competitive Pressure.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── TECH AUDIT ── -->
+  <div class="section">
+    <span class="section-label">02 · Tech-Audit — c-lecta.com</span>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gray-light);margin:20px 0;">
+      <div class="audit-item"><span class="audit-key">SSL</span><span class="audit-val-yes">✓ Aktiv</span></div>
+      <div class="audit-item"><span class="audit-key">Google Tag Manager</span><span class="audit-val-yes">✓ GTM-5S52XT6</span></div>
+      <div class="audit-item"><span class="audit-key">HubSpot CRM</span><span class="audit-val-yes">✓ Aktiv</span></div>
+      <div class="audit-item"><span class="audit-key">Google Analytics</span><span class="audit-val-yes">✓ Aktiv</span></div>
+      <div class="audit-item"><span class="audit-key">Meta Pixel</span><span class="audit-val-no">✗ Nicht aktiv</span></div>
+      <div class="audit-item"><span class="audit-key">LinkedIn Insight Tag</span><span class="audit-val-no">✗ Nicht aktiv</span></div>
+      <div class="audit-item"><span class="audit-key">YouTube</span><span class="audit-val-yes">✓ Vorhanden</span></div>
+      <div class="audit-item"><span class="audit-key">LinkedIn-Seite</span><span class="audit-val-yes">✓ Vorhanden</span></div>
+      <div class="audit-item"><span class="audit-key">Instagram</span><span class="audit-val-no">✗ Nicht vorhanden</span></div>
+      <div class="audit-item"><span class="audit-key">Cookie Banner</span><span class="audit-val-neutral">Usercentrics</span></div>
+    </div>
+
+    <div class="callout">
+      <strong>Handlungsempfehlung</strong>
+      Kein LinkedIn Insight Tag und kein Meta Pixel aktiv — Retargeting von Website-Besuchern auf beiden Kanälen derzeit nicht möglich. HubSpot ist vorhanden, kann für Lead-Nurturing genutzt werden. LinkedIn Insight Tag sollte prioritär eingerichtet werden.
+    </div>
+  </div>
+
+  <!-- ── KONKURRENZ ── -->
+  <div class="section">
+    <span class="section-label">03 · Konkurrenz-Analyse</span>
+
+    <p style="color:#4A4845;margin-bottom:20px;">Kein Wettbewerber zeigt nachweislich aktive Meta/Facebook-Werbeanzeigen. B2B-Enzyme-Marketing läuft primär über LinkedIn (organisch + bezahlt) und Fachmessen.</p>
+
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Firma</th>
+        <th>Stärke</th>
+        <th>Schwäche</th>
+        <th>Content-Typ</th>
+      </tr>
+      <tr>
+        <td style="font-family:Georgia,serif;font-size:18px;color:#A09D98;">1</td>
+        <td><strong>Novonesis</strong><br><span style="font-size:11px;color:#A09D98;">novonesis.com</span></td>
+        <td>Weltmarktführer, 225k+ LinkedIn-Follower, CEO WEF-Thought-Leader</td>
+        <td>Massenware-Fokus, zu groß für Nischen, Merger-Integration bindet Ressourcen</td>
+        <td><span class="comp-badge">Thought Leadership</span> <span class="comp-badge">Sustainability</span> <span class="comp-badge">Showcase-Pages</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:Georgia,serif;font-size:18px;color:#A09D98;">2</td>
+        <td><strong>BRAIN Biotech AG</strong><br><span style="font-size:11px;color:#A09D98;">brain-biotech-group.com</span></td>
+        <td>Deutsches Biotechunternehmen, börsennotiert, F&amp;E-Spezialist</td>
+        <td>6.164 LinkedIn-Follower, kaum aktives Content Marketing</td>
+        <td><span class="comp-badge">Compliance-Meldungen</span> <span class="comp-badge">Quartalsergebnisse</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:Georgia,serif;font-size:18px;color:#A09D98;">3</td>
+        <td><strong>AB Enzymes GmbH</strong><br><span style="font-size:11px;color:#A09D98;">abenzymes.com</span></td>
+        <td>Teil von ABF, VERON-Linie bekannt, stark in Food/Baking</td>
+        <td>Kein Pharma-Portfolio, keine Individualisierung außerhalb Food</td>
+        <td><span class="comp-badge">Produktzentriert</span> <span class="comp-badge">Messen</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:Georgia,serif;font-size:18px;color:#A09D98;">4</td>
+        <td><strong>Codexis Inc.</strong><br><span style="font-size:11px;color:#A09D98;">codexis.com</span></td>
+        <td>Bestes Plattform-Marketing (CodeEvolver™), Pharma-Biocatalysis klar positioniert</td>
+        <td>US-amerikanisch, kein EU-Produktionsstandort, reines Tech-Licensing</td>
+        <td><span class="comp-badge">Plattform-Storytelling</span> <span class="comp-badge">Fachpresse</span> <span class="comp-badge">KOL-Events</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:Georgia,serif;font-size:18px;color:#A09D98;">5</td>
+        <td><strong>Biocatalysts Ltd.</strong><br><span style="font-size:11px;color:#A09D98;">biocatalysts.com</span></td>
+        <td>UK-Spezialist für maßgeschneiderte Enzyme, ähnlicher Ansatz wie c-LEcta</td>
+        <td>Kleiner als c-LEcta, weniger GMP-Pharma-Zertifizierungen, kaum Social Media</td>
+        <td><span class="comp-badge">Website-fokussiert</span> <span class="comp-badge">Webinare</span></td>
+      </tr>
+    </table>
+
+    <div class="insight">
+      <p>"BRAIN Biotech zeigt, wie schwaches Marketing einen technisch exzellenten Player unsichtbar macht — 6.164 LinkedIn-Follower trotz börsennotiertem Status. c-LEcta kann BRAIN in der LinkedIn-Sichtbarkeit innerhalb von 12 Monaten überholen."</p>
+    </div>
+  </div>
+
+  <!-- ── ERFOLGSMODELLE ── -->
+  <div class="section">
+    <span class="section-label">04 · Erfolgsmodelle</span>
+
+    <table>
+      <tr>
+        <th>Firma</th>
+        <th>Was sie richtig machen</th>
+        <th>Übertragbar auf c-LEcta?</th>
+        <th>Besser machen?</th>
+      </tr>
+      <tr>
+        <td><strong>Novonesis</strong></td>
+        <td>CEO als globaler Thought Leader (WEF/LinkedIn); Segment-Showcase-Pages; Co-Creation als Markenversprechen</td>
+        <td>Nischen-Thought-Leadership schneller aufbauen als Novonesis (30 Industrien vs. 3)</td>
+        <td>Pharma-spezifische Inhalte (RNA, Gentherapie) schlagen Novonesis' Generalist-Ansatz in der Nische</td>
+      </tr>
+      <tr>
+        <td><strong>Codexis</strong></td>
+        <td>CodeEvolver™ als eigenständige Marke etabliert; Fachpresse-Präsenz bei Pharmaceutical Technology; KOL-Events</td>
+        <td>ENESYZ® als eigenständige Marke positionieren; &gt;90% Erfolgsquote aktiv kommunizieren</td>
+        <td>Kerry-Backing + EU-GMP-Compliance als Trust-Signal für EU-Kunden (Codexis ist US-Company)</td>
+      </tr>
+      <tr>
+        <td><strong>Biocatalysts Ltd.</strong></td>
+        <td>"Partner in Enzyme Innovation" — nicht Lieferant, sondern Innovationspartner; Anwendungs-Webinare</td>
+        <td>Partner-Narrative für c-LEcta; segmentierte Webinare für Pharma/Food/Feed</td>
+        <td>Kerry-Ressourcen ermöglichen Production-Grade Content, den Biocatalysts nicht leisten kann</td>
+      </tr>
+      <tr>
+        <td><strong>Enzyme Communications (UK)</strong></td>
+        <td>Regulatorische Updates als natürlicher Content-Anker (EU-Regeln = Bedarf an Expertise)</td>
+        <td>EU-Novel-Food-Verordnung, GMP-Updates, EFSA-Zulassungen als regelmäßige Content-Serie</td>
+        <td>Direkte Verbindung von Educational Content zu Demo-Request / Sample-Anfrage</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── AUDIENCE INTELLIGENCE ── -->
+  <div class="section">
+    <span class="section-label">05 · Audience Intelligence</span>
+
+    <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="stat">
+        <div class="stat-value" style="font-size:22px;">LinkedIn</div>
+        <div class="stat-label">Primär-Plattform</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" style="font-size:20px;">~12 Mo.</div>
+        <div class="stat-label">Ø Entscheidungszyklus</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" style="font-size:22px;">9</div>
+        <div class="stat-label">Ø Entscheider pro Deal</div>
+      </div>
+    </div>
+
+    <h3>Entscheider-Rollen</h3>
+    <div class="hashtag-list">
+      <span class="hashtag">Head of R&amp;D</span>
+      <span class="hashtag">Director Pharmaceutical Sciences</span>
+      <span class="hashtag">Procurement Manager Ingredients</span>
+      <span class="hashtag">CMC Lead</span>
+      <span class="hashtag">Head of Bioprocess Development</span>
+      <span class="hashtag">VP Manufacturing</span>
+      <span class="hashtag">Product Development Director</span>
+    </div>
+
+    <h3>Relevante Hashtags &amp; Suchen</h3>
+    <div class="hashtag-list">
+      <span class="hashtag">#enzymes</span>
+      <span class="hashtag">#biocatalysis</span>
+      <span class="hashtag">#biotechnology</span>
+      <span class="hashtag">#pharma</span>
+      <span class="hashtag">#lifesciences</span>
+      <span class="hashtag">#foodingredients</span>
+      <span class="hashtag">#cleanLabel</span>
+      <span class="hashtag">#biosolutions</span>
+      <span class="hashtag">#enzymeengineering</span>
+      <span class="hashtag">#APImanufacturing</span>
+      <span class="hashtag">#gentherapy</span>
+      <span class="hashtag">#celltherapy</span>
+      <span class="hashtag">#industrialbiotechnology</span>
+      <span class="hashtag">#Leipzig</span>
+    </div>
+
+    <h3>Top-Suchbegriffe der Zielgruppe</h3>
+    <table>
+      <tr><th>Deutsch</th><th>Englisch</th></tr>
+      <tr><td>Spezialenzyme Pharma Hersteller Deutschland</td><td>custom enzyme manufacturer GMP</td></tr>
+      <tr><td>Enzymhersteller Deutschland GMP</td><td>pharmaceutical enzyme supplier Europe</td></tr>
+      <tr><td>Biokatalyse Lohnfertigung</td><td>biocatalysis API synthesis</td></tr>
+      <tr><td>Enzym Engineering Dienstleistung</td><td>DENARASE endonuclease supplier</td></tr>
+      <tr><td>Lebensmittelenzym EFSA zugelassen</td><td>food enzyme EFSA approved supplier</td></tr>
+    </table>
+
+    <div class="callout">
+      <strong>Sekundär-Kanäle</strong>
+      Fachmessen: CPhI Worldwide (Pharma), Fi Europe / Vitafoods (Food/Beverage), Eurotier (Feed)<br>
+      Fachzeitschriften: Pharmaceutical Technology, European Pharmaceutical Manufacturer, Food Ingredients First, pharma-food.de
+    </div>
+  </div>
+
+  <!-- ── EMPFEHLUNG ── -->
+  <div class="recommendation">
+    <h2>Empfehlung &amp; nächster Schritt</h2>
+
+    <div class="rec-item">
+      <span class="rec-label">Markt viable</span>
+      <span><strong>Ja</strong> — 9/10 Starving Crowd Score. Wachsender Markt, Kerry-Backing stärkt Glaubwürdigkeit, ENESYZ® als technischer Differenziator valide.</span>
+    </div>
+    <div class="rec-item">
+      <span class="rec-label">Größte Chance</span>
+      <span>ENESYZ® als eigenständige Plattform-Marke etablieren (à la Codexis' CodeEvolver™) — derzeit außerhalb von Fachkreisen unbekannt. LinkedIn-Thought-Leadership aufbauen: BRAIN Biotech mit 6.164 Followern trotz guter Technik = klares Warnsignal.</span>
+    </div>
+    <div class="rec-item">
+      <span class="rec-label">Größtes Risiko</span>
+      <span>Kein LinkedIn Insight Tag / Meta Pixel aktiv → Retargeting-Chancen ungenutzt. Marktkonsolidierung (Novonesis-Merger, Kerry-Integration) erhöht den Competitive Pressure für Mid-Size-Player wie c-LEcta.</span>
+    </div>
+    <div class="rec-item">
+      <span class="rec-label">Nächster Schritt</span>
+      <span><strong>Strategie starten</strong> — StoryBrand-Framework, ENESYZ®-Markennarrative, Platform-Strategy für LinkedIn + Fachpresse ausarbeiten.</span>
+    </div>
+  </div>
+
+  <!-- ── LEGAL DISCLAIMER ── -->
+  <div class="legal">
+    <strong>Rechtlicher Hinweis — Datenverarbeitung &amp; DSGVO</strong><br>
+    Dieser Report basiert ausschließlich auf öffentlich zugänglichen Daten: LinkedIn-Profile (freiwillig veröffentlicht), Unternehmenswebsites (per Definition öffentlich), Fachmedien und Marktberichte. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse — B2B-Marktforschung und Geschäftsanbahnung).<br><br>
+    <strong>Nur für internen Gebrauch.</strong> Kontaktdaten nicht ohne Einwilligung an Dritte weitergeben. Outreach ausschließlich mit klarer Opt-out-Möglichkeit (§ 7 UWG). Bei Widerspruch der betroffenen Person: alle personenbezogenen Daten löschen (DSGVO Art. 17). Keine Verarbeitung sensibler Daten (Gesundheit, Religion, politische Meinung).
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <span>FilmLabor OS — Vision Pipeline</span>
+  <span>c-LEcta GmbH · Deep Research · 26.03.2026</span>
+  <span>Vertraulich — Nur interner Gebrauch</span>
+</footer>
+
+</body>
+</html>
