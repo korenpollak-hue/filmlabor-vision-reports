@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Research — Julian Becker / Expertenfilm</title>
+<style>
+  :root {
+    --accent: #16A34A;
+    --accent-light: #dcfce7;
+    --black: #0D0D0D;
+    --gray-dark: #444444;
+    --gray-mid: #888888;
+    --gray-light: #CCCCCC;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 36px 60px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--black);
+  }
+  .header-left .brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+  .header-left .tagline {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .pipeline-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .header-right .report-title {
+    font-size: 13px;
+    color: var(--gray-dark);
+    margin-top: 4px;
+  }
+
+  /* STAGE BADGE */
+  .stage {
+    background: var(--off-white);
+    padding: 20px 60px;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .stage-badge {
+    border: 1.5px solid var(--black);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .stage-desc {
+    font-size: 13px;
+    color: var(--gray-dark);
+  }
+  .stage-progress {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.06em;
+  }
+
+  /* MAIN */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 60px 80px;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gray-dark);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .meta {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-bottom: 0;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-top: 56px;
+    border-top: 1px solid var(--gray-light);
+    padding-top: 32px;
+  }
+
+  .section-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-dark);
+    margin: 24px 0 12px;
+  }
+
+  p { margin-bottom: 14px; color: var(--gray-dark); }
+
+  /* SCORE DISPLAY */
+  .score-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+  .score-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+  }
+  .score-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-top: 8px;
+  }
+  .score-details { padding-top: 8px; }
+  .score-verdict {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-light);
+    margin: 24px 0;
+  }
+  .stat-item {
+    padding: 20px 24px;
+    border-right: 1px solid var(--gray-light);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.4;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: var(--off-white);
+  }
+  .insight p {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--black);
+    margin: 0;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    padding: 8px 12px 8px 0;
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+  }
+  td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--gray-light);
+    vertical-align: top;
+    color: var(--gray-dark);
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--black); }
+
+  /* STATUS BADGES */
+  .status-ok { color: var(--accent); font-weight: 600; }
+  .status-warn { color: #B45309; font-weight: 600; }
+  .status-bad { color: #DC2626; font-weight: 600; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--off-white);
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  .callout-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-bottom: 10px;
+  }
+  .callout ul {
+    list-style: none;
+    padding: 0;
+  }
+  .callout ul li {
+    padding: 5px 0;
+    color: var(--gray-dark);
+    font-size: 14px;
+  }
+  .callout ul li::before {
+    content: "→ ";
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* COMPETITOR TABLE */
+  .gap-callout {
+    border: 2px solid var(--black);
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .gap-callout .gap-title {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  /* AUDIENCE */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .platform-card {
+    border: 1px solid var(--gray-light);
+    padding: 16px 20px;
+  }
+  .platform-name {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .platform-priority {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .platform-note {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.4;
+  }
+
+  /* EMPFEHLUNG */
+  .empfehlung {
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    padding: 28px 0;
+    margin-top: 32px;
+  }
+  .empfehlung-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .empfehlung-item .label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .empfehlung-item .value {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: var(--black);
+    line-height: 1.5;
+  }
+
+  /* LEGAL */
+  .legal {
+    margin-top: 56px;
+    padding: 20px 24px;
+    background: #FFFBEB;
+    border-left: 3px solid #D97706;
+    font-size: 11px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+  .legal strong { color: var(--black); }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--gray-light);
+    margin-top: 40px;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+
+  @media (max-width: 680px) {
+    .header { padding: 24px 24px 20px; flex-direction: column; gap: 12px; }
+    .stage { padding: 16px 24px; flex-wrap: wrap; }
+    .content { padding: 36px 24px 60px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr; }
+    .empfehlung-grid { grid-template-columns: 1fr; }
+    .score-block { grid-template-columns: 1fr; }
+    .footer { padding: 20px 24px; flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="brand">Expertenfilm — Julian Becker</div>
+    <div class="tagline">KI-gestützte Videoproduktion &amp; Performance Marketing · Jena</div>
+  </div>
+  <div class="header-right">
+    <div class="pipeline-label">Vision Pipeline</div>
+    <div class="report-title">Deep Research Report · 26. März 2026</div>
+  </div>
+</header>
+
+<div class="stage">
+  <div class="stage-badge">Stufe 01 von 07 — Deep Research</div>
+  <div class="stage-desc">Marktvalidierung, Tech-Audit, Wettbewerbsanalyse, Audience Intelligence</div>
+  <div class="stage-progress">Erstellt 2026-03-26</div>
+</div>
+
+<main class="content">
+
+  <h1>Markt-Analyse: KI-Video&shy;produktion für den deutschen Mittelstand</h1>
+  <p class="lead">Julian Becker / Expertenfilm verbindet echte Kameraarbeit mit KI in der Post-Produktion — ein Hybrid-Ansatz, der im Markt bisher niemand so klar belegt.</p>
+  <p class="meta">Firma: Julian Becker / Expertenfilm · Branche: Videoproduktion &amp; KI-Marketing · Standort: Jena · Datum: 26.03.2026</p>
+
+  <!-- MARKTVALIDIERUNG -->
+  <div class="section">
+    <span class="section-label">01 — Markt-Validierung</span>
+
+    <div class="score-block">
+      <div>
+        <div class="score-number">9</div>
+        <div class="score-label">von 10 · Starving Crowd</div>
+      </div>
+      <div class="score-details">
+        <div class="score-verdict">Vollgas — Markt ist bereit, Nachfrage explodiert</div>
+        <p>KMUs in Deutschland kämpfen mit digitaler Sichtbarkeit und Kundengewinnung. Video-Content ist der stärkste Kanal — aber 80% der Betriebe haben weder Zeit noch Know-how für professionelle Videoproduktion. Die KI-Welle macht das Problem drängender: Kunden erwarten jetzt mehr Content, nicht weniger.</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">3,5 Mio.</div>
+        <div class="stat-desc">KMUs in Deutschland — potenzielle Kunden</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">38,7%</div>
+        <div class="stat-desc">CAGR Generative-KI-Markt DE bis 2031 (Statista)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">81%</div>
+        <div class="stat-desc">Marketing-Verantwortliche nennen Video als Pflicht-Kanal (LinkedIn 2025)</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <p>„52% der B2B-Marketer nennen KI-Video als ihre am stärksten adoptierte neue Marketing-Technologie für 2025–2026 — und der globale AI-Video-Markt soll bis Ende 2026 auf 18,6 Mrd. USD wachsen."</p>
+    </div>
+
+    <h3>Score-Breakdown</h3>
+    <table>
+      <thead><tr><th>Faktor</th><th>Bewertung</th><th>Begründung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Problem existiert?</strong></td><td><span class="status-ok">3/3</span></td><td>KMUs brauchen Video-Content, haben aber keinen oder schlechten</td></tr>
+        <tr><td><strong>Leute zahlen dafür?</strong></td><td><span class="status-ok">3/3</span></td><td>Klassische VP 3.000–15.000€, KI-Konkurrenten ab 1.500€ — Marktpreise etabliert</td></tr>
+        <tr><td><strong>Markt groß genug?</strong></td><td><span class="status-ok">2/2</span></td><td>3,5 Mio. KMUs in DE, davon Hunderttausende aktiv marketingfähig</td></tr>
+        <tr><td><strong>Trend steigend?</strong></td><td><span class="status-ok">1/2</span></td><td>Steigend, aber auch Wettbewerb wächst schnell — first-mover Vorteil schwindet</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TECH-AUDIT -->
+  <div class="section">
+    <span class="section-label">02 — Tech-Audit</span>
+    <h2>Digitale Infrastruktur</h2>
+
+    <table>
+      <thead><tr><th>Element</th><th>Status</th><th>Bedeutung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Website (expertenfilm.de)</strong></td><td><span class="status-ok">✓ Erreichbar</span></td><td>Homepage vorhanden, responsiv</td></tr>
+        <tr><td><strong>SSL-Zertifikat</strong></td><td><span class="status-bad">✗ Abgelaufen</span></td><td>Browser zeigen Sicherheitswarnung → Vertrauensverlust, aktiver Conversion-Killer</td></tr>
+        <tr><td><strong>Meta Pixel (Facebook Ads)</strong></td><td><span class="status-bad">✗ Fehlt</span></td><td>Kein Retargeting möglich, keine Conversion-Messung für Paid Ads</td></tr>
+        <tr><td><strong>Google Analytics / GTM</strong></td><td><span class="status-bad">✗ Fehlt</span></td><td>Kein Wissen welche Kanäle Leads bringen</td></tr>
+        <tr><td><strong>Instagram (@expertenfilm)</strong></td><td><span class="status-ok">✓ Vorhanden</span></td><td>Präsenz bestätigt</td></tr>
+        <tr><td><strong>LinkedIn (Julian Becker)</strong></td><td><span class="status-ok">✓ 1.000+ Follower</span></td><td>Solide Basis für Personal Brand</td></tr>
+        <tr><td><strong>YouTube</strong></td><td><span class="status-warn">— Nicht gefunden</span></td><td>Verpasste SEO-Chance &amp; Expertenstatus-Aufbau</td></tr>
+        <tr><td><strong>Lead-Capture / Calendly</strong></td><td><span class="status-bad">✗ Fehlt</span></td><td>Nur WhatsApp als Kontakt — keine automatisierte Terminbuchung</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">Sofortmaßnahmen (vor Strategie-Start)</div>
+      <ul>
+        <li>SSL-Zertifikat erneuern — kostet 5 Minuten, stoppt aktiven Vertrauensverlust</li>
+        <li>Meta Pixel + Google Analytics implementieren — ohne Tracking ist alles Blindflug</li>
+        <li>Calendly-Link einbauen — senkt Hürde für Erstgespräch drastisch</li>
+        <li>YouTube-Kanal anlegen — How-to Content für SEO + Expertenstatus</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- KONKURRENZ -->
+  <div class="section">
+    <span class="section-label">03 — Wettbewerbsanalyse</span>
+    <h2>Fünf relevante Konkurrenten</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Firma</th><th>Stärke</th><th>Schwäche</th><th>Content</th><th>Ads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>KI Video Manufaktur</strong><br><small>ki-video-manufaktur.de</small></td>
+          <td>Ab 1.500€, 70–80% günstiger, 5–7 Tage Lieferzeit</td>
+          <td>Rein KI-generiert — wirkt synthetisch, kein lokaler Bezug, kein menschlicher Faktor</td>
+          <td>Landing Page, kein Content-Marketing</td>
+          <td>Nein</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>AIdentical</strong><br><small>aidentical.de</small></td>
+          <td>KI-Avatare, 50 Jahre Expertise, B2B+B2C</td>
+          <td>Hochpreisig, keine Authentizitäts-Positionierung, keine persönliche Note</td>
+          <td>Text-schwer, kaum Video-eigenwerbung</td>
+          <td>Nein</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Die Filmagentur</strong><br><small>diefilmagentur.de (Berlin)</small></td>
+          <td>Etabliert, 8.500–30.000€ Projektpreise, B2B-Fokus</td>
+          <td>Teuer, Berlin-zentrisch, KI nur als Co-Pilot ohne klare Kosteneinsparung kommuniziert</td>
+          <td>Blog + Showreel</td>
+          <td>Nein</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>filmproduktion-jena.de</strong><br><small>Lokaler Wettbewerber</small></td>
+          <td>Lokal präsent, 20+ Jahre Erfahrung, Vertrauensbasis</td>
+          <td>Kein KI-Ansatz, kein Performance-Marketing, rein traditionell</td>
+          <td>Portfolio-Website</td>
+          <td>Nein</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>meisterwerk.media</strong><br><small>Social Media Agentur Jena</small></td>
+          <td>Lokale Social Media Präsenz, Jena-fokussiert</td>
+          <td>Fokus auf Social-Media-Verwaltung, nicht Videoproduktion selbst</td>
+          <td>Social Posts</td>
+          <td>Nein</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="gap-callout">
+      <div class="gap-title">Marktlücke: Die Hybrid-Position ist frei</div>
+      <p>Niemand kombiniert glaubhaft <em>echte Kamera + KI-Effizienz + Performance-Messung</em> für KMUs. Die KI-Anbieter wirken synthetisch, die traditionellen sind zu teuer, die Lokalen haben keinen KI-Ansatz. Julian Becker's Aussage — „Ich nutze KI nicht um Videos billiger zu machen, sondern damit Menschen aufhören wie Skripte zu reden" — ist genau diese Lücke.</p>
+    </div>
+  </div>
+
+  <!-- ERFOLGSMODELLE -->
+  <div class="section">
+    <span class="section-label">04 — Erfolgsmodelle</span>
+    <h2>Was funktioniert — und was Expertenfilm übernehmen kann</h2>
+
+    <table>
+      <thead><tr><th>#</th><th>Vorbild</th><th>Was sie richtig machen</th><th>Übertragbar?</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Gary Vee (VaynerMedia)</strong></td>
+          <td>„Dokumentiere deinen Prozess statt zu performen" — Day-in-the-Life Content schlägt jede Hochglanzproduktion. 3x täglich auf mehreren Kanälen gleichzeitig.</td>
+          <td>Ja — Julian filmt seinen eigenen Produktionsprozess: B-Roll beim Dreh, Vorher-Nachher mit KI, Behind-the-Scenes</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Alex Hormozi (Acquisition.com)</strong></td>
+          <td>90% Education, 10% Pitch. Lead Magnets die echten Mehrwert liefern. „Gratis Wert pumpen" bis der Interessent kaufen will.</td>
+          <td>Ja — kostenloses Video-Audit als Lead Magnet: „5 Gründe warum dein Erklärvideo keine Kunden bringt"</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Justin Welsh (Solopreneur LinkedIn)</strong></td>
+          <td>Personal Brand before Company Brand. 1x täglich auf LinkedIn posten. Eigene Meinung zeigen. 100.000+ Follower durch Konsistenz, nicht Perfektion.</td>
+          <td>Ja — Julian's Gesicht und Stimme erzeugen mehr Vertrauen als Expertenfilm-Brand. LinkedIn als primärer Wachstumskanal.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>KI Video Manufaktur</strong></td>
+          <td>Klare Preispositionierung, mutige USP-Aussage (70–80% günstiger), transparente Pakete</td>
+          <td>Ja — Expertenfilm braucht eine ähnlich mutige, messbare Kernaussage. Z.B. „Produktionszeit halbiert, Authentizität verdoppelt."</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>filmproduktion-jena.de</strong></td>
+          <td>Lokale Verwurzelung als Vertrauensanker, jahrelange Kundenbindung durch Nähe</td>
+          <td>Ja — Julian kann Thüringen/Jena als Heimatmarkt nutzen: lokale Erfolgsgeschichten, regionale Kunden prominenter zeigen</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AUDIENCE INTELLIGENCE -->
+  <div class="section">
+    <span class="section-label">05 — Audience Intelligence</span>
+    <h2>Wo ist die Zielgruppe — und wie erreicht man sie?</h2>
+
+    <p>Zielgruppe (konkret): <strong>Inhaber und Marketing-Verantwortliche von KMUs mit 10–200 Mitarbeitern</strong>, in Thüringen/DACH, die bereits in Marketing investieren aber unzufriedene Ergebnisse haben.</p>
+
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-name">LinkedIn</div>
+        <div class="platform-priority">Priorität 1</div>
+        <div class="platform-note">26 Mio. DACH-Nutzer. B2B-Entscheider präsent. LinkedIn Video bis 3 Min expandiert. 73% der Entscheider bevorzugen Video für Kaufentscheidungen.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">Instagram</div>
+        <div class="platform-priority">Priorität 2</div>
+        <div class="platform-note">Reels bis 3 Min (seit 2025). Authentische Wackelvideos outperformen Corporate-Content. @expertenfilm-Account bereits aktiv.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">YouTube</div>
+        <div class="platform-priority">Priorität 3</div>
+        <div class="platform-note">How-to Content für SEO. Längere Formate für Erklärungen. Kein Kanal vorhanden — kurzfristig aufbauen für Suchsichtbarkeit.</div>
+      </div>
+    </div>
+
+    <h3>Hashtags &amp; Keywords</h3>
+    <div class="callout">
+      <div class="callout-title">LinkedIn (3–5 pro Post)</div>
+      <ul>
+        <li>#videoproduktion · #kimarketing · #b2bmarketing · #contentmarketing · #kmu</li>
+      </ul>
+      <div class="callout-title" style="margin-top:12px;">Instagram (10–15 pro Post)</div>
+      <ul>
+        <li>#videoproduktion · #marketingtipps · #kmumarketing · #videomarketing · #socialmediavideo · #aimarketing · #contentcreator · #unternehmer · #digitalmarketing · #videocontent</li>
+      </ul>
+      <div class="callout-title" style="margin-top:12px;">Google-Suchbegriffe der Zielgruppe</div>
+      <ul>
+        <li>"Videoproduktion KMU" · "KI Marketing Agentur" · "Imagefilm Jena" · "Video Content B2B" · "Social Media Video erstellen lassen"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EMPFEHLUNG -->
+  <div class="section">
+    <span class="section-label">06 — Strategische Empfehlung</span>
+
+    <div class="empfehlung">
+      <div class="empfehlung-grid">
+        <div class="empfehlung-item">
+          <div class="label">Markt viable</div>
+          <div class="value">Ja — explodierender Markt, klares Problem, etablierte Zahlungsbereitschaft</div>
+        </div>
+        <div class="empfehlung-item">
+          <div class="label">Größte Chance</div>
+          <div class="value">Hybrid-Positionierung: „Echte Kamera + KI in Post" als einziger Anbieter der Authentizität + Effizienz verbindet</div>
+        </div>
+        <div class="empfehlung-item">
+          <div class="label">Größtes Risiko</div>
+          <div class="value">Keine Messbarkeit (kein Tracking, kein CRM) + SSL-Fehler kostet aktiv Leads. Ohne Daten kein Wachstum.</div>
+        </div>
+        <div class="empfehlung-item">
+          <div class="label">Nächster Schritt</div>
+          <div class="value">Strategie starten — aber SSL erneuern und Meta Pixel + GA einbauen ist Bedingung. Dann LinkedIn Personal Brand 3x/Woche.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGAL DISCLAIMER -->
+  <div class="legal">
+    <strong>Rechtlicher Hinweis (DSGVO):</strong> Dieser Report basiert ausschließlich auf öffentlich zugänglichen Berufsdaten (LinkedIn-Profil, öffentliche Website, öffentliche Social-Media-Profile). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse: Marktforschung und Geschäftsanbahnung). Nur für internen Gebrauch. Bei Widerspruch der betroffenen Person: alle personenbezogenen Daten löschen (DSGVO Art. 17). Outreach nur mit klarer Opt-out-Möglichkeit (§ 7 UWG). Keine sensiblen Daten verarbeitet.
+  </div>
+
+</main>
+
+<footer class="footer">
+  <span>FilmLabor OS · Vision Pipeline</span>
+  <span>Julian Becker / Expertenfilm — Research 2026-03-26</span>
+  <span>Vertraulich · Nur für internen Gebrauch</span>
+</footer>
+
+</body>
+</html>
