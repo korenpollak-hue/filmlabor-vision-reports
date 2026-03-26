@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Strategie — Sebastian Budde — 2026-03-26</title>
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #161618;
+    --border: #252528;
+    --accent: #6366f1;
+    --accent2: #8b5cf6;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --text: #f1f1f3;
+    --muted: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Inter', sans-serif; line-height: 1.6; }
+  .wrapper { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+
+  header { border-bottom: 1px solid var(--border); padding-bottom: 32px; margin-bottom: 40px; }
+  .badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
+  .subtitle { color: var(--muted); font-size: 14px; }
+
+  h2 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; border-left: 3px solid var(--accent); padding-left: 14px; }
+  h3 { font-size: 15px; font-weight: 600; margin: 20px 0 10px; color: #ccc; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  th { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid #1e1e20; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--accent); }
+
+  .positionierung {
+    background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.08));
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px 0;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .innovation-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin-bottom: 12px; }
+  .innovation-card .rank { font-size: 24px; font-weight: 800; color: var(--accent); float: left; margin-right: 14px; line-height: 1; }
+  .innovation-card h3 { margin: 0 0 6px; font-size: 16px; }
+  .innovation-card .tag { display: inline-block; background: rgba(99,102,241,0.15); color: var(--accent); font-size: 11px; padding: 2px 8px; border-radius: 4px; margin: 4px 4px 0 0; }
+
+  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  .platform-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .platform-card .name { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .platform-card .prio { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .platform-card .freq { font-size: 12px; color: var(--green); margin-top: 6px; }
+
+  .roadmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0; }
+  .week-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+  .week-card .week-label { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .week-card .week-text { font-size: 13px; color: #ccc; }
+
+  .highlight { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); border-radius: 8px; padding: 16px 20px; margin: 16px 0; color: var(--green); }
+  .highlight strong { display: block; font-size: 13px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  .usp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .usp-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .usp-card .label { font-size: 13px; font-weight: 600; }
+  .usp-card .desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .disclaimer { background: #111; border: 1px solid #222; border-radius: 8px; padding: 16px 20px; margin-top: 48px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .disclaimer h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: #555; }
+
+  @media (max-width: 640px) {
+    .platform-grid, .usp-grid, .roadmap-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="badge">Vision Strategie</div>
+    <h1>Sebastian Budde</h1>
+    <p class="subtitle">Filmproduktion × Wissenschaftskommunikation — 26. März 2026</p>
+  </header>
+
+  <!-- Positionierung -->
+  <h2>Positionierungs-Statement</h2>
+  <div class="positionierung">
+    „Für Forschungsinstitute, Hochschulen und B2B-Unternehmen, die komplexe Inhalte kommunizieren müssen, bietet Sebastian Budde Videoproduktionen die Wissenschaft emotional erlebbar machen — im Gegensatz zu Agenturen die erst lernen müssen was ein RCT ist, weil Sebastian selbst in beiden Welten lebt."
+  </div>
+
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="icon">🎬</div>
+      <div class="label">Filmhandwerk</div>
+      <div class="desc">Kamera, Schnitt, Story — professionelle Produktion</div>
+    </div>
+    <div class="usp-card">
+      <div class="icon">🔬</div>
+      <div class="label">Wissenschaftsverständnis</div>
+      <div class="desc">Advisor Digital Media, Leibniz-Institut BIPS</div>
+    </div>
+    <div class="usp-card">
+      <div class="icon">🤝</div>
+      <div class="label">Persönlicher Kontakt</div>
+      <div class="desc">Kein Agentur-Overhead. Du sprichst immer mit demselben Menschen.</div>
+    </div>
+  </div>
+
+  <!-- StoryBrand -->
+  <h2>StoryBrand Framework</h2>
+  <div class="card">
+    <table>
+      <tr><th>Element</th><th>Für Sebastian Budde</th></tr>
+      <tr><td><strong>Hero</strong></td><td>Kommunikationsleiter / Öffentlichkeitsarbeit bei Forschungsinstitut. Wichtige Ergebnisse — aber niemand versteht sie.</td></tr>
+      <tr><td><strong>External Problem</strong></td><td>Gute Videoproduzenten verstehen die Wissenschaft nicht. Wissenschaftler können nicht filmen. Die Lücke ist real und teuer.</td></tr>
+      <tr><td><strong>Internal Problem</strong></td><td>"Unsere Forschung ist wichtig — warum schaut niemand hin?" Angst, Budget für jemanden auszugeben der das Briefing nicht kapiert.</td></tr>
+      <tr><td><strong>Philosophical Problem</strong></td><td>Wichtige Forschung gehört nicht in Fachzeitschriften begraben. Sie gehört in die Öffentlichkeit — verständlich, emotional, sichtbar.</td></tr>
+      <tr><td><strong>Guide (Empathie)</strong></td><td>"Wir kennen das Problem von innen — Sebastian ist Advisor Digital Media beim Leibniz-Institut BIPS."</td></tr>
+      <tr><td><strong>Guide (Autorität)</strong></td><td>AI-in-Health, EHPS, VetTrust, DIKS — Institutionen die vertrauen.</td></tr>
+      <tr><td><strong>Plan</strong></td><td>① 30-Min Call  ② Wir schreiben Skript + produzieren  ③ Video das Forschung erklärbar macht</td></tr>
+      <tr><td><strong>CTA Direkt</strong></td><td>15-Min Erstgespräch → business@sebastianbudde.de</td></tr>
+      <tr><td><strong>CTA Transitional</strong></td><td>Referenzvideos ansehen → sebastianbudde.de</td></tr>
+      <tr><td><strong>Failure</strong></td><td>Forschung bleibt unsichtbar. Nächste Förderanträge schwieriger. Spin-offs entstehen ohne euch.</td></tr>
+      <tr><td><strong>Success</strong></td><td>Journalisten berichten. Förderer fragen von selbst an. Die Öffentlichkeit versteht eure Arbeit.</td></tr>
+    </table>
+  </div>
+
+  <!-- Hormozi -->
+  <h2>Hormozi Value Equation</h2>
+  <div class="card">
+    <table>
+      <tr><th>Faktor</th><th>Umsetzung</th></tr>
+      <tr><td><strong>Traumresultat ↑</strong></td><td>Forschung wird bekannt: Journalisten, Förderer, Öffentlichkeit → mehr Relevanz, mehr Funding, mehr Impact</td></tr>
+      <tr><td><strong>Wahrscheinlichkeit ↑</strong></td><td>BIPS-Referenz, 6 konkrete Referenzprojekte, "Ich kenne eure Welt von innen"</td></tr>
+      <tr><td><strong>Zeitaufwand ↓</strong></td><td>"30-Min Briefing → wir übernehmen den Rest." Kein Agentur-Overhead, schnelle Lieferzeiten.</td></tr>
+      <tr><td><strong>Mühe ↓</strong></td><td>Kein Erklären von RCT oder p-Werten. Sebastian kennt die Wissenschaft. Der Kunde muss nichts lernen.</td></tr>
+    </table>
+  </div>
+
+  <!-- TAYA Big 5 -->
+  <h2>They Ask You Answer — Big 5 Content-Themen</h2>
+  <table>
+    <tr><th>#</th><th>Thema</th><th>Content-Idee</th></tr>
+    <tr><td>1</td><td><strong>Pricing</strong></td><td>"Was kostet ein Wissenschaftsvideo?" — Ehrliche Zahlen nennen: 1.500–15.000 EUR je nach Umfang</td></tr>
+    <tr><td>2</td><td><strong>Problems</strong></td><td>"Was kann bei Wissenschaftsvideos schiefgehen?" — eigene Branche ehrlich analysieren</td></tr>
+    <tr><td>3</td><td><strong>Versus</strong></td><td>"Sebastian Budde vs. Agentur — was ist der Unterschied?" — Direktvergleich, ohne Angriff</td></tr>
+    <tr><td>4</td><td><strong>Reviews</strong></td><td>Video-Testimonials von BIPS / EHPS / VetTrust sammeln und publizieren</td></tr>
+    <tr><td>5</td><td><strong>Best in Class</strong></td><td>"Bester Videoproduzent für Wissenschaftskommunikation in Deutschland" — aktiv positionieren</td></tr>
+  </table>
+
+  <!-- Content Fortress -->
+  <h2>Content Fortress — 8 Säulen</h2>
+  <table>
+    <tr><th>#</th><th>Säule</th><th>Konkrete Idee</th></tr>
+    <tr><td>1</td><td><strong>Repelling</strong></td><td>"Für wen ich nicht der Richtige bin" — "Wenn du Hochglanz-Werbung willst, ruf eine Agentur an."</td></tr>
+    <tr><td>2</td><td><strong>Attracting</strong></td><td>"EHPS 2024: Wie wir 800 Forschende und ihre Arbeit in 3 Minuten eingefangen haben"</td></tr>
+    <tr><td>3</td><td><strong>Sales</strong></td><td>"AI-in-Health: KI-Themen in 3 Minuten erklärbar — Case Study mit Ergebnis"</td></tr>
+    <tr><td>4</td><td><strong>Pricing</strong></td><td>"Was kostet ein Wissenschaftsvideo? Ehrliche Zahlen, echte Faktoren."</td></tr>
+    <tr><td>5</td><td><strong>Guiding</strong></td><td>"5 Fehler bei der Video-Kommunikation von Forschungsinstituten"</td></tr>
+    <tr><td>6</td><td><strong>Process</strong></td><td>"So entsteht ein Wissenschaftsvideo — vom 30-Min Briefing bis zur Endabnahme"</td></tr>
+    <tr><td>7</td><td><strong>Culture</strong></td><td>BTS: "Am Set beim Leibniz-Institut — was passiert wenn Wissenschaftler vor die Kamera kommen"</td></tr>
+    <tr><td>8</td><td><strong>Opinion</strong></td><td>"Warum Instagram mehr für die Wissenschaft tut als Nature-Artikel"</td></tr>
+  </table>
+
+  <!-- Creative Innovation -->
+  <h2>Top 3 Creative Innovations</h2>
+
+  <div class="innovation-card">
+    <div class="rank">1</div>
+    <div>
+      <h3>Personalisierter Benchmark-Opener</h3>
+      <p style="font-size:13px;color:#ccc">AI erstellt Institut-Vergleich: "Ihr Institut kommuniziert X. Helmholtz macht Y. Hier ist die Lücke." → Sofortiger Mehrwert ohne Pitch.</p>
+      <span class="tag">Hormozi</span><span class="tag">Aufwand: gering</span><span class="tag">LinkedIn-DM Opener</span>
+    </div>
+  </div>
+
+  <div class="innovation-card">
+    <div class="rank">2</div>
+    <div>
+      <h3>Repelling Content</h3>
+      <p style="font-size:13px;color:#ccc">"Für wen ich NICHT geeignet bin" — ehrlich, spezifisch. Filtert schlechte Anfragen, zieht ideale Kunden per Selbstselektion an.</p>
+      <span class="tag">Content Fortress Säule 1</span><span class="tag">Aufwand: sehr gering</span><span class="tag">LinkedIn Post</span>
+    </div>
+  </div>
+
+  <div class="innovation-card">
+    <div class="rank">3</div>
+    <div>
+      <h3>Gratis Kommunikations-Audit als Opener</h3>
+      <p style="font-size:13px;color:#ccc">"Ich habe eure Website analysiert — hier sind 3 Dinge die sofort besser sein könnten." Beweise Expertise bevor du den Preis nennst.</p>
+      <span class="tag">Hormozi (Mühe minimieren)</span><span class="tag">15 Min/Lead</span><span class="tag">Follow-Up</span>
+    </div>
+  </div>
+
+  <!-- Platform Strategy -->
+  <h2>Platform Strategy</h2>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="prio">Priorität 1</div>
+      <div class="name">LinkedIn</div>
+      <div style="font-size:12px;color:#aaa;margin-top:6px">40% Foto · 30% Karussell · 20% Text · 10% Video</div>
+      <div class="freq">3–5× / Woche</div>
+    </div>
+    <div class="platform-card">
+      <div class="prio">Priorität 2</div>
+      <div class="name">Instagram</div>
+      <div style="font-size:12px;color:#aaa;margin-top:6px">60% Reels · 25% Stories · 15% Posts</div>
+      <div class="freq">4–7× / Woche</div>
+    </div>
+    <div class="platform-card">
+      <div class="prio">Priorität 3</div>
+      <div class="name">YouTube</div>
+      <div style="font-size:12px;color:#aaa;margin-top:6px">40% How-To · 30% Case Studies · 30% Vlogs</div>
+      <div class="freq">1–2× / Woche</div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Quick Wins — Sofort umsetzen</strong>
+    Google Analytics + Meta Pixel installieren (aktuell: null Tracking) · TikTok & YouTube auf Website verlinken · 5 LinkedIn-Empfehlungen von BIPS/EHPS/VetTrust einholen
+  </div>
+
+  <!-- 30-Tage Roadmap -->
+  <h2>30-Tage Roadmap</h2>
+  <div class="roadmap-grid">
+    <div class="week-card">
+      <div class="week-label">Woche 1</div>
+      <div class="week-text">LinkedIn-Profil optimieren: Header, About, 3 Featured-Videos, 5 Empfehlungen einholen</div>
+    </div>
+    <div class="week-card">
+      <div class="week-label">Woche 2</div>
+      <div class="week-text">4 Posts veröffentlichen: Repelling · Pricing Teaser · Case Study EHPS · BTS</div>
+    </div>
+    <div class="week-card">
+      <div class="week-label">Woche 3</div>
+      <div class="week-text">Benchmark-Opener Template bauen · 10 Kommunikationsleiter bei Helmholtz/Leibniz/Fraunhofer identifizieren</div>
+    </div>
+    <div class="week-card">
+      <div class="week-label">Woche 4</div>
+      <div class="week-text">Erste 10 LinkedIn-DMs mit Benchmark-Opener senden · Ergebnisse tracken</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <h4>⚠ Legal Disclaimer</h4>
+    Dieses Dokument wurde mit Hilfe von KI-Tools (Claude, WebSearch) erstellt und enthält strategische Empfehlungen basierend auf öffentlich zugänglichen Daten. Alle Markt- und Wettbewerbsangaben sind Einschätzungen und kein Ersatz für professionelle Rechts-, Steuer- oder Unternehmensberatung. Preisangaben und Marktzahlen sind Schätzungen ohne Gewähr. © Filmlabor OS 2026.
+  </div>
+
+</div>
+</body>
+</html>
