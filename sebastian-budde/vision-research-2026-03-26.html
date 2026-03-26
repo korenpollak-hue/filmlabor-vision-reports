@@ -3,276 +3,764 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Report — Marktforschung — Sebastian Budde</title>
+<title>Vision Marktanalyse — Sebastian Budde | FilmLabor</title>
+<link rel="icon" type="image/png" href="../filmlabor-icon.png">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --red: #CB0F33;
-    --black: #0D0D0D;
-    --gray-dark: #4D5656;
-    --gray-mid: #7A7A7A;
-    --gray-light: #E4E4E2;
-    --off-white: #F9F8F6;
+    --navy: #0A1628;
+    --blue-deep: #1B4B8F;
+    --blue-brand: #2563EB;
+    --blue-light: #00B4FF;
+    --blue-glow: #E0F2FE;
+    --red-accent: #E11D48;
+    --green: #059669;
+    --amber: #D97706;
+    --gray-900: #111827;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-400: #9CA3AF;
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
     --white: #FFFFFF;
-    --font-serif: 'Georgia', 'Times New Roman', serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+    --radius: 12px;
+    --radius-sm: 8px;
   }
-  html { font-size: 16px; }
-  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.65; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 840px; margin: 0 auto; padding: 0 48px 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--gray-50); color: var(--gray-900); line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
-  /* Header */
-  .header { padding: 44px 0 32px; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; }
-  .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; letter-spacing: 0.02em; color: var(--black); line-height: 1.2; }
-  .logo-tagline { font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); margin-top: 5px; }
-  .hdr-right { text-align: right; }
-  .hdr-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); display: block; }
-  .hdr-title { font-size: 13px; font-weight: 600; color: var(--black); margin-top: 4px; display: block; }
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, #0F2847 40%, var(--blue-deep) 100%);
+    color: var(--white);
+    padding: 48px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,180,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-inner { max-width: 880px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
+  .cover-logo img { height: 36px; opacity: 0.95; }
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+  .cover-badge-dot { width: 6px; height: 6px; background: var(--blue-light); border-radius: 50%; }
+  .cover-meta {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .cover h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: normal;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+  .cover-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+  .cover-client {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .client-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-brand), var(--blue-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .client-info { display: flex; flex-direction: column; gap: 2px; }
+  .client-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .client-name { font-size: 16px; font-weight: 600; color: var(--white); }
+  .client-role { font-size: 13px; color: rgba(255,255,255,0.55); }
 
-  /* Stage */
-  .stage { padding: 16px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 14px; }
-  .stage-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 4px 10px 3px; font-weight: 700; }
-  .stage-desc { font-size: 13px; color: var(--gray-dark); }
-  .stage-count { margin-left: auto; font-size: 11px; color: var(--gray-mid); }
+  /* Pipeline Bar */
+  .pipeline {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .pipeline-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+  .pipe-stage {
+    padding: 14px 16px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--gray-400);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid transparent;
+  }
+  .pipe-stage.active { color: var(--blue-brand); font-weight: 600; border-bottom-color: var(--blue-brand); }
+  .pipe-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--gray-100);
+    color: var(--gray-400);
+  }
+  .pipe-stage.active .pipe-num { background: var(--blue-brand); color: var(--white); }
 
-  /* Content */
-  .content { padding: 60px 0 48px; }
-  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.15; color: var(--black); margin-bottom: 10px; }
-  .lead { font-size: 17px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 60px; max-width: 620px; }
+  /* Page */
+  .page { max-width: 880px; margin: 0 auto; padding: 48px 40px 0; }
 
-  /* Section */
-  .section { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--gray-light); }
-  .section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
-  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 24px; display: block; }
+  /* Score Hero */
+  .score-hero {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 44px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--gray-200);
+  }
+  .score-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(var(--blue-brand) 0deg, var(--blue-light) 324deg, var(--gray-100) 324deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .score-circle-inner {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .score-big { font-family: var(--font-display); font-size: 42px; line-height: 1; color: var(--gray-900); }
+  .score-small { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+  .score-text h2 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+  .score-text p { font-size: 15px; color: var(--gray-700); line-height: 1.65; }
+  .score-verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 6px 14px;
+    background: #ECFDF5;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+  }
 
-  h2 { font-size: 21px; font-weight: 700; color: var(--black); margin-bottom: 16px; margin-top: 0; }
-  h3 { font-size: 15px; font-weight: 700; color: var(--black); margin: 24px 0 10px; }
-  p { font-size: 15px; color: var(--gray-dark); margin-bottom: 14px; line-height: 1.65; }
-  strong { color: var(--black); font-weight: 600; }
-  ul { padding-left: 18px; margin-bottom: 16px; }
-  ul li { font-size: 14.5px; color: var(--gray-dark); margin-bottom: 7px; line-height: 1.55; }
+  /* Stats Row */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-num { font-family: var(--font-display); font-size: 32px; color: var(--gray-900); display: block; line-height: 1.1; }
+  .stat-label { font-size: 13px; color: var(--gray-500); margin-top: 6px; line-height: 1.4; }
 
-  /* Score */
-  .score-block { display: flex; align-items: baseline; gap: 12px; margin: 28px 0 20px; }
-  .score-n { font-family: var(--font-serif); font-size: 80px; line-height: 1; color: var(--black); }
-  .score-d { font-family: var(--font-serif); font-size: 28px; color: var(--gray-mid); }
-  .score-info { display: flex; flex-direction: column; gap: 4px; padding-left: 8px; }
-  .score-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-dark); font-weight: 700; }
-  .score-sub { font-size: 14px; color: var(--gray-mid); }
+  /* Section Cards */
+  .section-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-head {
+    padding: 28px 32px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-icon.blue { background: var(--blue-glow); }
+  .section-icon.green { background: #ECFDF5; }
+  .section-icon.amber { background: #FFFBEB; }
+  .section-icon.red { background: #FEF2F2; }
+  .section-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); font-weight: 600; }
+  .section-title { font-size: 18px; font-weight: 700; color: var(--gray-900); }
+  .section-body { padding: 0 32px 28px; }
+  .section-body p { font-size: 15px; color: var(--gray-700); margin-bottom: 14px; line-height: 1.65; }
+  .section-body strong { color: var(--gray-900); }
+  .section-body ul { padding-left: 18px; margin-bottom: 16px; }
+  .section-body li { font-size: 14.5px; color: var(--gray-700); margin-bottom: 6px; line-height: 1.55; }
 
-  /* Stats */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--gray-light); margin: 28px 0; }
-  .stat { padding: 24px 20px; border-right: 1px solid var(--gray-light); }
-  .stat:last-child { border-right: none; }
-  .stat-n { font-family: var(--font-serif); font-size: 30px; color: var(--black); display: block; margin-bottom: 5px; line-height: 1; }
-  .stat-l { font-size: 12px; color: var(--gray-mid); line-height: 1.4; }
+  /* Tables */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0 16px; }
+  .tbl th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-weight: 600;
+    padding: 0 12px 10px 0;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .tbl td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl td:first-child { font-weight: 500; color: var(--gray-900); }
+  .ok { color: var(--green); font-weight: 600; }
+  .no { color: var(--red-accent); font-weight: 500; }
 
-  /* Table */
-  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0 24px; }
-  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 16px 10px 0; border-bottom: 1px solid var(--gray-light); }
-  td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--gray-light); color: var(--gray-dark); vertical-align: top; line-height: 1.5; }
-  tr:last-child td { border-bottom: none; }
-  td:first-child { font-weight: 500; color: var(--black); }
-  .ok { color: #1D6B37; font-size: 13px; }
-  .no { color: #B91C1C; font-size: 13px; }
+  /* Callouts */
+  .insight {
+    background: linear-gradient(135deg, #EFF6FF, #F0F9FF);
+    border-left: 3px solid var(--blue-brand);
+    padding: 18px 22px;
+    margin: 20px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .insight-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-brand); font-weight: 700; margin-bottom: 6px; display: block; }
+  .insight p { font-size: 14.5px; color: var(--gray-900); font-style: italic; margin: 0; line-height: 1.6; }
+  .warning {
+    background: #FEF2F2;
+    border-left: 3px solid var(--red-accent);
+    padding: 18px 22px;
+    margin: 20px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .warning-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-accent); font-weight: 700; margin-bottom: 6px; display: block; }
+  .warning p { font-size: 14.5px; color: var(--gray-900); margin: 0; line-height: 1.6; }
 
-  /* Insight */
-  .insight { border-left: 3px solid var(--red); padding: 14px 0 14px 22px; margin: 28px 0; }
-  .insight-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
-  .insight p { font-size: 15.5px; color: var(--black); font-style: italic; margin: 0; line-height: 1.6; }
+  /* Recommendation Banner */
+  .rec-banner {
+    background: linear-gradient(135deg, var(--navy), var(--blue-deep));
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 40px 36px;
+    margin: 40px 0;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-banner::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,180,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .rec-banner-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-light); font-weight: 600; margin-bottom: 14px; display: block; position: relative; z-index: 1; }
+  .rec-banner p { font-family: var(--font-display); font-size: 20px; line-height: 1.5; color: var(--white); position: relative; z-index: 1; margin: 0; }
 
-  /* Callout */
-  .callout { background: var(--off-white); padding: 26px 30px; margin: 24px 0; }
-  .callout-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; display: block; margin-bottom: 10px; }
-  .callout p { color: var(--black); margin: 0; font-size: 15px; }
+  /* Upsell Section */
+  .upsell {
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    margin: 48px 0 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .upsell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--blue-light));
+  }
+  .upsell-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-brand); font-weight: 700; margin-bottom: 12px; }
+  .upsell h2 { font-family: var(--font-display); font-size: 30px; font-weight: normal; color: var(--gray-900); margin-bottom: 10px; line-height: 1.25; }
+  .upsell-sub { font-size: 16px; color: var(--gray-500); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
-  /* Recommendation */
-  .rec { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 0; margin: 52px 0 44px; }
-  .rec-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); display: block; margin-bottom: 12px; }
-  .rec-body { font-family: var(--font-serif); font-size: 20px; color: var(--black); line-height: 1.5; font-weight: normal; }
+  .pipeline-visual { display: flex; justify-content: center; gap: 4px; margin-bottom: 36px; flex-wrap: wrap; padding: 0 20px; }
+  .pv-stage { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 90px; }
+  .pv-dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; z-index: 1;
+  }
+  .pv-dot.done { background: var(--blue-brand); color: var(--white); }
+  .pv-dot.locked { background: var(--gray-100); color: var(--gray-400); border: 2px solid var(--gray-200); }
+  .pv-label { font-size: 10px; color: var(--gray-500); text-align: center; line-height: 1.3; max-width: 80px; }
+  .pv-label.active { color: var(--blue-brand); font-weight: 600; }
+  .pv-connector { width: 20px; height: 2px; background: var(--gray-200); align-self: flex-start; margin-top: 17px; }
+  .pv-connector.done { background: var(--blue-brand); }
+
+  .upsell-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left; margin-bottom: 36px; }
+  .uf-item { padding: 20px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1px solid var(--gray-100); }
+  .uf-title { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+  .uf-desc { font-size: 12.5px; color: var(--gray-500); line-height: 1.5; }
+
+  .upsell-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--blue-brand), var(--blue-light));
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .upsell-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
 
   /* Legal */
-  .legal { border-top: 1px solid var(--gray-light); padding-top: 24px; margin-bottom: 40px; }
-  .legal p { font-size: 11px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 6px; }
+  .legal {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .legal-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); font-weight: 600; margin-bottom: 10px; }
+  .legal p { font-size: 11.5px; color: var(--gray-500); line-height: 1.65; margin-bottom: 8px; }
+  .legal p:last-child { margin-bottom: 0; }
 
   /* Footer */
-  .footer { border-top: 2px solid var(--black); padding: 22px 0 44px; display: flex; justify-content: space-between; align-items: center; }
-  .footer-brand { font-family: var(--font-serif); font-size: 13px; color: var(--black); }
-  .footer-meta { font-size: 11px; color: var(--gray-mid); }
-  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); }
+  .footer-wrap { background: var(--navy); margin-top: 48px; padding: 32px 0; }
+  .footer {
+    max-width: 880px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-left { display: flex; align-items: center; gap: 14px; }
+  .footer-left img { height: 24px; opacity: 0.8; }
+  .footer-text { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .footer-right { text-align: right; }
+  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; }
+  .footer-date { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cover h1 { font-size: 30px; }
+    .cover-inner, .page, .footer { padding-left: 24px; padding-right: 24px; }
+    .score-hero { flex-direction: column; padding: 32px 24px; gap: 24px; text-align: center; }
+    .stats-row { grid-template-columns: 1fr; }
+    .section-head, .section-body { padding-left: 20px; padding-right: 20px; }
+    .upsell-features { grid-template-columns: 1fr; }
+    .pipeline-inner { padding: 0 16px; }
+    .upsell { padding: 32px 24px; }
+  }
+  @media print {
+    body { background: white; }
+    .pipeline { position: static; box-shadow: none; }
+    .section-card { break-inside: avoid; box-shadow: none; }
+    .upsell-cta { display: none; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <header class="header">
-    <div>
-      <div class="logo-name">Sebastian Budde</div>
-      <div class="logo-tagline">Filmemacher &middot; Storyteller &middot; Bremen</div>
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-top">
+        <div class="cover-logo">
+          <img src="../filmlabor-logo.png" alt="FilmLabor">
+        </div>
+        <div class="cover-badge">
+          <span class="cover-badge-dot"></span>
+          Stufe 01 von 07
+        </div>
+      </div>
+      <div class="cover-meta">Vision Marktanalyse</div>
+      <h1>Marktforschung &amp; Validierung</h1>
+      <p class="cover-sub">Datengetriebene Analyse Ihres Markts, Ihrer Wettbewerber und Ihrer digitalen Praesenz &mdash; als Grundlage fuer eine skalierbare Marketing-Strategie.</p>
+      <div class="cover-client">
+        <div class="client-avatar">SB</div>
+        <div class="client-info">
+          <span class="client-label">Erstellt fuer</span>
+          <span class="client-name">Sebastian Budde</span>
+          <span class="client-role">Filmemacher &middot; Storyteller &middot; Bremen</span>
+        </div>
+      </div>
     </div>
-    <div class="hdr-right">
-      <span class="hdr-label">Vision Pipeline</span>
-      <span class="hdr-title">Marktforschung &amp; Validierung</span>
-    </div>
-  </header>
-
-  <div class="stage">
-    <span class="stage-badge">Stufe 01</span>
-    <span class="stage-desc">Marktforschung &mdash; Tech-Audit &mdash; Konkurrenz &mdash; Audience</span>
-    <span class="stage-count">von 07 Stufen</span>
   </div>
 
-  <main class="content">
-
-    <h1>Markt&shy;forschung</h1>
-    <p class="lead">Validierung des Markts, Tech-Audit der digitalen Präsenz und Competitive Intelligence für Sebastian Budde als Filmemacher für Wissenschaft und Forschung.</p>
-
-    <div class="section">
-      <span class="section-label">Person &amp; Business</span>
-      <p><strong>Sebastian Budde</strong> ist Filmemacher und Storyteller mit Sitz in Bremen. Seine Kernkompetenz: Komplexe Inhalte verständlich, emotional und visuell stark erzählen — für Unternehmen, Forschungsinstitute und Medienorganisationen. Parallel arbeitet er als Advisor of Digital Media beim Leibniz-Institut für Präventionsforschung und Epidemiologie (BIPS) — eine Doppelrolle, die ihm Glaubwürdigkeit in beiden Welten gibt.</p>
-      <table>
-        <tr><th>Kanal</th><th>Detail</th></tr>
-        <tr><td>Website</td><td>sebastianbudde.de</td></tr>
-        <tr><td>E-Mail</td><td>business@sebastianbudde.de</td></tr>
-        <tr><td>Telefon</td><td>+49 151 503 09163</td></tr>
-        <tr><td>LinkedIn</td><td>linkedin.com/in/sebastianbudde</td></tr>
-        <tr><td>Instagram</td><td>@sebastian.budde &mdash; 1.063 Follower, 109 Posts</td></tr>
-        <tr><td>TikTok</td><td>@sebastian.budde</td></tr>
-      </table>
+  <!-- PIPELINE BAR -->
+  <nav class="pipeline">
+    <div class="pipeline-inner">
+      <div class="pipe-stage active"><span class="pipe-num">1</span> Marktforschung</div>
+      <div class="pipe-stage"><span class="pipe-num">2</span> Strategie</div>
+      <div class="pipe-stage"><span class="pipe-num">3</span> Content</div>
+      <div class="pipe-stage"><span class="pipe-num">4</span> Lead Magnets</div>
+      <div class="pipe-stage"><span class="pipe-num">5</span> Outreach</div>
+      <div class="pipe-stage"><span class="pipe-num">6</span> Qualitaet</div>
+      <div class="pipe-stage"><span class="pipe-num">7</span> Messung</div>
     </div>
+  </nav>
 
-    <div class="section">
-      <span class="section-label">Markt-Validierung</span>
-      <div class="score-block">
-        <span class="score-n">9</span><span class="score-d">/10</span>
-        <div class="score-info">
-          <span class="score-title">Starving Crowd Score</span>
-          <span class="score-sub">Vollgas &mdash; Markt ist bereit</span>
+  <div class="page">
+
+    <!-- SCORE HERO -->
+    <div class="score-hero">
+      <div class="score-circle">
+        <div class="score-circle-inner">
+          <span class="score-big">9</span>
+          <span class="score-small">von 10</span>
         </div>
       </div>
-      <p>Forschungsinstitute, Hochschulen und B2B-Unternehmen brauchen professionelle Videoproduktionen, um komplexe Inhalte zugänglich und emotional zu vermitteln. Das Segment professionalisiert sich rapide — mit institutionellen Budgets, die diesen Bedarf decken können.</p>
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-n">5.000+</span>
-          <span class="stat-l">potenzielle Auftraggeber in Deutschland</span>
+      <div class="score-text">
+        <h2>Starving Crowd Score</h2>
+        <p>Forschungsinstitute, Hochschulen und B2B-Unternehmen brauchen professionelle Videoproduktionen. Das Segment professionalisiert sich &mdash; mit institutionellen Budgets, die den Bedarf decken.</p>
+        <div class="score-verdict">&#10003; Vollgas &mdash; Markt ist bereit</div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-num">5.000+</span>
+        <span class="stat-label">potenzielle Auftraggeber in Deutschland</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">+14,6%</span>
+        <span class="stat-label">Wachstum Internetvideo-Segment 2025</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">50.000&thinsp;&euro;</span>
+        <span class="stat-label">max. Auftragsvolumen Imagefilm institutionell</span>
+      </div>
+    </div>
+
+    <!-- PERSON -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon blue">&#128100;</div>
+        <div>
+          <div class="section-label">Person &amp; Business</div>
+          <div class="section-title">Sebastian Budde</div>
         </div>
-        <div class="stat">
-          <span class="stat-n">+14,6%</span>
-          <span class="stat-l">Wachstum Internetvideo-Segment 2025</span>
+      </div>
+      <div class="section-body">
+        <p><strong>Sebastian Budde</strong> ist Filmemacher und Storyteller mit Sitz in Bremen. Seine Kernkompetenz: Komplexe Inhalte verstaendlich, emotional und visuell stark erzaehlen &mdash; fuer Unternehmen, Forschungsinstitute und Medienorganisationen.</p>
+        <p>Parallel arbeitet er als <strong>Advisor of Digital Media</strong> beim Leibniz-Institut fuer Praeventionsforschung und Epidemiologie (BIPS) &mdash; eine Doppelrolle, die ihm Glaubwuerdigkeit in beiden Welten gibt.</p>
+        <table class="tbl">
+          <tr><th>Kanal</th><th>Detail</th></tr>
+          <tr><td>Website</td><td>sebastianbudde.de</td></tr>
+          <tr><td>LinkedIn</td><td>linkedin.com/in/sebastianbudde</td></tr>
+          <tr><td>Instagram</td><td>@sebastian.budde &mdash; 1.063 Follower, 109 Posts</td></tr>
+          <tr><td>TikTok</td><td>@sebastian.budde</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TECH AUDIT -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon amber">&#128269;</div>
+        <div>
+          <div class="section-label">Tech-Audit</div>
+          <div class="section-title">Digitale Praesenz</div>
         </div>
-        <div class="stat">
-          <span class="stat-n">50.000 €</span>
-          <span class="stat-l">max. Auftragsvolumen Imagefilm institutionell</span>
+      </div>
+      <div class="section-body">
+        <table class="tbl">
+          <tr><th>Kriterium</th><th>Status</th></tr>
+          <tr><td>Website erreichbar</td><td><span class="ok">&#10003; Ja</span></td></tr>
+          <tr><td>SSL / HTTPS</td><td><span class="ok">&#10003; Aktiv</span></td></tr>
+          <tr><td>CMS</td><td>WordPress</td></tr>
+          <tr><td>Meta Pixel</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
+          <tr><td>Google Analytics</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
+          <tr><td>LinkedIn Insight Tag</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
+          <tr><td>TikTok Pixel</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
+          <tr><td>Hotjar / Heatmap</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
+          <tr><td>Cookie Banner</td><td>Teilweise (Code-Referenz, kein sichtbares Tool)</td></tr>
+          <tr><td>Instagram verlinkt</td><td><span class="ok">&#10003; @sebastian.budde</span></td></tr>
+          <tr><td>LinkedIn verlinkt</td><td><span class="ok">&#10003; /in/sebastianbudde</span></td></tr>
+          <tr><td>YouTube verlinkt</td><td><span class="no">&#10007; Fehlt</span></td></tr>
+          <tr><td>Meta Description</td><td><span class="no">&#10007; Leer &mdash; SEO-Problem</span></td></tr>
+        </table>
+        <div class="warning">
+          <span class="warning-tag">Kritische Luecken</span>
+          <p>Kein Tracking bedeutet keine Ahnung, wer die Website besucht. TikTok und YouTube fehlen trotz aktiver Kanaele. Meta Description leer &mdash; das kostet taeglich organischen Traffic. Kein Cookie-Tool bedeutet DSGVO-Risiko.</p>
         </div>
       </div>
-      <div class="insight">
-        <span class="insight-tag">Marktstruktur</span>
-        <p>400+ Hochschulen, 1.000+ Forschungsinstitute (Helmholtz, Leibniz, Fraunhofer, MPG) plus B2B-Unternehmen mit Kommunikationsbedarf. 66% der B2B-Firmen investieren in Video. 83% der Konsumenten wollen mehr Video-Content.</p>
+    </div>
+
+    <!-- REFERENZEN -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon green">&#127909;</div>
+        <div>
+          <div class="section-label">Referenzen</div>
+          <div class="section-title">Bisherige Projekte</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <table class="tbl">
+          <tr><th>Projekt</th><th>Typ</th><th>Auftraggeber</th></tr>
+          <tr><td>AI in Health</td><td>Event-Aftermovie</td><td>AI-in-Health-Konferenz Bremen</td></tr>
+          <tr><td>VetTrust</td><td>Unternehmensfilm</td><td>Schweizer Tierklinikkette</td></tr>
+          <tr><td>Safety One</td><td>Produktvideo</td><td>HD Jobst</td></tr>
+          <tr><td>Tag der Forschungsdaten</td><td>Launch-Video</td><td>Forschungsdaten-Event Bremen</td></tr>
+          <tr><td>DIKS</td><td>Unternehmensfilm</td><td>Demenzinformationszentrum Bremen</td></tr>
+          <tr><td>EHPS</td><td>Event-Aftermovie</td><td>EHPS-Jahreskonferenz Bremen</td></tr>
+        </table>
+        <p>Starke Verankerung in Wissenschaft/Forschung (BIPS-Verbindung), aber auch Corporate- und Produktvideos. Die Breite zeigt Adaptionsfaehigkeit &mdash; die Nische liegt klar im Wissenschaftssegment.</p>
       </div>
     </div>
 
-    <div class="section">
-      <span class="section-label">Tech-Audit</span>
-      <h2>Digitale Präsenz</h2>
-      <table>
-        <tr><th>Kriterium</th><th>Status</th></tr>
-        <tr><td>Website erreichbar</td><td><span class="ok">&#10003; Ja</span></td></tr>
-        <tr><td>SSL / HTTPS</td><td><span class="ok">&#10003; Aktiv</span></td></tr>
-        <tr><td>CMS</td><td>WordPress</td></tr>
-        <tr><td>Meta Pixel</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
-        <tr><td>Google Analytics</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
-        <tr><td>LinkedIn Insight Tag</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
-        <tr><td>TikTok Pixel</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
-        <tr><td>Hotjar / Heatmap</td><td><span class="no">&#10007; Nicht installiert</span></td></tr>
-        <tr><td>Cookie Banner</td><td>Teilweise (Code-Referenz, kein sichtbares Tool)</td></tr>
-        <tr><td>Instagram verlinkt</td><td><span class="ok">&#10003; @sebastian.budde</span></td></tr>
-        <tr><td>LinkedIn verlinkt</td><td><span class="ok">&#10003; /in/sebastianbudde</span></td></tr>
-        <tr><td>YouTube verlinkt</td><td><span class="no">&#10007; Fehlt</span></td></tr>
-        <tr><td>TikTok verlinkt</td><td><span class="no">&#10007; Account existiert, nicht auf Website</span></td></tr>
-        <tr><td>Meta Description</td><td><span class="no">&#10007; Leer — SEO-Problem</span></td></tr>
-      </table>
-      <div class="callout">
-        <span class="callout-tag">Kritische Lücken</span>
-        <p>Kein Tracking bedeutet keine Ahnung, wer die Website besucht. TikTok und YouTube fehlen trotz aktiver Kanäle. Meta Description leer — das kostet täglich organischen Traffic. Kein Cookie-Tool bedeutet DSGVO-Risiko.</p>
+    <!-- KONKURRENZ -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon red">&#9878;</div>
+        <div>
+          <div class="section-label">Konkurrenz</div>
+          <div class="section-title">Top 4 Wettbewerber</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <table class="tbl">
+          <tr><th>Firma</th><th>Staerke</th><th>Schwaeche</th></tr>
+          <tr><td>Sterntaucher Filmproduktion</td><td>900+ Produktionen, DFG/Fraunhofer/Leopoldina</td><td>Kleine Social-Media-Praesenz, Agentur-Preise</td></tr>
+          <tr><td>dig it media</td><td>Seit 2002, stark in MedTech/Kliniken</td><td>Enge Nische, kein Storytelling-Fokus</td></tr>
+          <tr><td>nordsonne</td><td>Bundesweit fuer Unis/Stiftungen/Hochschulen</td><td>Breiteres Angebot, teuer</td></tr>
+          <tr><td>DIE FILMAGENTUR Berlin</td><td>Marktfuehrer Unternehmensfilme</td><td>Kein Wissenschafts-Fokus, hohe Preise</td></tr>
+        </table>
+        <div class="insight">
+          <span class="insight-tag">Entscheidende Beobachtung</span>
+          <p>Keiner der Konkurrenten betreibt aktives Content Marketing oder hat eine relevante Social-Media-Praesenz. Der Markt ist bereit fuer jemanden, der Expertise sichtbar macht.</p>
+        </div>
       </div>
     </div>
 
-    <div class="section">
-      <span class="section-label">Referenzen</span>
-      <table>
-        <tr><th>Projekt</th><th>Typ</th><th>Auftraggeber</th></tr>
-        <tr><td>AI in Health</td><td>Event-Aftermovie</td><td>AI-in-Health-Konferenz Bremen</td></tr>
-        <tr><td>VetTrust</td><td>Unternehmensfilm</td><td>Schweizer Tierklinikkette</td></tr>
-        <tr><td>Safety One</td><td>Produktvideo</td><td>HD Jobst</td></tr>
-        <tr><td>Tag der Forschungsdaten (TDF)</td><td>Launch-Video</td><td>Forschungsdaten-Event Bremen</td></tr>
-        <tr><td>DIKS</td><td>Unternehmensfilm</td><td>Demenzinformationszentrum Bremen</td></tr>
-        <tr><td>EHPS</td><td>Event-Aftermovie</td><td>EHPS-Jahreskonferenz Bremen</td></tr>
-      </table>
-      <p>Starke Verankerung in Wissenschaft/Forschung (BIPS-Verbindung), aber auch Corporate- und Produktvideos. Die Breite zeigt Adaptionsfähigkeit — die Nische liegt klar im Wissenschaftssegment.</p>
-    </div>
-
-    <div class="section">
-      <span class="section-label">Konkurrenz</span>
-      <h2>Top 4 Wettbewerber</h2>
-      <table>
-        <tr><th>Firma</th><th>Stärke</th><th>Schwäche</th></tr>
-        <tr><td>Sterntaucher Filmproduktion</td><td>900+ Produktionen, DFG/Fraunhofer/Leopoldina</td><td>Kleine Social-Media-Präsenz, Agentur-Preise</td></tr>
-        <tr><td>dig it media</td><td>Seit 2002, stark in MedTech/Kliniken</td><td>Enge Nische, kein Storytelling-Fokus</td></tr>
-        <tr><td>nordsonne</td><td>Bundesweit für Unis/Stiftungen/Hochschulen</td><td>Breiteres Angebot (nicht nur Video), teuer</td></tr>
-        <tr><td>DIE FILMAGENTUR Berlin</td><td>Marktführer Unternehmensfilme</td><td>Kein Wissenschafts-Fokus, hohe Preise, unpersönlich</td></tr>
-      </table>
-      <div class="insight">
-        <span class="insight-tag">Entscheidende Beobachtung</span>
-        <p>Keiner der Konkurrenten betreibt aktives Content Marketing oder hat eine relevante Social-Media-Präsenz. Der Markt ist bereit für jemanden, der Expertise sichtbar macht.</p>
+    <!-- AUDIENCE -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon blue">&#127919;</div>
+        <div>
+          <div class="section-label">Audience Intelligence</div>
+          <div class="section-title">Zielgruppen &amp; Plattformen</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <table class="tbl">
+          <tr><th>Plattform</th><th>Prioritaet</th><th>Zielgruppe</th></tr>
+          <tr><td>LinkedIn</td><td><strong>Primaer</strong></td><td>Kommunikationsabteilungen von Forschungsinstituten, Hochschulen, B2B</td></tr>
+          <tr><td>Instagram</td><td>Sekundaer</td><td>Kreativszene, potenzielle Referenz-Kunden, Behind-the-Scenes</td></tr>
+          <tr><td>TikTok</td><td>Wachstum</td><td>Noch ungenutzt; Chance fuer Nischen-Viralitaet mit Wissenschafts-Content</td></tr>
+        </table>
+        <p><strong>Suchbegriffe der Zielgruppe:</strong> "Videoproduktion Forschungsinstitute", "Filmemacher Wissenschaft", "Imagefilm Hochschule", "Storytelling Unternehmen"</p>
       </div>
     </div>
 
-    <div class="section">
-      <span class="section-label">Audience Intelligence</span>
-      <table>
-        <tr><th>Plattform</th><th>Priorität</th><th>Zielgruppe</th></tr>
-        <tr><td>LinkedIn</td><td>Primär</td><td>Kommunikationsabteilungen von Forschungsinstituten, Hochschulen, B2B</td></tr>
-        <tr><td>Instagram</td><td>Sekundär</td><td>Kreativszene, potenzielle Referenz-Kunden, Behind-the-Scenes</td></tr>
-        <tr><td>TikTok</td><td>Wachstum</td><td>Noch ungenutzt; Chance für Nischen-Viralität mit Wissenschafts-Content</td></tr>
-      </table>
-      <p><strong>Suchbegriffe der Zielgruppe:</strong> "Videoproduktion Forschungsinstitute", "Filmemacher Wissenschaft", "Imagefilm Hochschule", "Storytelling Unternehmen", "komplexe Inhalte erklären Video"</p>
-      <p><strong>Wo kauft die Zielgruppe?</strong> Empfehlungen, LinkedIn (direkter Kontakt), Google-Suche nach spezifischen Referenzen.</p>
-    </div>
-
-    <div class="section">
-      <span class="section-label">Marktlücke</span>
-      <h2>Das unfair advantage</h2>
-      <p>Niemand in dieser Nische verbindet alle vier Punkte gleichzeitig:</p>
-      <ul>
-        <li>Filmproduktion + Wissenschaftskommunikation als Doppel-Expertise</li>
-        <li>Persönliche Marke mit regelmäßigem Content</li>
-        <li>BIPS/Leibniz-Institut-Verbindung als Glaubwürdigkeitssignal</li>
-        <li>Preisvorteil gegenüber Agenturen (Freelancer, direkter Kontakt, kein Overhead)</li>
-      </ul>
-      <div class="insight">
-        <span class="insight-tag">Fazit</span>
-        <p>Sebastian Budde lebt in beiden Welten — das ist sein unfair advantage.</p>
+    <!-- UNFAIR ADVANTAGE -->
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-icon green">&#128161;</div>
+        <div>
+          <div class="section-label">Marktluecke</div>
+          <div class="section-title">Das Unfair Advantage</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Niemand in dieser Nische verbindet alle vier Punkte gleichzeitig:</p>
+        <ul>
+          <li><strong>Filmproduktion + Wissenschaftskommunikation</strong> als Doppel-Expertise</li>
+          <li><strong>Persoenliche Marke</strong> mit regelmaessigem Content</li>
+          <li><strong>BIPS/Leibniz-Institut-Verbindung</strong> als Glaubwuerdigkeitssignal</li>
+          <li><strong>Preisvorteil</strong> gegenueber Agenturen (Freelancer, direkter Kontakt)</li>
+        </ul>
+        <div class="insight">
+          <span class="insight-tag">Fazit</span>
+          <p>Sebastian Budde lebt in beiden Welten &mdash; das ist sein Unfair Advantage.</p>
+        </div>
       </div>
     </div>
 
-    <div class="rec">
-      <span class="rec-tag">Empfehlung</span>
-      <p class="rec-body">Markt viable: 9/10. Größte Chance: LinkedIn-Präsenz aufbauen und Expertise als Filmemacher für Wissenschaft sichtbar machen. Größtes Risiko: Bremer Lokalfokus bei nationalen Kunden. Nächster Schritt: Strategie starten.</p>
+    <!-- RECOMMENDATION -->
+    <div class="rec-banner">
+      <span class="rec-banner-label">Empfehlung</span>
+      <p>Markt viable: 9 von 10. Groesste Chance: LinkedIn-Praesenz aufbauen und Expertise als Filmemacher fuer Wissenschaft sichtbar machen. Groesstes Risiko: Bremer Lokalfokus bei nationalen Kunden. Naechster Schritt: Strategie entwickeln.</p>
     </div>
 
+    <!-- UPSELL -->
+    <div class="upsell">
+      <div class="upsell-eyebrow">Das war erst der Anfang</div>
+      <h2>Dies ist Stufe 1 von 7</h2>
+      <p class="upsell-sub">Die Marktanalyse zeigt: Das Potenzial ist da. In den naechsten Stufen setzen wir es um &mdash; von der Strategie bis zur messbaren Kundengewinnung.</p>
+
+      <div class="pipeline-visual">
+        <div class="pv-stage">
+          <div class="pv-dot done">&#10003;</div>
+          <span class="pv-label active">Markt-<br>forschung</span>
+        </div>
+        <div class="pv-connector done"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">2</div>
+          <span class="pv-label">Strategie</span>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">3</div>
+          <span class="pv-label">Content-<br>Produktion</span>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">4</div>
+          <span class="pv-label">Lead<br>Magnets</span>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">5</div>
+          <span class="pv-label">Outreach<br>&amp; Sales</span>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">6</div>
+          <span class="pv-label">Qualitaets-<br>pruefung</span>
+        </div>
+        <div class="pv-connector"></div>
+        <div class="pv-stage">
+          <div class="pv-dot locked">7</div>
+          <span class="pv-label">Messung &amp;<br>Optimierung</span>
+        </div>
+      </div>
+
+      <div class="upsell-features">
+        <div class="uf-item">
+          <div class="uf-title">Strategie &amp; Positionierung</div>
+          <div class="uf-desc">Content-Strategie mit Plattform-Mix, Posting-Plan und Tonalitaet.</div>
+        </div>
+        <div class="uf-item">
+          <div class="uf-title">Content-Produktion</div>
+          <div class="uf-desc">Fertige Posts, Karussells, Video-Skripte und Stories &mdash; ready to publish.</div>
+        </div>
+        <div class="uf-item">
+          <div class="uf-title">Lead Magnets</div>
+          <div class="uf-desc">Kostenlose Ressourcen die Interessenten in Leads verwandeln.</div>
+        </div>
+        <div class="uf-item">
+          <div class="uf-title">Outreach &amp; Sales</div>
+          <div class="uf-desc">Personalisierte Ansprache-Sequenzen fuer LinkedIn und E-Mail.</div>
+        </div>
+        <div class="uf-item">
+          <div class="uf-title">Qualitaetssicherung</div>
+          <div class="uf-desc">Brand-Voice Check, Anti-KI-Pruefung, DSGVO-Konformitaet.</div>
+        </div>
+        <div class="uf-item">
+          <div class="uf-title">Messung &amp; Optimierung</div>
+          <div class="uf-desc">Performance-Tracking, A/B-Tests, datenbasierte Iteration.</div>
+        </div>
+      </div>
+
+      <a href="mailto:koren@film-labor.de?subject=Vision%20Marketing%20Anfrage" class="upsell-cta">
+        Komplette Strategie anfragen &rarr;
+      </a>
+    </div>
+
+    <!-- LEGAL -->
     <div class="legal">
-      <p><strong>Hinweis:</strong> Dieser Report wurde von Film-labor Business OS erstellt und ist ausschließlich für den internen Gebrauch durch Sebastian Budde bestimmt. Alle enthaltenen Daten, Analysen und Empfehlungen sind vertraulich.</p>
-      <p>Marktdaten basieren auf öffentlich zugänglichen Quellen (Stand 2026-03-26). Keine Gewährleistung für Vollständigkeit oder Richtigkeit. Keine Rechts-, Steuer- oder Investitionsberatung.</p>
+      <div class="legal-title">Rechtliche Hinweise</div>
+      <p><strong>Erstellt von:</strong> Film-labor (Koren Pollak), im Auftrag der internen Marktanalyse. Alle Rechte vorbehalten.</p>
+      <p><strong>Vertraulichkeit:</strong> Dieser Report ist ausschliesslich fuer Sebastian Budde bestimmt. Die Weitergabe an Dritte bedarf der schriftlichen Zustimmung von Film-labor.</p>
+      <p><strong>Datenquellen:</strong> Alle Marktdaten basieren auf oeffentlich zugaenglichen Quellen (Stand: Maerz 2026). Wettbewerber-Informationen stammen aus oeffentlichen Webauftritten, Social-Media-Profilen und Branchenverzeichnissen.</p>
+      <p><strong>Keine Beratung:</strong> Dieser Report stellt keine Rechts-, Steuer- oder Investitionsberatung dar. Alle Empfehlungen sind strategischer Natur und basieren auf der zum Zeitpunkt der Erstellung verfuegbaren Datenlage.</p>
+      <p><strong>KI-Hinweis:</strong> Teile dieser Analyse wurden mit Unterstuetzung von KI-Werkzeugen erstellt und anschliessend redaktionell geprueft. Die Verantwortung fuer alle Inhalte liegt bei Film-labor.</p>
+      <p><strong>DSGVO:</strong> Es wurden ausschliesslich oeffentlich zugaengliche Daten verarbeitet. Personenbezogene Daten Dritter werden nicht gespeichert. Bei Fragen zum Datenschutz: koren@film-labor.de</p>
     </div>
 
-  </main>
+  </div>
 
-  <footer class="footer">
-    <span class="footer-brand">Sebastian Budde</span>
-    <span class="footer-meta">Vision &middot; Stufe 01 von 07 &middot; Film-labor OS &middot; 26.03.2026</span>
-    <span class="footer-conf">Vertraulich</span>
-  </footer>
+  <!-- FOOTER -->
+  <div class="footer-wrap">
+    <div class="footer">
+      <div class="footer-left">
+        <img src="../filmlabor-logo.png" alt="FilmLabor">
+        <span class="footer-text">Vision Marketing Pipeline</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-conf">Vertraulich</span>
+        <span class="footer-date">26. Maerz 2026</span>
+      </div>
+    </div>
+  </div>
 
-</div>
 </body>
 </html>
