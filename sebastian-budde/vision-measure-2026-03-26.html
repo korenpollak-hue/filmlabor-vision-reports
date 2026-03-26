@@ -3,242 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Measure & Learn — Sebastian Budde | 2026-03-26</title>
+<title>Vision Report — Measure &amp; Learn — Sebastian Budde</title>
 <style>
-  :root{--bg:#0d0d0f;--bg2:#141418;--bg3:#1a1a21;--border:#2a2a35;--text:#e8e8f0;--muted:#7a7a8c;--accent:#6c63ff;--accent2:#ff6b6b;--green:#43d08a;--yellow:#f5c842;--blue:#4da6ff;--orange:#ff8c42;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;padding:40px 20px;}
-  .container{max-width:960px;margin:0 auto;}
-  .header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:48px;}
-  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
-  h1{font-size:32px;font-weight:800;color:#fff;margin-bottom:8px;}
-  .subtitle{color:var(--muted);font-size:14px;}
-  h2{font-size:18px;font-weight:700;color:#fff;margin:40px 0 16px;display:flex;align-items:center;gap:10px;}
-  h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--accent);border-radius:2px;}
-  h3{font-size:14px;font-weight:700;color:var(--accent);margin:20px 0 10px;}
-  .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
-  .tag-green{background:rgba(67,208,138,0.15);color:var(--green);}
-  .tag-yellow{background:rgba(245,200,66,0.15);color:var(--yellow);}
-  .tag-red{background:rgba(255,107,107,0.15);color:var(--accent2);}
-  .tag-blue{background:rgba(77,166,255,0.15);color:var(--blue);}
-  .tag-orange{background:rgba(255,140,66,0.15);color:var(--orange);}
-  .tag-purple{background:rgba(108,99,255,0.15);color:var(--accent);}
-  .nord-stern{background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(67,208,138,0.06));border:1px solid rgba(108,99,255,0.3);border-radius:14px;padding:28px;margin-bottom:32px;text-align:center;}
-  .nord-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
-  .nord-metric{font-size:22px;font-weight:800;color:var(--text);margin-bottom:16px;}
-  .goal-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-  .goal-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px 20px;text-align:center;}
-  .goal-n{font-size:28px;font-weight:800;color:var(--accent);}
-  .goal-l{font-size:12px;color:var(--muted);margin-top:2px;}
-  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
-  th{background:var(--bg3);color:var(--accent);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
-  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  tr:hover td{background:var(--bg3);}
-  .kpi-section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;}
-  .funnel{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;margin:16px 0;}
-  .funnel-step{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
-  .funnel-step:last-child{border-bottom:none;}
-  .funnel-icon{width:32px;text-align:center;font-size:16px;flex-shrink:0;}
-  .funnel-text{font-size:14px;color:var(--text);}
-  .funnel-value{margin-left:auto;font-size:13px;color:var(--accent);font-weight:700;}
-  .review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0;}
-  .review-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;}
-  .review-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
-  .review-card .time{font-size:12px;color:var(--muted);margin-bottom:12px;}
-  .review-list{list-style:none;padding:0;}
-  .review-list li{font-size:13px;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;}
-  .review-list li::before{content:'→';color:var(--accent);flex-shrink:0;}
-  .review-list li:last-child{border-bottom:none;}
-  .ampel-table th:nth-child(2){color:var(--green);}
-  .ampel-table th:nth-child(3){color:var(--yellow);}
-  .ampel-table th:nth-child(4){color:var(--accent2);}
-  .disclaimer{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:20px;margin-top:60px;}
-  .disclaimer h4{color:var(--yellow);font-size:13px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
-  .disclaimer p{font-size:12px;color:var(--muted);line-height:1.6;}
-  .footer{text-align:center;margin-top:40px;color:var(--muted);font-size:12px;}
-  .principle-box{background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.2);border-radius:10px;padding:20px;margin-top:16px;}
-  .principle-box p{font-size:14px;color:var(--muted);line-height:1.7;}
-  .principle-box strong{color:var(--text);}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #CB0F33;
+    --black: #0D0D0D;
+    --gray-dark: #4D5656;
+    --gray-mid: #7A7A7A;
+    --gray-light: #E4E4E2;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  }
+  html { font-size: 16px; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 840px; margin: 0 auto; padding: 0 48px; }
+  .header { padding: 44px 0 32px; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; letter-spacing: 0.02em; color: var(--black); }
+  .logo-tagline { font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); margin-top: 5px; }
+  .hdr-right { text-align: right; }
+  .hdr-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); display: block; }
+  .hdr-title { font-size: 13px; font-weight: 600; color: var(--black); margin-top: 4px; display: block; }
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 14px; }
+  .stage-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 4px 10px 3px; font-weight: 700; }
+  .stage-desc { font-size: 13px; color: var(--gray-dark); }
+  .stage-count { margin-left: auto; font-size: 11px; color: var(--gray-mid); }
+  .content { padding: 60px 0 48px; }
+  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.15; color: var(--black); margin-bottom: 10px; }
+  .lead { font-size: 17px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 60px; max-width: 620px; }
+  .section { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--gray-light); }
+  .section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 20px; display: block; }
+  h2 { font-size: 21px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--black); margin: 28px 0 10px; }
+  p { font-size: 15px; color: var(--gray-dark); margin-bottom: 14px; line-height: 1.65; }
+  strong { color: var(--black); font-weight: 600; }
+  ul { padding-left: 18px; margin-bottom: 16px; }
+  ul li { font-size: 14.5px; color: var(--gray-dark); margin-bottom: 7px; line-height: 1.55; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0 24px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 12px 10px 0; border-bottom: 1px solid var(--gray-light); }
+  td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--gray-light); color: var(--gray-dark); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; color: var(--black); }
+
+  /* North Star */
+  .north-star { display: flex; align-items: center; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--gray-light); margin-bottom: 28px; }
+  .ns-nums { display: flex; gap: 28px; }
+  .ns-item { text-align: center; }
+  .ns-n { font-family: var(--font-serif); font-size: 40px; color: var(--black); display: block; line-height: 1; }
+  .ns-label { font-size: 11px; color: var(--gray-mid); margin-top: 4px; line-height: 1.3; }
+  .ns-divider { font-family: var(--font-serif); font-size: 24px; color: var(--gray-light); }
+  .ns-title { flex: 1; }
+  .ns-title-main { font-family: var(--font-serif); font-size: 18px; color: var(--black); display: block; margin-bottom: 4px; }
+  .ns-title-sub { font-size: 13px; color: var(--gray-mid); }
+
+  /* Funnel */
+  .funnel { border: 1px solid var(--gray-light); margin: 20px 0; }
+  .funnel-step { padding: 14px 20px; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 16px; }
+  .funnel-step:last-child { border-bottom: none; }
+  .funnel-n { font-family: var(--font-serif); font-size: 18px; color: var(--gray-light); min-width: 24px; }
+  .funnel-text { font-size: 14px; color: var(--gray-dark); line-height: 1.4; }
+  .funnel-text strong { color: var(--black); }
+  .funnel-arrow { color: var(--gray-light); font-size: 18px; margin-left: auto; }
+
+  /* Ampel */
+  .ampel { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--gray-light); margin: 20px 0; }
+  .ampel-item { background: var(--white); padding: 16px; }
+  .ampel-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-bottom: 8px; }
+  .dot-green { background: #1D6B37; }
+  .dot-yellow { background: #D97706; }
+  .dot-red { background: var(--red); }
+  .ampel-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .ampel-text { font-size: 12.5px; color: var(--gray-dark); line-height: 1.4; }
+
+  .insight { border-left: 3px solid var(--red); padding: 14px 0 14px 22px; margin: 28px 0; }
+  .insight-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
+  .insight p { font-size: 15.5px; color: var(--black); font-style: italic; margin: 0; line-height: 1.6; }
+  .rec { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 0; margin: 52px 0 44px; }
+  .rec-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); display: block; margin-bottom: 12px; }
+  .rec-body { font-family: var(--font-serif); font-size: 20px; color: var(--black); line-height: 1.5; font-weight: normal; }
+  .legal { border-top: 1px solid var(--gray-light); padding-top: 24px; margin-bottom: 40px; }
+  .legal p { font-size: 11px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 6px; }
+  .footer { border-top: 2px solid var(--black); padding: 22px 0 44px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: var(--font-serif); font-size: 13px; color: var(--black); }
+  .footer-meta { font-size: 11px; color: var(--gray-mid); }
+  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div class="badge">Stufe 07 — Measure &amp; Learn</div>
-    <h1>Sebastian Budde</h1>
-    <div class="subtitle">KPI-Framework für die ersten 90 Tage — messbar, realistisch, actionable</div>
-  </div>
+<div class="page">
 
-  <div class="nord-stern">
-    <div class="nord-label">Nord-Stern-Metrik — Die eine Zahl die alles sagt</div>
-    <div class="nord-metric">Anzahl qualifizierter Erstgespräche pro Monat</div>
-    <div class="goal-row">
-      <div class="goal-item"><div class="goal-n">2</div><div class="goal-l">Monat 1</div></div>
-      <div class="goal-item"><div class="goal-n">4</div><div class="goal-l">Monat 2</div></div>
-      <div class="goal-item"><div class="goal-n">6</div><div class="goal-l">Monat 3</div></div>
+  <header class="header">
+    <div>
+      <div class="logo-name">Sebastian Budde</div>
+      <div class="logo-tagline">Filmemacher &middot; Storyteller &middot; Bremen</div>
     </div>
+    <div class="hdr-right">
+      <span class="hdr-label">Vision Pipeline</span>
+      <span class="hdr-title">Measure &amp; Learn</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <span class="stage-badge">Stufe 07</span>
+    <span class="stage-desc">KPI-Framework &mdash; 90-Tage-Plan &mdash; Umsatz-Trichter &mdash; Ampel-System</span>
+    <span class="stage-count">von 07 Stufen</span>
   </div>
 
-  <h2>LinkedIn KPI-Dashboard</h2>
+  <main class="content">
 
-  <div class="kpi-section">
-    <h3>Monat 1 — Basis aufbauen</h3>
-    <table>
-      <thead><tr><th>Metrik</th><th>Ziel</th><th>Wie messen</th><th>Frequenz</th></tr></thead>
-      <tbody>
+    <h1>Measure<br>&amp; Learn</h1>
+    <p class="lead">KPI-Framework für die ersten 90 Tage. Messbar, realistisch, auf Sebastian Buddes Ziele zugeschnitten. Eine Zahl die alles sagt — und ein System das wöchentlich lernt.</p>
+
+    <!-- North Star -->
+    <div class="section">
+      <span class="section-label">Nord-Stern-Metrik</span>
+      <div class="north-star">
+        <div class="ns-nums">
+          <div class="ns-item">
+            <span class="ns-n">2</span>
+            <span class="ns-label">Monat 1<br>Gespräche</span>
+          </div>
+          <span class="ns-divider">→</span>
+          <div class="ns-item">
+            <span class="ns-n">4</span>
+            <span class="ns-label">Monat 2<br>Gespräche</span>
+          </div>
+          <span class="ns-divider">→</span>
+          <div class="ns-item">
+            <span class="ns-n">6</span>
+            <span class="ns-label">Monat 3<br>Gespräche</span>
+          </div>
+        </div>
+        <div class="ns-title">
+          <span class="ns-title-main">Qualifizierte Erstgespräche pro Monat</span>
+          <span class="ns-title-sub">Eine Zahl die alles sagt. Alles andere ist Input. Das ist Output.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LinkedIn KPIs -->
+    <div class="section">
+      <span class="section-label">LinkedIn KPI-Dashboard</span>
+
+      <h3>Monat 1 — Basis aufbauen</h3>
+      <table>
+        <tr><th>Metrik</th><th>Ziel</th><th>Wie messen</th><th>Wann</th></tr>
         <tr><td>Follower-Wachstum</td><td>+50 neue Follower</td><td>LinkedIn Analytics</td><td>Wöchentlich Do</td></tr>
         <tr><td>Post-Impressions</td><td>min. 500 je Post</td><td>LinkedIn Analytics pro Post</td><td>Nach 48h</td></tr>
-        <tr><td>Engagement Rate</td><td>min. 3%</td><td>(Likes+Komm+Shares) / Impressions</td><td>Nach 48h</td></tr>
+        <tr><td>Engagement Rate</td><td>min. 3%</td><td>(Likes+Kommentare+Shares) / Impressions</td><td>Nach 48h</td></tr>
         <tr><td>Kommentare</td><td>min. 3 je Post</td><td>Manuell zählen</td><td>Nach 48h</td></tr>
-        <tr><td>Profilaufrufe</td><td>+30% ggü. Vormonat</td><td>LinkedIn Profil-Besuche</td><td>Wöchentlich</td></tr>
+        <tr><td>Profilaufrufe</td><td>+30% ggü. Vormonat</td><td>LinkedIn Analytics</td><td>Wöchentlich</td></tr>
         <tr><td>DM-Anfragen</td><td>min. 2/Monat</td><td>Manuell</td><td>Monatlich</td></tr>
-      </tbody>
-    </table>
-    <h3>Monat 2 — Reichweite steigern</h3>
-    <table>
-      <thead><tr><th>Metrik</th><th>Ziel</th><th>Bemerkung</th></tr></thead>
-      <tbody>
+      </table>
+
+      <h3>Monat 2 — Reichweite steigern</h3>
+      <table>
+        <tr><th>Metrik</th><th>Ziel</th><th>Bemerkung</th></tr>
         <tr><td>Follower-Wachstum</td><td>+100 neue Follower</td><td>Kumulativ 150+</td></tr>
         <tr><td>Impressions bester Post</td><td>2.000+</td><td>Ein viraler Post reicht</td></tr>
         <tr><td>Engagement Rate</td><td>min. 4%</td><td>Steigerung durch Karussell</td></tr>
         <tr><td>DM-Anfragen</td><td>min. 4/Monat</td><td>Davon 2 qualifizierte Leads</td></tr>
         <tr><td>Karussell-Saves</td><td>min. 20 je Karussell</td><td>"Saves" in LinkedIn Analytics</td></tr>
-      </tbody>
-    </table>
-    <h3>Monat 3 — Konvertierung fokussieren</h3>
-    <table>
-      <thead><tr><th>Metrik</th><th>Ziel</th><th>Bemerkung</th></tr></thead>
-      <tbody>
+      </table>
+
+      <h3>Monat 3 — Konvertierung fokussieren</h3>
+      <table>
+        <tr><th>Metrik</th><th>Ziel</th><th>Bemerkung</th></tr>
         <tr><td>Follower-Gesamt</td><td>300+</td><td>Leibniz/Helmholtz-Netzwerk</td></tr>
         <tr><td>Erstgespräche aus LinkedIn</td><td>3/Monat</td><td>Nur aus organischem Content</td></tr>
-        <tr><td>Conversion Follower → DM</td><td>1%</td><td>300 Follower → 3 DMs/Monat</td></tr>
-        <tr><td>Top-Performing Post</td><td>identifiziert</td><td>Welcher Framework läuft am besten?</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Lead Magnet KPI</h2>
-  <div class="kpi-section">
-    <table>
-      <thead><tr><th>Magnet</th><th>Metrik</th><th>Ziel Monat 1</th><th>Ziel Monat 3</th><th>Tracking</th></tr></thead>
-      <tbody>
-        <tr><td rowspan="3"><span class="tag tag-purple">Scorecard</span></td><td>Downloads</td><td>20</td><td>100</td><td>Typeform / Email-Liste</td></tr>
-        <tr><td>Conversion zu Audit-Call</td><td>10% (2 Calls)</td><td>10% (10 Calls)</td><td>Calendly Source-Tag</td></tr>
-        <tr><td>Audit → Angebot</td><td>50%</td><td>50%</td><td>Manuell Airtable</td></tr>
-        <tr><td rowspan="3"><span class="tag tag-blue">Audit PDF</span></td><td>Downloads</td><td>15</td><td>80</td><td>Email-Liste</td></tr>
-        <tr><td>Conversion zu Gespräch</td><td>8%</td><td>12%</td><td>Calendly Source-Tag</td></tr>
-        <tr><td>Gespräch → Angebot</td><td>50%</td><td>50%</td><td>Manuell</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Umsatz-Trichter</h2>
-  <div class="funnel">
-    <div class="funnel-step"><div class="funnel-icon">📱</div><div class="funnel-text">LinkedIn Content (3–5x/Woche)</div></div>
-    <div class="funnel-step"><div class="funnel-icon">↓</div><div class="funnel-text">Follower-Wachstum + Profilaufrufe</div></div>
-    <div class="funnel-step"><div class="funnel-icon">💬</div><div class="funnel-text">DM-Anfragen / Lead Magnet Downloads</div><div class="funnel-value">Ziel: 6 DMs/Monat</div></div>
-    <div class="funnel-step"><div class="funnel-icon">📞</div><div class="funnel-text">Erstgespräch</div><div class="funnel-value">Ziel: 6/Monat M3</div></div>
-    <div class="funnel-step"><div class="funnel-icon">📄</div><div class="funnel-text">Angebot</div><div class="funnel-value">50% Conversion</div></div>
-    <div class="funnel-step"><div class="funnel-icon">✅</div><div class="funnel-text">Auftrag</div><div class="funnel-value">30% Conversion</div></div>
-    <div class="funnel-step"><div class="funnel-icon">💶</div><div class="funnel-text">Umsatz — Ø 5.000 EUR/Auftrag</div><div class="funnel-value">Ziel M6: ~10.000 EUR/Monat</div></div>
-  </div>
-
-  <h2>Content Performance — Bewertungs-System</h2>
-  <div class="kpi-section">
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Post-Bewertung nach 72 Stunden:</p>
-    <table>
-      <thead><tr><th>Score</th><th>Impressions</th><th>ER%</th><th>Aktion</th></tr></thead>
-      <tbody>
-        <tr><td><span class="tag tag-green">A</span></td><td>1.000+</td><td>5%+</td><td>Karussell-Version erstellen, boosten, repurposen</td></tr>
-        <tr><td><span class="tag tag-blue">B</span></td><td>500–1.000</td><td>3–5%</td><td>Gut — weiter machen</td></tr>
-        <tr><td><span class="tag tag-yellow">C</span></td><td>200–500</td><td>2–3%</td><td>Format oder Hook überarbeiten</td></tr>
-        <tr><td><span class="tag tag-red">D</span></td><td>&lt;200</td><td>&lt;2%</td><td>Framework analysieren, nicht wiederholen</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Review-Rhythmus</h2>
-  <div class="review-grid">
-    <div class="review-card">
-      <h4>Wöchentlich</h4>
-      <div class="time">Freitag — 15 Minuten</div>
-      <ul class="review-list">
-        <li>LinkedIn Analytics: Welche Posts laufen?</li>
-        <li>DMs prüfen: Neue Anfragen qualifizieren</li>
-        <li>Calendly: Gespräche diese Woche?</li>
-        <li>Nächste 3 Posts planen und schreiben</li>
-      </ul>
+        <tr><td>Conversion: Follower → DM</td><td>1%</td><td>300 Follower → 3 DMs/Monat</td></tr>
+        <tr><td>Top-Performing Post</td><td>identifiziert</td><td>Welcher Framework funktioniert am besten?</td></tr>
+      </table>
     </div>
-    <div class="review-card">
-      <h4>Monatlich</h4>
-      <div class="time">Letzter Freitag — 45 Minuten</div>
-      <ul class="review-list">
-        <li>Nord-Stern-Metrik vs. Ziel</li>
-        <li>Top 3 Posts analysieren (warum?)</li>
-        <li>Bottom 3 Posts analysieren (warum nicht?)</li>
+
+    <!-- Lead Magnet KPIs -->
+    <div class="section">
+      <span class="section-label">Lead Magnet KPIs</span>
+      <table>
+        <tr><th>Magnet</th><th>Metrik</th><th>Ziel M1</th><th>Ziel M3</th><th>Wie tracken</th></tr>
+        <tr><td>Video Scorecard</td><td>Downloads</td><td>20</td><td>100</td><td>Email-Liste / Typeform</td></tr>
+        <tr><td>Video Scorecard</td><td>Conversion zu Audit-Call</td><td>10% (2 Calls)</td><td>10% (10 Calls)</td><td>Calendly Source-Tag "scorecard"</td></tr>
+        <tr><td>Audit PDF</td><td>Downloads</td><td>15</td><td>80</td><td>Email-Liste</td></tr>
+        <tr><td>Audit PDF</td><td>Conversion zu Erstgespräch</td><td>8%</td><td>12%</td><td>Calendly Source-Tag "pdf"</td></tr>
+      </table>
+    </div>
+
+    <!-- Outreach KPIs -->
+    <div class="section">
+      <span class="section-label">Outreach KPIs (ab Monat 2)</span>
+      <table>
+        <tr><th>Metrik</th><th>Ziel</th><th>B2B Benchmark</th></tr>
+        <tr><td>LinkedIn Opener Antwortrate</td><td>15–25%</td><td>10–15% (höher wegen BIPS-Relevanz)</td></tr>
+        <tr><td>Email Open Rate</td><td>40%+</td><td>25–35%</td></tr>
+        <tr><td>Email Antwortrate</td><td>10–15%</td><td>5–8%</td></tr>
+        <tr><td>Opener → Gespräch</td><td>5–8%</td><td>2–5%</td></tr>
+        <tr><td>Email Sequenz → Gespräch</td><td>3–5%</td><td>1–3%</td></tr>
+      </table>
+    </div>
+
+    <!-- Umsatz-Trichter -->
+    <div class="section">
+      <span class="section-label">Umsatz-Trichter</span>
+      <div class="funnel">
+        <div class="funnel-step">
+          <span class="funnel-n">1</span>
+          <span class="funnel-text"><strong>LinkedIn Content</strong> 3–5x/Woche</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-n">2</span>
+          <span class="funnel-text"><strong>Follower-Wachstum</strong> + Profilaufrufe</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-n">3</span>
+          <span class="funnel-text"><strong>DM-Anfragen</strong> + Lead Magnet Downloads</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-n">4</span>
+          <span class="funnel-text"><strong>Erstgespräch</strong> — Ziel: 6/Monat in Monat 3</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-n">5</span>
+          <span class="funnel-text"><strong>Angebot</strong> — Ziel: 50% Conversion aus Erstgespräch</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-n">6</span>
+          <span class="funnel-text"><strong>Auftrag</strong> — Ø 5.000 EUR | Monat 3: 1 Auftrag | Monat 6: 2/Monat = 10.000 EUR</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Performance -->
+    <div class="section">
+      <span class="section-label">Content Performance-Messung</span>
+      <h3>Post-Bewertungs-System (nach 72h)</h3>
+      <table>
+        <tr><th>Score</th><th>Impressions</th><th>Engagement Rate</th><th>Aktion</th></tr>
+        <tr><td><strong>A</strong></td><td>1.000+</td><td>5%+</td><td>Karussell-Version erstellen, boosten, repurposen</td></tr>
+        <tr><td><strong>B</strong></td><td>500–1.000</td><td>3–5%</td><td>Gut — weiter machen</td></tr>
+        <tr><td><strong>C</strong></td><td>200–500</td><td>2–3%</td><td>Format oder Hook prüfen</td></tr>
+        <tr><td><strong>D</strong></td><td>&lt;200</td><td>&lt;2%</td><td>Framework analysieren, nicht wiederholen</td></tr>
+      </table>
+    </div>
+
+    <!-- Review Rhythmus -->
+    <div class="section">
+      <span class="section-label">Review-Rhythmus</span>
+      <h3>Wöchentlich — Freitag, 15 Minuten</h3>
+      <ul>
+        <li>LinkedIn Analytics öffnen: Welche Posts laufen? Welche nicht?</li>
+        <li>DMs prüfen: Neue Anfragen? Leads qualifizieren</li>
+        <li>Calendly: Wie viele Gespräche diese Woche?</li>
+        <li>Nächste Woche: 3 Posts planen und schreiben</li>
+      </ul>
+      <h3>Monatlich — letzter Freitag, 45 Minuten</h3>
+      <ul>
+        <li>Nord-Stern-Metrik: Erstgespräche vs. Ziel</li>
+        <li>Content-Analyse: Top 3 Posts (warum haben sie funktioniert?)</li>
+        <li>Bottom 3 Posts (warum nicht?)</li>
         <li>Lead Magnet Downloads: Ziel erreicht?</li>
         <li>Nächsten Monat: Was bleibt, was ändert sich?</li>
       </ul>
-    </div>
-    <div class="review-card">
-      <h4>Quartalsweise</h4>
-      <div class="time">Alle 90 Tage — 2 Stunden</div>
-      <ul class="review-list">
-        <li>Umsatz-Review: Aufträge aus LinkedIn</li>
-        <li>Positionierungs-Check: Richtige Kunden?</li>
-        <li>Content-Format-Review</li>
-        <li>Ziele für nächstes Quartal setzen</li>
-        <li>Lead Magnet: Welcher konvertiert besser?</li>
+      <h3>Quartalsweise — alle 90 Tage, 2 Stunden</h3>
+      <ul>
+        <li>Umsatz-Review: Aufträge aus LinkedIn-Aktivität</li>
+        <li>Positionierungs-Check: Kommen die richtigen Kunden an?</li>
+        <li>Lead Magnet Performance: Welcher Magnet konvertiert besser?</li>
       </ul>
     </div>
-  </div>
 
-  <h2>Ampel-System — Wann eingreifen</h2>
-  <div class="kpi-section">
-    <table class="ampel-table">
-      <thead><tr><th>Metrik</th><th>Grün (OK)</th><th>Gelb (prüfen)</th><th>Rot (sofort handeln)</th></tr></thead>
-      <tbody>
-        <tr><td>Erstgespräche/Monat</td><td>Ziel erreicht</td><td>50–80% des Ziels</td><td>&lt;50% des Ziels</td></tr>
-        <tr><td>Post-Engagement Rate</td><td>&gt;3%</td><td>2–3%</td><td>&lt;2%</td></tr>
-        <tr><td>Lead Magnet Downloads</td><td>Ziel erreicht</td><td>50–80%</td><td>&lt;50%</td></tr>
-        <tr><td>Follower-Wachstum</td><td>&gt;30/Monat</td><td>10–30</td><td>&lt;10</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size:13px;color:var(--muted);margin-top:12px"><strong style="color:var(--yellow)">Bei Gelb:</strong> Einen Post-Typ austauschen, Hook überarbeiten. <strong style="color:var(--accent2)">Bei Rot:</strong> Framework überdenken, Frequenz erhöhen, 3 neue Post-Typen testen.</p>
-  </div>
+    <!-- Ampel -->
+    <div class="section">
+      <span class="section-label">Ampel-System</span>
+      <div class="ampel">
+        <div class="ampel-item">
+          <span class="ampel-dot dot-green"></span>
+          <div class="ampel-label">Grün &mdash; OK</div>
+          <div class="ampel-text">Erstgespräche: Ziel erreicht. ER &gt;3%. Downloads: Ziel erreicht. Follower &gt;30/Monat.</div>
+        </div>
+        <div class="ampel-item">
+          <span class="ampel-dot dot-yellow"></span>
+          <div class="ampel-label">Gelb &mdash; Prüfen</div>
+          <div class="ampel-text">50–80% des Ziels. ER 2–3%. Einen Post-Typ austauschen, Hook überarbeiten.</div>
+        </div>
+        <div class="ampel-item">
+          <span class="ampel-dot dot-red"></span>
+          <div class="ampel-label">Rot &mdash; Sofort handeln</div>
+          <div class="ampel-text">&lt;50% des Ziels. ER &lt;2%. Framework komplett überdenken, 3 neue Post-Typen testen.</div>
+        </div>
+      </div>
+    </div>
 
-  <h2>Tracking-Setup</h2>
-  <div class="kpi-section">
-    <h3>Sofort einrichten (kostenlos)</h3>
-    <table>
-      <tbody>
-        <tr><td><span class="tag tag-green">Sofort</span></td><td>Calendly (kostenlos)</td><td>Erstgespräche buchen, Source-Tags einrichten</td></tr>
-        <tr><td><span class="tag tag-red">Dringend</span></td><td>Google Analytics 4</td><td>Noch nicht auf sebastianbudde.de installiert!</td></tr>
-        <tr><td><span class="tag tag-green">Sofort</span></td><td>LinkedIn Analytics</td><td>Native, kostenlos, täglich 5 Min checken</td></tr>
-        <tr><td><span class="tag tag-blue">Soon</span></td><td>Notion oder Airtable</td><td>Einfache Lead-Datenbank: Name, Datum, Status, Quelle</td></tr>
-      </tbody>
-    </table>
-    <h3>Monat 2 (optional)</h3>
-    <table>
-      <tbody>
-        <tr><td><span class="tag tag-orange">Optional</span></td><td>Meta Pixel</td><td>Für spätere Retargeting-Kampagnen</td></tr>
-        <tr><td><span class="tag tag-orange">Optional</span></td><td>LinkedIn Insight Tag</td><td>Website-Besucher aus LinkedIn tracken</td></tr>
-        <tr><td><span class="tag tag-orange">Optional</span></td><td>UTM-Links</td><td>Welcher Post generiert Lead Magnet Downloads?</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- Tracking Setup -->
+    <div class="section">
+      <span class="section-label">Tracking-Setup</span>
+      <h3>Sofort einrichten (kostenlos)</h3>
+      <ul>
+        <li><strong>Calendly</strong> (kostenlos): Erstgespräche buchen, Source-Tags einrichten</li>
+        <li><strong>Google Analytics 4</strong> auf sebastianbudde.de (noch nicht installiert!)</li>
+        <li><strong>LinkedIn Analytics</strong>: Native, täglich 5 Min checken</li>
+        <li><strong>Notion oder Airtable</strong>: Einfache Lead-Datenbank (Name, Datum, Status, Quelle)</li>
+      </ul>
+      <h3>Monat 2 (optional)</h3>
+      <ul>
+        <li><strong>Meta Pixel</strong> auf Website (für spätere Retargeting-Kampagnen)</li>
+        <li><strong>LinkedIn Insight Tag</strong> (Website-Besucher aus LinkedIn tracken)</li>
+        <li><strong>UTM-Links</strong> für alle Lead Magnet Downloads (welcher Post generiert Downloads?)</li>
+      </ul>
+    </div>
 
-  <div class="principle-box">
-    <p><strong>Das wichtigste Prinzip:</strong> Jeder Monat generiert Daten. Jede Datenrunde verbessert den nächsten Monat.</p>
-    <p>Nicht: "Wir posten 3 Monate und schauen dann." Sondern: Wöchentliche Lernschleifen, monatliche Anpassungen. Monat 1 testet alle Formate. Monat 2 verdoppelt was funktioniert. Monat 3 skaliert was Gespräche generiert.</p>
-  </div>
+    <div class="insight">
+      <span class="insight-tag">Lernprinzip</span>
+      <p>Nicht: "Wir posten 3 Monate und schauen dann." Sondern: Wöchentliche Lernschleifen, monatliche Anpassungen. Jeder Monat generiert Daten. Jede Datenrunde verbessert den nächsten Monat.</p>
+    </div>
 
-  <div class="disclaimer">
-    <h4>Rechtlicher Hinweis — DSGVO Art. 6(1)(f)</h4>
-    <p>Dieser Report wurde auf Basis öffentlich zugänglicher Informationen erstellt. Alle KPI-Ziele sind Richtwerte basierend auf Branchendurchschnittswerten und sind keine Garantien. Die Installation von Tracking-Pixeln (Meta Pixel, LinkedIn Insight Tag, Google Analytics) erfordert eine datenschutzkonforme Cookie-Einwilligung (DSGVO Art. 6(1)(a)) sowie eine aktualisierte Datenschutzerklärung auf der Website. Handlungsempfehlungen stellen keine Rechts- oder Steuerberatung dar.</p>
-  </div>
-  <div class="footer"><p>Erstellt: 2026-03-26 | Film-labor Business OS | Vision Pipeline Stufe 07</p></div>
+    <div class="rec">
+      <span class="rec-tag">Vision Pipeline — Abschluss</span>
+      <p class="rec-body">Alle 7 Stufen der Vision Pipeline sind vollständig. Die gesamte Strategie, alle Inhalte und das KPI-Framework liegen vor. Jetzt liegt es an der Umsetzung.</p>
+    </div>
+
+    <div class="legal">
+      <p><strong>Hinweis:</strong> KPI-Ziele basieren auf branchenüblichen Benchmarks für B2B-Content-Marketing und sind als Orientierungswerte zu verstehen. Tatsächliche Ergebnisse können abweichen und hängen von Umsetzungsqualität und -frequenz ab.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-brand">Sebastian Budde</span>
+    <span class="footer-meta">Vision &middot; Stufe 07 von 07 &middot; Film-labor OS &middot; 26.03.2026</span>
+    <span class="footer-conf">Vertraulich</span>
+  </footer>
+
 </div>
 </body>
 </html>

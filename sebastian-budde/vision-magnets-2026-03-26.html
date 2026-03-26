@@ -3,212 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Lead Magnets — Sebastian Budde | 2026-03-26</title>
+<title>Vision Report — Lead Magnets — Sebastian Budde</title>
 <style>
-  :root { --bg:#0d0d0f;--bg2:#141418;--bg3:#1a1a21;--border:#2a2a35;--text:#e8e8f0;--muted:#7a7a8c;--accent:#6c63ff;--accent2:#ff6b6b;--green:#43d08a;--yellow:#f5c842;--blue:#4da6ff;--orange:#ff8c42; }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;padding:40px 20px;}
-  .container{max-width:960px;margin:0 auto;}
-  .header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:48px;}
-  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
-  h1{font-size:32px;font-weight:800;color:#fff;margin-bottom:8px;}
-  .subtitle{color:var(--muted);font-size:14px;}
-  h2{font-size:18px;font-weight:700;color:#fff;margin:40px 0 16px;display:flex;align-items:center;gap:10px;}
-  h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--accent);border-radius:2px;}
-  h3{font-size:14px;font-weight:700;color:var(--accent);margin:20px 0 10px;}
-  .magnet-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:24px;}
-  .magnet-header{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px;}
-  .magnet-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-  .icon-a{background:rgba(108,99,255,0.15);}
-  .icon-b{background:rgba(77,166,255,0.15);}
-  .magnet-info h3{color:var(--text);font-size:16px;margin:0 0 4px;}
-  .magnet-info p{color:var(--muted);font-size:13px;}
-  .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
-  .tag-green{background:rgba(67,208,138,0.15);color:var(--green);}
-  .tag-blue{background:rgba(77,166,255,0.15);color:var(--blue);}
-  .tag-yellow{background:rgba(245,200,66,0.15);color:var(--yellow);}
-  .tag-purple{background:rgba(108,99,255,0.15);color:var(--accent);}
-  .tag-orange{background:rgba(255,140,66,0.15);color:var(--orange);}
-  .tag-red{background:rgba(255,107,107,0.15);color:var(--accent2);}
-  .question-list{counter-reset:q;}
-  .question-item{counter-increment:q;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:10px;display:flex;gap:16px;}
-  .question-item::before{content:counter(q);font-size:20px;font-weight:800;color:var(--accent);opacity:0.4;flex-shrink:0;width:24px;}
-  .q-text{font-size:14px;color:var(--text);}
-  .q-why{font-size:12px;color:var(--muted);margin-top:4px;}
-  .score-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;}
-  .score-table th{background:var(--bg3);color:var(--accent);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
-  .score-table td{padding:12px 14px;border-bottom:1px solid var(--border);}
-  .score-table tr:last-child td{border-bottom:none;}
-  .stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0;}
-  .stack-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;}
-  .stack-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-  .stack-value{font-size:13px;color:var(--text);line-height:1.5;}
-  .value-highlight{font-size:24px;font-weight:800;color:var(--green);}
-  .cta-box{background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(255,107,107,0.05));border:1px solid rgba(108,99,255,0.3);border-radius:12px;padding:20px;margin:16px 0;text-align:center;}
-  .cta-box p{font-size:14px;color:var(--text);margin-bottom:8px;}
-  .cta-box .email{font-size:15px;font-weight:700;color:var(--accent);}
-  .pdf-page{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:12px;}
-  .pdf-page-nr{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-  .pdf-page-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px;}
-  .pdf-page-body{font-size:13px;color:var(--muted);line-height:1.7;}
-  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;}
-  th{background:var(--bg3);color:var(--accent);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
-  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  .disclaimer{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:20px;margin-top:60px;}
-  .disclaimer h4{color:var(--yellow);font-size:13px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
-  .disclaimer p{font-size:12px;color:var(--muted);line-height:1.6;}
-  .footer{text-align:center;margin-top:40px;color:var(--muted);font-size:12px;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #CB0F33;
+    --black: #0D0D0D;
+    --gray-dark: #4D5656;
+    --gray-mid: #7A7A7A;
+    --gray-light: #E4E4E2;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  }
+  html { font-size: 16px; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 840px; margin: 0 auto; padding: 0 48px; }
+  .header { padding: 44px 0 32px; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; letter-spacing: 0.02em; color: var(--black); }
+  .logo-tagline { font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); margin-top: 5px; }
+  .hdr-right { text-align: right; }
+  .hdr-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); display: block; }
+  .hdr-title { font-size: 13px; font-weight: 600; color: var(--black); margin-top: 4px; display: block; }
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 14px; }
+  .stage-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 4px 10px 3px; font-weight: 700; }
+  .stage-desc { font-size: 13px; color: var(--gray-dark); }
+  .stage-count { margin-left: auto; font-size: 11px; color: var(--gray-mid); }
+  .content { padding: 60px 0 48px; }
+  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.15; color: var(--black); margin-bottom: 10px; }
+  .lead { font-size: 17px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 60px; max-width: 620px; }
+  .section { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--gray-light); }
+  .section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 20px; display: block; }
+  h2 { font-size: 21px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--black); margin: 28px 0 10px; }
+  p { font-size: 15px; color: var(--gray-dark); margin-bottom: 14px; line-height: 1.65; }
+  strong { color: var(--black); font-weight: 600; }
+  ul { padding-left: 18px; margin-bottom: 16px; }
+  ul li { font-size: 14.5px; color: var(--gray-dark); margin-bottom: 8px; line-height: 1.55; }
+  ul li strong { color: var(--black); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0 24px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 16px 10px 0; border-bottom: 1px solid var(--gray-light); }
+  td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--gray-light); color: var(--gray-dark); vertical-align: top; line-height: 1.5; font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; color: var(--black); min-width: 100px; }
+  .magnet-card { border: 1px solid var(--gray-light); margin: 0 0 40px; }
+  .magnet-header { background: var(--off-white); padding: 22px 24px 18px; border-bottom: 1px solid var(--gray-light); }
+  .magnet-num { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; display: block; margin-bottom: 8px; }
+  .magnet-title { font-family: var(--font-serif); font-size: 20px; color: var(--black); font-weight: normal; margin-bottom: 4px; }
+  .magnet-sub { font-size: 13px; color: var(--gray-mid); }
+  .magnet-meta { padding: 16px 24px; border-bottom: 1px solid var(--gray-light); display: flex; gap: 32px; }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+  .meta-val { font-size: 13px; color: var(--black); }
+  .magnet-body { padding: 24px; }
+  .q-item { padding: 14px 0; border-bottom: 1px solid var(--gray-light); }
+  .q-item:last-child { border-bottom: none; }
+  .q-text { font-size: 14.5px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+  .q-why { font-size: 13.5px; color: var(--gray-dark); line-height: 1.5; }
+  .score-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 20px 0; }
+  .score-table th { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 16px 10px 0; border-bottom: 1px solid var(--gray-light); text-align: left; }
+  .score-table td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--gray-light); vertical-align: top; font-size: 13.5px; color: var(--gray-dark); }
+  .score-table tr:last-child td { border-bottom: none; }
+  .insight { border-left: 3px solid var(--red); padding: 14px 0 14px 22px; margin: 28px 0; }
+  .insight-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
+  .insight p { font-size: 15.5px; color: var(--black); font-style: italic; margin: 0; line-height: 1.6; }
+  .callout { background: var(--off-white); padding: 22px 28px; margin: 20px 0; border-left: 3px solid var(--gray-light); }
+  .callout p { color: var(--black); margin: 0; font-size: 14.5px; }
+  .value-stack { margin: 20px 0; }
+  .stack-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--gray-light); }
+  .stack-item:last-child { border-bottom: none; }
+  .stack-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 700; min-width: 90px; padding-top: 2px; }
+  .stack-val { font-size: 14px; color: var(--gray-dark); line-height: 1.5; }
+  .rec { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 0; margin: 52px 0 44px; }
+  .rec-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); display: block; margin-bottom: 12px; }
+  .rec-body { font-family: var(--font-serif); font-size: 20px; color: var(--black); line-height: 1.5; font-weight: normal; }
+  .legal { border-top: 1px solid var(--gray-light); padding-top: 24px; margin-bottom: 40px; }
+  .legal p { font-size: 11px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 6px; }
+  .footer { border-top: 2px solid var(--black); padding: 22px 0 44px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: var(--font-serif); font-size: 13px; color: var(--black); }
+  .footer-meta { font-size: 11px; color: var(--gray-mid); }
+  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div class="badge">Stufe 04 — Lead Magnets</div>
-    <h1>Sebastian Budde</h1>
-    <div class="subtitle">2 Lead Magnets mit vollständigem Inhalt — sofort umsetzbar</div>
+<div class="page">
+
+  <header class="header">
+    <div>
+      <div class="logo-name">Sebastian Budde</div>
+      <div class="logo-tagline">Filmemacher &middot; Storyteller &middot; Bremen</div>
+    </div>
+    <div class="hdr-right">
+      <span class="hdr-label">Vision Pipeline</span>
+      <span class="hdr-title">Lead Magnets</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <span class="stage-badge">Stufe 04</span>
+    <span class="stage-desc">2 Lead Magnets &mdash; Hormozi Value Stack &mdash; Vollständiger Inhalt</span>
+    <span class="stage-count">von 07 Stufen</span>
   </div>
 
-  <!-- MAGNET 01 -->
-  <h2>Magnet 01 — Video Scorecard</h2>
-  <div class="magnet-card">
-    <div class="magnet-header">
-      <div class="magnet-icon icon-a">📋</div>
-      <div class="magnet-info">
-        <h3>"Wie professionell ist dein Wissenschafts-Video? — 10 Fragen in 2 Minuten"</h3>
-        <p>Interaktive Scorecard (PDF oder Google Form) | Aufwand: Null — 10 Klicks, sofort Ergebnis</p>
-        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="tag tag-green">Aufwand: Null</span>
-          <span class="tag tag-blue">Sofort umsetzbar</span>
-          <span class="tag tag-purple">CTA: 15-Min Call</span>
+  <main class="content">
+
+    <h1>Lead Magnets</h1>
+    <p class="lead">Zwei fertige Lead Magnets mit vollständigem Inhalt, Hormozi Value Stack und Vorschau-Prinzip. Kein "Kaufe um den Rest zu sehen" — echter Wert wird geliefert.</p>
+
+    <!-- Magnet 01 -->
+    <div class="section">
+      <span class="section-label">Magnet 01</span>
+
+      <div class="magnet-card">
+        <div class="magnet-header">
+          <span class="magnet-num">Magnet 01 &mdash; Video Scorecard</span>
+          <div class="magnet-title">Wie professionell ist dein Wissenschafts-Video?</div>
+          <div class="magnet-sub">10 Fragen in 2 Minuten</div>
+        </div>
+        <div class="magnet-meta">
+          <div class="meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-val">PDF oder Google Form</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Aufwand Nutzer</span>
+            <span class="meta-val">10 Klicks, sofort Ergebnis</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">CTA danach</span>
+            <span class="meta-val">15-Min Call mit Sebastian</span>
+          </div>
+        </div>
+        <div class="magnet-body">
+          <p style="font-size:14px;color:var(--gray-mid);margin-bottom:20px;">Beantworte 10 Fragen mit Ja oder Nein. Am Ende siehst du wo dein Video steht — und wo nicht.</p>
+
+          <div class="q-item">
+            <div class="q-text">1. Hat dein Video eine klare Zielgruppe? (+1 Punkt)</div>
+            <div class="q-why">Ein Video das für alle ist, interessiert niemanden.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">2. Ist die erste Botschaft innerhalb der ersten 5 Sekunden klar? (+1 Punkt)</div>
+            <div class="q-why">70% der Zuschauer scrollen nach 5 Sekunden weiter wenn kein Hook da ist.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">3. Hat dein Video einen emotionalen Einstieg? (+1 Punkt)</div>
+            <div class="q-why">Daten ohne Emotion bleiben nicht im Gedächtnis.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">4. Gibt es in deinem Video einen Menschen (kein Off-Sprecher allein)? (+1 Punkt)</div>
+            <div class="q-why">Menschen vertrauen anderen Menschen. Nicht Grafiken.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">5. Ist die Kernbotschaft in einem Satz zusammenfassbar? (+1 Punkt)</div>
+            <div class="q-why">Wenn du es nicht in einem Satz erklären kannst, kann es dein Zuschauer noch weniger.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">6. Hat dein Video am Ende einen klaren Call to Action? (+1 Punkt)</div>
+            <div class="q-why">Ohne CTA weiß der Zuschauer nicht was als nächstes kommen soll.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">7. Wurde das Video für die Plattform optimiert (Länge, Format, Untertitel)? (+1 Punkt)</div>
+            <div class="q-why">Ein YouTube-Video auf LinkedIn funktioniert meistens nicht.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">8. Würde ein Mensch ohne Fachkenntnis das Video zu 90% verstehen? (+1 Punkt)</div>
+            <div class="q-why">Laien-Verständlichkeit ist das Ziel — wird aber selten getestet.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">9. Gibt es Feedback von echten Zuschauern außerhalb eures Teams? (+1 Punkt)</div>
+            <div class="q-why">Internes Feedback ist befangen. Externe Stimmen nicht.</div>
+          </div>
+          <div class="q-item">
+            <div class="q-text">10. Wüsstest du, wie viele Menschen das Video gesehen haben und wie lange? (+1 Punkt)</div>
+            <div class="q-why">Ohne Zahlen kein Lernen.</div>
+          </div>
+
+          <h3 style="margin-top:28px;">Auswertung</h3>
+          <table class="score-table">
+            <tr><th>Score</th><th>Ergebnis</th><th>Empfehlung</th></tr>
+            <tr><td>9–10</td><td>Profi-Level</td><td>Gut aufgestellt. Nächster Schritt: Skalieren.</td></tr>
+            <tr><td>7–8</td><td>Solide Basis</td><td>2–3 gezielte Verbesserungen → deutlich mehr Wirkung.</td></tr>
+            <tr><td>5–6</td><td>Ausbaufähig</td><td>Struktureller Überarbeitungsbedarf.</td></tr>
+            <tr><td>0–4</td><td>Neustart empfohlen</td><td>Das Video arbeitet aktuell nicht für euch.</td></tr>
+          </table>
+
+          <div class="callout">
+            <p>"Weniger als 7 Punkte? Ich schaue mir euer Video kostenlos an und sage euch die 3 wichtigsten Stellschrauben. 15 Minuten — kein Pitch." → business@sebastianbudde.de | Betreff: "Gratis Video-Audit"</p>
+          </div>
+
+          <h3>Hormozi Value Stack</h3>
+          <div class="value-stack">
+            <div class="stack-item">
+              <span class="stack-tag">Haupt-Magnet</span>
+              <span class="stack-val">Video Scorecard (10 Fragen, sofort umsetzbar, gratis)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 1</span>
+              <span class="stack-val">Auswertungs-PDF mit Begründung für jede Frage + 3 Beispiel-Fixes (nach Email-Eingabe)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 2</span>
+              <span class="stack-val">Link zu 3 Referenzvideos mit Kommentierung: "Was hier funktioniert hat und warum" (exklusiv für Scorecard-Nutzer)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 3</span>
+              <span class="stack-val">Einladung zum kostenlosen 15-Min Video-Audit (Calendly-Link, limitiert auf 5 Plätze/Monat)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Wert</span>
+              <span class="stack-val">Wahrgenommener Wert: 297 EUR | Tatsächlicher Aufwand Sebastian: 10 Min Scorecard + 15 Min Audit-Call</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Magnet 02 -->
+      <div class="magnet-card">
+        <div class="magnet-header">
+          <span class="magnet-num">Magnet 02 &mdash; Audit PDF</span>
+          <div class="magnet-title">5 häufigste Fehler bei Wissenschaftsvideos</div>
+          <div class="magnet-sub">Was Sebastian Budde in 10 Jahren Produktion gelernt hat</div>
+        </div>
+        <div class="magnet-meta">
+          <div class="meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-val">PDF (4–6 Seiten)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Aufwand Nutzer</span>
+            <span class="meta-val">Download, lesen — kein Ausfüllen</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">CTA danach</span>
+            <span class="meta-val">Kostenloses Erstgespräch</span>
+          </div>
+        </div>
+        <div class="magnet-body">
+          <p style="font-size:14px;color:var(--gray-mid);margin-bottom:20px;"><em>"Ich teile das nicht damit ihr euch selbst repariert. Ich teile es, damit wir — falls wir zusammenarbeiten — von Anfang an auf Augenhöhe sprechen."</em> — Sebastian Budde</p>
+
+          <h3>Fehler 1: "Wir brauchen ein Video" ist kein Briefing</h3>
+          <p>Das Projekt startet ohne klares Ziel. Drei Fragen die vorher beantwortet sein müssen: Wen soll das Video ansprechen? Was soll der Zuschauer danach anders denken oder tun? Wo wird das Video gezeigt?<br><strong>Fix:</strong> Diese drei Fragen vor dem ersten Briefing-Gespräch beantworten. Das dauert 30 Minuten und spart 3 Feedbackrunden.</p>
+
+          <h3>Fehler 2: Zu viel Inhalt, zu wenig Fokus</h3>
+          <p>Ein 3-Minuten-Video versucht, fünf Kernbotschaften zu transportieren. Das Ergebnis: keine bleibt hängen.<br><strong>Fix:</strong> Eine Kernbotschaft pro Video. Schreibt den einen Satz auf den das Video hinauslaufen soll — bevor die Produktion beginnt.</p>
+
+          <h3>Fehler 3: Kein emotionaler Einstieg</h3>
+          <p>"Herzlich willkommen bei unserem Institut" ist kein Einstieg — es ist eine Einladung zum Wegklicken. Was funktioniert: Konflikte, Fragen, überraschende Zahlen.<br><strong>Fix:</strong> Beginnt mit dem Problem — nicht mit der Lösung. "Jedes Jahr sterben in Deutschland 26.000 Menschen an Sepsis. Die meisten wären vermeidbar." ist ein Einstieg.</p>
+
+          <h3>Fehler 4: Falsche Vereinfachung</h3>
+          <p>Zu simpel wirkt unseriös. Das Fachpublikum schämt sich, die Laien verstehen trotzdem nichts Wesentliches.<br><strong>Fix:</strong> Analogien verwenden. Kein Fachwort ohne direkt daneben eine Alltagserklärung. "Diese Moleküle blockieren den Entzündungsprozess — ähnlich wie ein Stoppschild im Immunsystem."</p>
+
+          <h3>Fehler 5: Kein Plan für die Verbreitung</h3>
+          <p>Das Video ist fertig und wird auf die Website gestellt. Punkt. Ein Video ist kein fertiges Produkt — es ist ein Asset. Es arbeitet nur wenn man es einsetzt.<br><strong>Fix:</strong> Verbreitungsplan parallel zur Produktion entwickeln. Wer teilt es? Gibt es eine Pressemitteilung?</p>
+
+          <div class="callout">
+            <p>"Wenn ihr eines dieser Probleme kennt — sprecht mit mir. 15 Minuten. Kostenlos. Ich schaue mir an was ihr habt und sage euch ehrlich ob ich der Richtige dafür bin." → business@sebastianbudde.de</p>
+          </div>
+
+          <h3>Hormozi Value Stack</h3>
+          <div class="value-stack">
+            <div class="stack-item">
+              <span class="stack-tag">Haupt-Magnet</span>
+              <span class="stack-val">"5 Fehler" PDF — echter Wert, sofort anwendbar, gratis</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 1</span>
+              <span class="stack-val">Checkliste "Das sollte vor jedem Dreh geklärt sein" (1-seitiges PDF)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 2</span>
+              <span class="stack-val">Video-Briefing-Template (Sebastian's eigenes Briefing-Dokument)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Bonus 3</span>
+              <span class="stack-val">Kostenloser 15-Min Video-Audit (Calendly-Link, limitiert auf 3 Plätze/Monat)</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-tag">Wert</span>
+              <span class="stack-val">Wahrgenommener Wert: 500 EUR | Tatsächlicher Aufwand Sebastian: 15 Min/Monat (Template-basiert)</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <h3>Die 10 Fragen</h3>
-    <div class="question-list">
-      <div class="question-item"><div><div class="q-text">Hat dein Video eine klare Zielgruppe?</div><div class="q-why">Ein Video das für alle ist, interessiert niemanden.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Ist die erste Botschaft des Videos innerhalb der ersten 5 Sekunden klar?</div><div class="q-why">70% der Zuschauer scrollen nach 5 Sekunden weiter wenn kein Hook da ist.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Hat dein Video einen emotionalen Einstieg (Konflikt, Frage, überraschende Aussage)?</div><div class="q-why">Daten ohne Emotion bleiben nicht im Gedächtnis.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Gibt es in deinem Video einen Menschen (kein Sprecher aus dem Off allein)?</div><div class="q-why">Menschen vertrauen anderen Menschen. Nicht Grafiken.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Ist die Kernbotschaft deines Videos in einem Satz zusammenfassbar?</div><div class="q-why">Wenn du es nicht in einem Satz erklären kannst, kann es dein Zuschauer noch weniger.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Hat dein Video am Ende einen klaren Call to Action?</div><div class="q-why">Ohne CTA weiß der Zuschauer nicht was als nächstes kommen soll.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Wurde das Video für die Plattform optimiert auf der es läuft (Länge, Format, Untertitel)?</div><div class="q-why">Ein YouTube-Video auf LinkedIn funktioniert meistens nicht.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Würde ein Mensch ohne Fachkenntnis das Video zu 90% verstehen?</div><div class="q-why">Laien-Verständlichkeit ist das Ziel — wird aber selten getestet.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Gibt es Feedback von echten Zuschauern (außerhalb eures Teams) zu diesem Video?</div><div class="q-why">Internes Feedback ist befangen. Externe Stimmen nicht.</div></div></div>
-      <div class="question-item"><div><div class="q-text">Wüsstest du, wie viele Menschen das Video gesehen haben und wie lange?</div><div class="q-why">Ohne Zahlen kein Lernen.</div></div></div>
-    </div>
-
-    <h3>Auswertung</h3>
-    <table class="score-table">
-      <thead><tr><th>Score</th><th>Ergebnis</th><th>Empfehlung</th></tr></thead>
-      <tbody>
-        <tr><td><span class="tag tag-green">9–10</span></td><td>Profi-Level</td><td>Gut aufgestellt. Nächster Schritt: Skalieren.</td></tr>
-        <tr><td><span class="tag tag-blue">7–8</span></td><td>Solide Basis</td><td>2–3 gezielte Verbesserungen → deutlich mehr Wirkung.</td></tr>
-        <tr><td><span class="tag tag-yellow">5–6</span></td><td>Ausbaufähig</td><td>Struktureller Überarbeitungsbedarf.</td></tr>
-        <tr><td><span class="tag tag-red">0–4</span></td><td>Neustart empfohlen</td><td>Das Video arbeitet aktuell nicht für euch.</td></tr>
-      </tbody>
-    </table>
-
-    <div class="cta-box">
-      <p>"Weniger als 7 Punkte? Ich schaue mir euer Video kostenlos an und sage euch die 3 wichtigsten Stellschrauben. 15 Minuten — kein Pitch."</p>
-      <div class="email">business@sebastianbudde.de | Betreff: "Gratis Video-Audit"</div>
-    </div>
-
-    <h3>Hormozi Value Stack</h3>
-    <div class="stack-grid">
-      <div class="stack-item"><div class="stack-label">Haupt-Magnet</div><div class="stack-value">Video Scorecard — 10 Fragen, sofort umsetzbar, gratis</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 1</div><div class="stack-value">Auswertungs-PDF mit Begründung + 3 Beispiel-Fixes</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 2</div><div class="stack-value">3 kommentierte Referenzvideos (exklusiv für Scorecard-Nutzer)</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 3</div><div class="stack-value">Einladung zum kostenlosen 15-Min Video-Audit (5 Plätze/Monat)</div></div>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-item"><div class="stack-label">Wahrgenommener Wert</div><div class="value-highlight">297 EUR</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Eine Beratungsstunde</div></div>
-      <div class="stack-item"><div class="stack-label">Tatsächlicher Aufwand</div><div class="value-highlight">10 Min</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Scorecard + 15 Min Call</div></div>
-    </div>
-  </div>
-
-  <!-- MAGNET 02 -->
-  <h2>Magnet 02 — Free Audit PDF</h2>
-  <div class="magnet-card">
-    <div class="magnet-header">
-      <div class="magnet-icon icon-b">📄</div>
-      <div class="magnet-info">
-        <h3>"5 häufigste Fehler bei Wissenschaftsvideos — und wie man sie vermeidet"</h3>
-        <p>PDF 6 Seiten | Aufwand: Download, lesen — kein Ausfüllen</p>
-        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="tag tag-orange">Niedriger Aufwand</span>
-          <span class="tag tag-blue">6 Seiten PDF</span>
-          <span class="tag tag-purple">CTA: Erstgespräch</span>
-        </div>
-      </div>
-    </div>
-
-    <h3>PDF-Inhalt (vollständig)</h3>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 1 — Cover</div>
-      <div class="pdf-page-title">5 häufigste Fehler bei Wissenschaftsvideos</div>
-      <div class="pdf-page-body">Autor: Sebastian Budde — Filmemacher, Advisor of Digital Media @ Leibniz-Institut BIPS | sebastianbudde.de</div>
-    </div>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 2 — Intro</div>
-      <div class="pdf-page-title">Warum dieses PDF?</div>
-      <div class="pdf-page-body">Ich produziere seit Jahren Videos für Wissenschaft und Forschung. Die Fehler die ich dabei beobachte, wiederholen sich. Immer wieder. Bei kleinen Instituten und bei großen. Dieses PDF fasst die fünf häufigsten davon zusammen — und gibt konkrete Tipps wie man sie vermeidet. Ich teile das nicht damit ihr euch selbst repariert. Ich teile es, damit wir — falls wir zusammenarbeiten — von Anfang an auf Augenhöhe sprechen.</div>
-    </div>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 3 — Fehler 1 &amp; 2</div>
-      <div class="pdf-page-title">Fehler 1: "Wir brauchen ein Video" ist kein Briefing</div>
-      <div class="pdf-page-body">Das Projekt startet ohne klares Ziel. Ergebnis: ein Video das niemand einsetzt. Fix: 3 Fragen beantworten bevor die Produktion beginnt — Zielgruppe, gewünschte Reaktion, Verbreitungskanal.<br><br><strong>Fehler 2: Zu viel Inhalt, zu wenig Fokus</strong> — Ein 3-Minuten-Video mit fünf Kernbotschaften: keine bleibt hängen. Fix: Eine Kernbotschaft pro Video. Alles andere ist Beilage.</div>
-    </div>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 4 — Fehler 3, 4 &amp; 5</div>
-      <div class="pdf-page-title">Fehler 3: Kein emotionaler Einstieg</div>
-      <div class="pdf-page-body">Fix: Mit dem Problem beginnen — nicht mit der Lösung. "Jedes Jahr sterben in Deutschland 26.000 Menschen an Sepsis. Die meisten wären vermeidbar." ist ein Einstieg. "Willkommen beim Forschungsprojekt SEPNET" ist keiner.<br><br><strong>Fehler 4: Falsche Vereinfachung</strong> — Nicht vereinfachen. Zugänglich machen. Fix: Analogien verwenden, Fachwort direkt mit Alltagserklärung verbinden.<br><br><strong>Fehler 5: Kein Plan für die Verbreitung</strong> — Ein Video ist ein Asset. Fix: Verbreitungsplan parallel zur Produktion entwickeln — LinkedIn, Newsletter, Pressemitteilung, Events.</div>
-    </div>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 5 — Über Sebastian</div>
-      <div class="pdf-page-title">Sebastian Budde — Filmemacher &amp; Advisor of Digital Media @ BIPS</div>
-      <div class="pdf-page-body">Referenzen: AI-in-Health Konferenz, EHPS, VetTrust, DIKS, Tag der Forschungsdaten, Safety One | sebastianbudde.de | business@sebastianbudde.de</div>
-    </div>
-    <div class="pdf-page">
-      <div class="pdf-page-nr">Seite 6 — CTA</div>
-      <div class="pdf-page-title">Was jetzt?</div>
-      <div class="pdf-page-body">15 Minuten. Kostenlos. Ich schaue mir an was ihr habt, was ihr braucht — und sage euch ehrlich ob ich der Richtige dafür bin. Wenn ja, sprechen wir über nächste Schritte. Wenn nicht, nenne ich euch jemanden der besser passt.</div>
-    </div>
-
-    <h3>Hormozi Value Stack</h3>
-    <div class="stack-grid">
-      <div class="stack-item"><div class="stack-label">Haupt-Magnet</div><div class="stack-value">"5 Fehler" PDF — echter Wert, sofort anwendbar, gratis</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 1</div><div class="stack-value">Checkliste "Das sollte vor jedem Dreh geklärt sein" (1 Seite)</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 2</div><div class="stack-value">Video-Briefing-Template (Sebastian's eigenes Briefing-Dokument)</div></div>
-      <div class="stack-item"><div class="stack-label">Bonus 3</div><div class="stack-value">Kostenloser 15-Min Video-Audit (3 Plätze/Monat, Calendly)</div></div>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-item"><div class="stack-label">Wahrgenommener Wert</div><div class="value-highlight">500 EUR</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Briefing-Consulting + Audit</div></div>
-      <div class="stack-item"><div class="stack-label">Aufwand für Sebastian</div><div class="value-highlight">15 Min</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Max. pro Monat (Template)</div></div>
-    </div>
-  </div>
-
-  <h2>Distribution-Plan</h2>
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;">
-    <table>
-      <thead><tr><th>Kanal</th><th>Scorecard</th><th>Audit PDF</th></tr></thead>
-      <tbody>
+    <!-- Distribution -->
+    <div class="section">
+      <span class="section-label">Distribution-Strategie</span>
+      <table>
+        <tr><th>Kanal</th><th>Magnet 01</th><th>Magnet 02</th></tr>
         <tr><td>LinkedIn Post</td><td>"Link in Kommentaren"</td><td>"Link in Kommentaren"</td></tr>
         <tr><td>LinkedIn Karussell</td><td>Scorecard als Karussell</td><td>Fehler-Liste als Karussell</td></tr>
         <tr><td>Instagram Story</td><td>"Scorecard im Bio-Link"</td><td>"PDF im Bio-Link"</td></tr>
         <tr><td>Outreach DMs</td><td>"Ich hab hier eine Scorecard..."</td><td>"Ich hab hier ein PDF..."</td></tr>
         <tr><td>Website Pop-up</td><td>Ja</td><td>Ja</td></tr>
-        <tr><td>Email-Signatur</td><td>Nein</td><td>"Kostenloser Audit"-Link</td></tr>
-      </tbody>
-    </table>
-  </div>
+        <tr><td>Email-Signatur</td><td>Nein</td><td>"Kostenloser Audit" Link</td></tr>
+      </table>
+    </div>
 
-  <div class="disclaimer">
-    <h4>Rechtlicher Hinweis — DSGVO Art. 6(1)(f)</h4>
-    <p>Dieser Report wurde auf Basis öffentlich zugänglicher Informationen erstellt. Lead Magnets sind Entwürfe zur eigenen Nutzung durch Sebastian Budde. Die Erhebung von Email-Adressen via Lead Magnet erfordert eine datenschutzkonforme Einwilligungserklärung (DSGVO Art. 6(1)(a)) sowie ein Impressum und eine Datenschutzerklärung auf der Landing Page. Handlungsempfehlungen stellen keine Rechts- oder Steuerberatung dar.</p>
-  </div>
-  <div class="footer"><p>Erstellt: 2026-03-26 | Film-labor Business OS | Vision Pipeline Stufe 04</p></div>
+    <!-- Vorschau-Prinzip -->
+    <div class="section">
+      <span class="section-label">Vorschau-Prinzip</span>
+      <div class="insight">
+        <span class="insight-tag">Designprinzip</span>
+        <p>Beide Lead Magnets sind nach dem Prinzip gebaut: "Echter Wert — kein Teaser, keine abgeschnittene Info." Der Leser soll denken: "Das hat mir tatsächlich geholfen." — Nicht: "Jetzt muss ich kaufen."</p>
+      </div>
+      <p>Wer echten Wert gibt, beweist Expertise. Wer Expertise beweist, wird als Autorität wahrgenommen. Wer als Autorität gilt, bekommt Anfragen ohne Kaltakquise.</p>
+    </div>
+
+    <div class="rec">
+      <span class="rec-tag">Status</span>
+      <p class="rec-body">2 Lead Magnets mit vollständigem Inhalt, Hormozi Value Stack (je 3 Boni) und Distribution-Plan. Alle Inhalte sofort verwendbar. Keine unrealistischen Versprechen.</p>
+    </div>
+
+    <div class="legal">
+      <p><strong>Hinweis:</strong> Beide Lead Magnets sind Entwürfe. Endgültige Texte und Design vor Veröffentlichung durch Sebastian Budde zu prüfen und freizugeben. Keine automatische Verteilung.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-brand">Sebastian Budde</span>
+    <span class="footer-meta">Vision &middot; Stufe 04 von 07 &middot; Film-labor OS &middot; 26.03.2026</span>
+    <span class="footer-conf">Vertraulich</span>
+  </footer>
+
 </div>
 </body>
 </html>

@@ -3,75 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Content — Sebastian Budde | 2026-03-26</title>
+<title>Vision Report — Content — Sebastian Budde</title>
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #0d0d0f; --bg2: #141418; --bg3: #1a1a21; --border: #2a2a35;
-    --text: #e8e8f0; --muted: #7a7a8c; --accent: #6c63ff; --accent2: #ff6b6b;
-    --green: #43d08a; --yellow: #f5c842; --blue: #4da6ff; --orange: #ff8c42;
+    --red: #CB0F33;
+    --black: #0D0D0D;
+    --gray-dark: #4D5656;
+    --gray-mid: #7A7A7A;
+    --gray-light: #E4E4E2;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:15px; line-height:1.7; padding:40px 20px; }
-  .container { max-width:960px; margin:0 auto; }
-  .header { border-bottom:1px solid var(--border); padding-bottom:32px; margin-bottom:48px; }
-  .badge { display:inline-block; background:var(--accent); color:#fff; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
-  h1 { font-size:32px; font-weight:800; letter-spacing:-0.5px; color:#fff; margin-bottom:8px; }
-  .subtitle { color:var(--muted); font-size:14px; }
-  h2 { font-size:18px; font-weight:700; color:#fff; margin:40px 0 16px; display:flex; align-items:center; gap:10px; }
-  h2::before { content:''; display:inline-block; width:4px; height:20px; background:var(--accent); border-radius:2px; }
-  .post-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:20px; }
-  .post-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
-  .tag { display:inline-block; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600; }
-  .tag-green { background:rgba(67,208,138,0.15); color:var(--green); }
-  .tag-blue { background:rgba(77,166,255,0.15); color:var(--blue); }
-  .tag-yellow { background:rgba(245,200,66,0.15); color:var(--yellow); }
-  .tag-orange { background:rgba(255,140,66,0.15); color:var(--orange); }
-  .tag-purple { background:rgba(108,99,255,0.15); color:var(--accent); }
-  .tag-red { background:rgba(255,107,107,0.15); color:var(--accent2); }
-  .post-nr { font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; }
-  .post-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:12px; }
-  .post-body { font-size:14px; color:var(--muted); line-height:1.8; white-space:pre-wrap; background:var(--bg3); border-radius:8px; padding:16px; border-left:3px solid var(--accent); }
-  .post-cta { margin-top:12px; font-size:13px; color:var(--blue); }
-  .hook-box { background:rgba(108,99,255,0.08); border:1px solid rgba(108,99,255,0.2); border-radius:8px; padding:12px 16px; margin-bottom:12px; font-size:13px; color:var(--accent); }
-  .hook-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
-  table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
-  th { background:var(--bg3); color:var(--accent); font-weight:700; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
-  td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
-  tr:last-child td { border-bottom:none; }
-  .disclaimer { background:rgba(245,200,66,0.08); border:1px solid rgba(245,200,66,0.3); border-radius:10px; padding:20px; margin-top:60px; }
-  .disclaimer h4 { color:var(--yellow); font-size:13px; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
-  .disclaimer p { font-size:12px; color:var(--muted); line-height:1.6; }
-  .footer { text-align:center; margin-top:40px; color:var(--muted); font-size:12px; }
-  .stat-row { display:flex; gap:12px; margin:16px 0; flex-wrap:wrap; }
-  .stat { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:12px 16px; flex:1; min-width:120px; text-align:center; }
-  .stat-n { font-size:24px; font-weight:800; color:var(--accent); }
-  .stat-l { font-size:12px; color:var(--muted); margin-top:4px; }
+  html { font-size: 16px; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 840px; margin: 0 auto; padding: 0 48px; }
+  .header { padding: 44px 0 32px; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; letter-spacing: 0.02em; color: var(--black); }
+  .logo-tagline { font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); margin-top: 5px; }
+  .hdr-right { text-align: right; }
+  .hdr-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); display: block; }
+  .hdr-title { font-size: 13px; font-weight: 600; color: var(--black); margin-top: 4px; display: block; }
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 14px; }
+  .stage-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 4px 10px 3px; font-weight: 700; }
+  .stage-desc { font-size: 13px; color: var(--gray-dark); }
+  .stage-count { margin-left: auto; font-size: 11px; color: var(--gray-mid); }
+  .content { padding: 60px 0 48px; }
+  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.15; color: var(--black); margin-bottom: 10px; }
+  .lead { font-size: 17px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 60px; max-width: 620px; }
+  .section { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--gray-light); }
+  .section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 20px; display: block; }
+  h2 { font-size: 21px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--black); margin: 28px 0 10px; }
+  p { font-size: 15px; color: var(--gray-dark); margin-bottom: 14px; line-height: 1.65; }
+  strong { color: var(--black); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0 24px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 16px 10px 0; border-bottom: 1px solid var(--gray-light); }
+  td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--gray-light); color: var(--gray-dark); vertical-align: top; line-height: 1.5; font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; color: var(--black); min-width: 80px; }
+
+  /* Post cards */
+  .post-card { border: 1px solid var(--gray-light); margin: 28px 0; }
+  .post-header { padding: 14px 20px 12px; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 12px; background: var(--off-white); }
+  .post-num { font-family: var(--font-serif); font-size: 24px; color: var(--gray-light); line-height: 1; }
+  .post-meta { display: flex; flex-direction: column; gap: 3px; }
+  .post-platform { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+  .post-framework { font-size: 11px; color: var(--gray-mid); }
+  .post-hook { margin-left: auto; font-size: 11px; color: var(--black); font-weight: 600; max-width: 280px; text-align: right; line-height: 1.4; }
+  .post-body { padding: 20px; }
+  .post-text { font-size: 14.5px; color: var(--black); line-height: 1.7; white-space: pre-line; }
+  .post-footer { padding: 12px 20px; border-top: 1px solid var(--gray-light); display: flex; gap: 20px; }
+  .post-cta { font-size: 11px; color: var(--gray-mid); }
+  .post-cta strong { color: var(--black); }
+
+  .insight { border-left: 3px solid var(--red); padding: 14px 0 14px 22px; margin: 28px 0; }
+  .insight-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
+  .insight p { font-size: 15.5px; color: var(--black); font-style: italic; margin: 0; line-height: 1.6; }
+  .rec { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 0; margin: 52px 0 44px; }
+  .rec-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); display: block; margin-bottom: 12px; }
+  .rec-body { font-family: var(--font-serif); font-size: 20px; color: var(--black); line-height: 1.5; font-weight: normal; }
+  .legal { border-top: 1px solid var(--gray-light); padding-top: 24px; margin-bottom: 40px; }
+  .legal p { font-size: 11px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 6px; }
+  .footer { border-top: 2px solid var(--black); padding: 22px 0 44px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: var(--font-serif); font-size: 13px; color: var(--black); }
+  .footer-meta { font-size: 11px; color: var(--gray-mid); }
+  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div class="badge">Stufe 03 — Content-Produktion</div>
-    <h1>Sebastian Budde</h1>
-    <div class="subtitle">10 vollständige Posts — sofort veröffentlichbar | LinkedIn & Instagram</div>
-  </div>
+<div class="page">
 
-  <div class="stat-row">
-    <div class="stat"><div class="stat-n">10</div><div class="stat-l">Posts gesamt</div></div>
-    <div class="stat"><div class="stat-n">6</div><div class="stat-l">LinkedIn Text</div></div>
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Instagram Captions</div></div>
-    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Karussell-Konzepte</div></div>
-  </div>
-
-  <h2>Post 1 — Repelling (Content Fortress Säule 1)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Text-Post</span>
-      <span class="tag tag-red">Content Fortress: Repelling</span>
+  <header class="header">
+    <div>
+      <div class="logo-name">Sebastian Budde</div>
+      <div class="logo-tagline">Filmemacher &middot; Storyteller &middot; Bremen</div>
     </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Ich bin nicht der Richtige für jeden.</div>
-    <div class="post-body">Ich bin nicht der Richtige für jeden.
+    <div class="hdr-right">
+      <span class="hdr-label">Vision Pipeline</span>
+      <span class="hdr-title">Content-Produktion</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <span class="stage-badge">Stufe 03</span>
+    <span class="stage-desc">10 LinkedIn-Posts &mdash; direkt verwendbar &mdash; Anti-KI-geprüft</span>
+    <span class="stage-count">von 07 Stufen</span>
+  </div>
+
+  <main class="content">
+
+    <h1>Content-<br>Produktion</h1>
+    <p class="lead">10 LinkedIn-Posts. Alle als Volltext vorhanden. Anti-KI-geprüft. Jeder Post hat einen klaren Hook, Framework-Zuordnung und konkreten CTA.</p>
+
+    <!-- Posts -->
+    <div class="section">
+      <span class="section-label">Posts 01–10</span>
+
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">01</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; Content Fortress: Repelling</span>
+            <span class="post-framework">Säule 1 &mdash; Repelling</span>
+          </div>
+          <span class="post-hook">Ich bin nicht der Richtige für jeden.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Ich bin nicht der Richtige für jeden.
 
 Wenn du einen Hochglanz-Werbespot brauchst mit Drohnen, CGI und Kinoästhetik — hol dir eine große Agentur.
 
@@ -86,18 +128,24 @@ Unternehmen die ein Thema haben das keiner versteht — aber alle verstehen soll
 Wenn das klingt wie dein Problem, schreib mir.
 
 Wenn nicht, kein Problem.</div>
-    <div class="post-cta">CTA: "Was ist dein komplexes Thema? Schreib in die Kommentare."</div>
-  </div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Was ist dein komplexes Thema? Schreib in die Kommentare."</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram Reel, 30 Sek, Voiceover</span>
+        </div>
+      </div>
 
-  <h2>Post 2 — Pricing Transparenz (TAYA #1)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Text-Post</span>
-      <span class="tag tag-yellow">TAYA: Pricing</span>
-    </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Was kostet ein Wissenschaftsvideo? Ich beantworte die Frage, die andere nicht beantworten wollen.</div>
-    <div class="post-body">Was kostet ein Wissenschaftsvideo?
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">02</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; TAYA Big 5: Pricing</span>
+            <span class="post-framework">Säule 4 &mdash; Pricing</span>
+          </div>
+          <span class="post-hook">Was kostet ein Wissenschaftsvideo?</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Was kostet ein Wissenschaftsvideo?
 
 Ich beantworte die Frage, die andere nicht beantworten wollen.
 
@@ -110,23 +158,33 @@ Event-Aftermovie (1 Tag, ~3 Min):
 Imagefilm / Erklärfilm (komplex, mehrtägig):
 → 5.000 – 15.000 EUR
 
-Wovon hängt es ab? Drehtage, Schnittaufwand, Motion Graphics, Reisekosten.
+Wovon hängt es ab?
+— Drehtage (jeder Tag kostet Zeit + Energie)
+— Schnittaufwand (Interview vs. 30 Interviewpartner)
+— Motion Graphics (Grafiken kosten Zeit)
+— Reisekosten (wenn ihr nicht in Bremen seid)
 
 Was nicht im Preis steckt: Agentur-Overhead, 3 Account Manager, wöchentliche Statusmeetings.
 
 Ihr zahlt die Produktion. Nicht die Struktur dahinter.</div>
-    <div class="post-cta">CTA: "Welchen Umfang habt ihr im Kopf? Schreibt mir — ich sag euch direkt was realistisch ist."</div>
-  </div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Welchen Umfang habt ihr im Kopf? Schreibt mir direkt."</span>
+          <span class="post-cta"><strong>Cross:</strong> Karussell Instagram: Eine Slide pro Preissegment</span>
+        </div>
+      </div>
 
-  <h2>Post 3 — Case Study AI-in-Health (Content Fortress Säule 3)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Text-Post</span>
-      <span class="tag tag-green">Content Fortress: Sales</span>
-    </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>KI-Forschung in 3 Minuten erklären. Ohne dass Laien abschalten. Ohne dass Experten sich schämen.</div>
-    <div class="post-body">KI-Forschung in 3 Minuten erklären.
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">03</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; Content Fortress: Sales</span>
+            <span class="post-framework">Säule 3 &mdash; Case Study AI-in-Health</span>
+          </div>
+          <span class="post-hook">KI-Forschung in 3 Minuten erklären.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">KI-Forschung in 3 Minuten erklären.
 
 Ohne dass Laien abschalten.
 Ohne dass Experten sich schämen.
@@ -146,18 +204,24 @@ Mehr Mensch.
 Das Video lief auf der Konferenz und danach auf den Kanälen der Veranstalter.
 
 Wenn ihr eine Konferenz habt oder ein Forschungsprojekt, das gesehen werden soll — schreibt mir.</div>
-    <div class="post-cta">CTA: "Link zum Video in den Kommentaren."</div>
-  </div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Link zum Video in den Kommentaren."</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram Reel mit Clips aus dem Video</span>
+        </div>
+      </div>
 
-  <h2>Post 4 — BTS Culture (Content Fortress Säule 7)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-orange">Foto-Post</span>
-      <span class="tag tag-green">Content Fortress: Culture</span>
-    </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Was passiert wenn Wissenschaftler das erste Mal vor eine Kamera kommen.</div>
-    <div class="post-body">Was passiert wenn Wissenschaftler das erste Mal vor eine Kamera kommen.
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">04</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Foto &middot; Content Fortress: Culture</span>
+            <span class="post-framework">Säule 7 &mdash; BTS / Behind the Scenes</span>
+          </div>
+          <span class="post-hook">Wissenschaftler vor der Kamera.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Was passiert wenn Wissenschaftler das erste Mal vor eine Kamera kommen.
 
 90% sagen: "Ich bin nicht gut vor der Kamera."
 
@@ -172,18 +236,24 @@ Das ist kein Performance.
 Das ist Überzeugung.
 
 Und Überzeugung sieht man.</div>
-    <div class="post-cta">CTA: "Habt ihr auch Angst vor der Kamera gehabt? Was hat euch geholfen?"</div>
-  </div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Habt ihr auch Angst vor der Kamera gehabt? Was hat euch geholfen?"</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram: Reel, 60 Sek BTS-Video</span>
+        </div>
+      </div>
 
-  <h2>Post 5 — Problems (TAYA #2)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Text-Post</span>
-      <span class="tag tag-yellow">TAYA: Problems</span>
-    </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>4 Dinge die bei Wissenschaftsvideos schiefgehen. (Ich weiß das, weil ich sie selbst erlebt habe.)</div>
-    <div class="post-body">4 Dinge die bei Wissenschaftsvideos schiefgehen.
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">05</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; TAYA Big 5: Problems</span>
+            <span class="post-framework">Säule 5 &mdash; Guiding</span>
+          </div>
+          <span class="post-hook">4 Dinge die bei Wissenschaftsvideos schiefgehen.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">4 Dinge die bei Wissenschaftsvideos schiefgehen.
 
 (Ich weiß das, weil ich sie selbst erlebt habe.)
 
@@ -199,23 +269,30 @@ Daten brauchen einen Menschen der sie trägt.
 
 3. Kein klares Ziel
 "Wir brauchen ein Video." — Wozu?
+Fördermittel-Nachweis? Öffentlichkeitsarbeit? Recruiting?
 Ohne Ziel kein Ergebnis.
 
 4. Zu langes Briefing
 Wenn ich 3 Stunden brauche um das Thema zu verstehen, kostet das euch Zeit und Geld.
 (Meine Lösung: Ich kenne die Wissenschaft. Das Briefing dauert 30 Minuten.)</div>
-    <div class="post-cta">CTA: "Welchen dieser Fehler habt ihr schon erlebt? Schreibt es unten."</div>
-  </div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Welchen dieser Fehler habt ihr schon erlebt?"</span>
+          <span class="post-cta"><strong>Cross:</strong> Karussell: 1 Slide pro Fehler</span>
+        </div>
+      </div>
 
-  <h2>Post 6 — Versus (TAYA #3)</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Text-Post</span>
-      <span class="tag tag-yellow">TAYA: Versus</span>
-    </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Freelancer vs. Agentur für euren Imagefilm — ein ehrlicher Vergleich.</div>
-    <div class="post-body">Freelancer vs. Agentur für euren Imagefilm.
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">06</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; TAYA Big 5: Versus</span>
+            <span class="post-framework">Säule 5 &mdash; Guiding</span>
+          </div>
+          <span class="post-hook">Freelancer vs. Agentur für euren Imagefilm.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Freelancer vs. Agentur für euren Imagefilm.
 
 Ein ehrlicher Vergleich.
 
@@ -224,132 +301,234 @@ Agentur:
 + Breites Netzwerk (Sprecher, Studio, Grafik)
 − Höherer Preis (ihr zahlt auch die Account Manager)
 − Wechselnde Ansprechpartner
-− Briefing-Marathon
+− Briefing-Marathon (sie müssen erst lernen was ihr macht)
 
 Freelancer (wie ich):
 + Direkter Kontakt — ihr sprecht immer mit mir
 + Schneller, weniger Overhead
-+ Ich kenne die Wissenschaft von innen
++ Ich kenne die Wissenschaft von innen (kein Erklärungsaufwand)
 − Kapazitäts-Grenzen bei sehr großen Projekten
+− Kein hauseigenes Studio (ich komme zu euch)
 
-Was ist besser? Kommt drauf an.
+Was ist besser?
 
-Für komplexe Inhalte mit 1–3 Drehtagen: Freelancer hat fast immer die Nase vorn.
-Für 10-Drehtage-Produktionen mit Studio und 5 Sprechern: Agentur.</div>
-    <div class="post-cta">CTA: "Habt ihr beide Varianten schon erlebt? Was war euer Eindruck?"</div>
-  </div>
+Für komplexe Inhalte mit 1–3 Drehtagen und direktem Kontakt:
+→ Freelancer hat fast immer die Nase vorn.
 
-  <h2>Post 7 — Instagram: BTS Reel</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-red">Instagram</span>
-      <span class="tag tag-orange">Reel-Caption</span>
-      <span class="tag tag-green">StoryBrand: Culture</span>
+Für 10-Drehtage-Produktionen mit Studio und 5 Sprechern:
+→ Agentur.</div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Habt ihr beide Varianten schon erlebt? Was war euer Eindruck?"</span>
+          <span class="post-cta"><strong>Cross:</strong> Karussell: "5 Unterschiede die wichtig sind"</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">07</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Karussell &middot; Content Fortress: Process</span>
+            <span class="post-framework">Säule 6 &mdash; Process</span>
+          </div>
+          <span class="post-hook">So entsteht ein Wissenschaftsvideo in 5 Schritten.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Slide 1: Von 30 Minuten Briefing bis zur Freigabe — mein Prozess. (5 Schritte)
+
+Slide 2 — Schritt 1: Das Briefing
+30 Minuten reichen.
+Ich frage: Was wollt ihr sagen? Für wen? Welche Reaktion soll das Video auslösen?
+Den Rest kenn ich schon.
+
+Slide 3 — Schritt 2: Das Skript
+Ich schreibe. Ihr kommentiert.
+Ein Hin und Her, kein Endlos-Marathon.
+Ziel: Ein Text der stimmt — wissenschaftlich UND emotional.
+
+Slide 4 — Schritt 3: Der Drehtag
+Ich komme zu euch. Ihr müsst kein Studio mieten.
+Ich bring alles mit. Kamera, Licht, Ton.
+
+Slide 5 — Schritt 4: Der Schnitt
+Erstabnahme → Feedback → Finaler Cut.
+Maximal 2 Feedbackrunden.
+
+Slide 6 — Schritt 5: Die Freigabe
+Ihr bekommt die Datei.
+In allen Formaten die ihr braucht (YouTube, LinkedIn, Instagram).
+
+Slide 7 — CTA:
+Wie läuft das bei euch ab?
+Schreibt mir: business@sebastianbudde.de</div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>Format:</strong> Karussell (7 Slides)</span>
+          <span class="post-cta"><strong>Cross:</strong> Text-Post: Nur Schritt 1-3, "Rest im Karussell"</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">08</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; Content Fortress: Opinion</span>
+            <span class="post-framework">Säule 8 &mdash; Opinion</span>
+          </div>
+          <span class="post-hook">Instagram tut mehr für die Wissenschaft als Nature-Artikel.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Instagram tut mehr für die Wissenschaft als Nature-Artikel.
+
+Ich weiß das klingt provokant.
+
+Aber:
+
+Ein Nature-Paper lesen: 0,1% aller Menschen auf der Welt.
+
+Ein Instagram-Reel über die Ergebnisse dieses Papers: Potenziell Millionen.
+
+Paywalls. Fachjargon. PDF mit 40 Seiten.
+
+Gegen: 60 Sekunden Video mit echten Menschen.
+
+Die Wissenschaft hat ein Kommunikationsproblem.
+Nicht weil die Inhalte schlecht sind.
+Weil die meisten Wissenschaftler nie gelernt haben wie man Inhalte für Menschen aufbereitet.
+
+Das ist nicht ihr Fehler. Es ist ein System-Fehler.
+
+Aber es ist lösbar.
+
+Und ich glaube, Videoproduzenten mit wissenschaftlichem Hintergrund spielen dabei eine größere Rolle als die meisten denken.
+
+Eure Meinung?</div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Stimmt ihr zu? Oder bin ich zu weit gegangen?"</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram Reel: 45 Sek Talking Head</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">09</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text + Screenshot &middot; Content Fortress: Sales</span>
+            <span class="post-framework">Säule 3 &mdash; Social Proof</span>
+          </div>
+          <span class="post-hook">"Das Video hat uns mehr Reaktionen gebracht als alle bisherigen Posts zusammen."</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">"Das Video hat uns mehr Reaktionen gebracht als alle bisherigen Posts zusammen."
+
+Das hat mir ein Veranstalter nach einem Konferenz-Aftermovie geschrieben.
+
+[Screenshot der Nachricht einfügen]
+
+Was wir gemacht haben:
+Event-Aftermovie für eine wissenschaftliche Konferenz.
+800 Teilnehmer. 1 Drehtag. 3 Minuten Ergebnis.
+
+Was sie nicht erwartet haben:
+Dass ihre Community das Video teilt. Ohne Aufforderung.
+
+Warum hat es funktioniert?
+Weil im Video keine Logos zu sehen waren.
+Nur Menschen. Momente. Energie.
+
+Nicht jedes Video muss Hochglanz sein.
+
+Manche müssen einfach echt sein.</div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Habt ihr ein Video das so eine Reaktion ausgelöst hat?"</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram: Clip aus dem Video, 30 Sek</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-num">10</span>
+          <div class="post-meta">
+            <span class="post-platform">LinkedIn &middot; Text &middot; Content Fortress: Attracting</span>
+            <span class="post-framework">Säule 2 &mdash; Transformation</span>
+          </div>
+          <span class="post-hook">Vor einem Jahr: Kaum jemand kannte das DIKS. Heute: Warteliste.</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text">Vor einem Jahr: Kaum jemand kannte das Demenzinformationszentrum Bremen (DIKS).
+
+Heute: Warteliste.
+
+Was hat sich geändert?
+
+Sie haben angefangen zu erzählen.
+
+Nicht über ihre Leistungen.
+Über die Menschen die zu ihnen kommen.
+Über was sich verändert wenn jemand weiß dass er nicht allein ist.
+
+Wir haben einen Unternehmensfilm gemacht.
+
+Kein Imagevideo mit Hochglanz und Musik.
+Echte Menschen. Echte Geschichten. Echte Wirkung.
+
+Das ist der Unterschied zwischen "wir haben ein Video" und "unser Video tut etwas".
+
+Wenn ihr auch eine Geschichte habt die erzählt werden sollte — schreibt mir.</div>
+        </div>
+        <div class="post-footer">
+          <span class="post-cta"><strong>CTA:</strong> "Welche Organisation verdient mehr Sichtbarkeit? Markiert sie."</span>
+          <span class="post-cta"><strong>Cross:</strong> Instagram: Clip aus dem Video, Reel-Format</span>
+        </div>
+      </div>
+
     </div>
-    <div class="hook-box"><div class="hook-label">Hook (erste Caption-Zeile)</div>Wenn eine Wissenschaftlerin sagt "ich bin nicht gut vor der Kamera" — dann ist das mein Lieblingssatz.</div>
-    <div class="post-body">Wenn eine Wissenschaftlerin sagt "ich bin nicht gut vor der Kamera" — dann ist das mein Lieblingssatz.
 
-Nicht weil ich widersprechen will. Sondern weil ich weiß, was als nächstes passiert.
-
-Zehn Minuten später erklärt sie mir, woran sie seit drei Jahren forscht. Mit leuchtenden Augen. Mit Pausen, in denen sie nach dem richtigen Wort sucht. Mit dem kleinen Zögern bevor sie sagt, was ihr wirklich wichtig daran ist.
-
-Das ist das Material aus dem gute Videos entstehen.
-
-Mein Job ist nicht, jemanden gut vor der Kamera aussehen zu lassen. Mein Job ist, den Moment einzufangen, in dem jemand vergisst, dass die Kamera da ist.
-
-📍 Bremen | 🎥 Tag der Forschungsdaten 2024
-
-#BTS #Filmemacher #Wissenschaftskommunikation #Forschung #Bremen #SciComm #Videoproduktion #Storytelling</div>
-  </div>
-
-  <h2>Post 8 — Instagram: Results Reel</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-red">Instagram</span>
-      <span class="tag tag-orange">Reel-Caption</span>
-      <span class="tag tag-green">StoryBrand: Success</span>
+    <!-- Posting Plan -->
+    <div class="section">
+      <span class="section-label">Posting-Plan</span>
+      <h2>Erste 2 Wochen</h2>
+      <table>
+        <tr><th>Tag</th><th>Post</th><th>Format</th></tr>
+        <tr><td>Mo</td><td>Post 01 — Repelling</td><td>Text</td></tr>
+        <tr><td>Mi</td><td>Post 02 — Pricing</td><td>Text</td></tr>
+        <tr><td>Fr</td><td>Post 03 — Case Study AI Health</td><td>Text</td></tr>
+        <tr><td>Mo</td><td>Post 04 — BTS Culture</td><td>Foto</td></tr>
+        <tr><td>Mi</td><td>Post 05 — Problems</td><td>Text</td></tr>
+        <tr><td>Fr</td><td>Post 06 — Versus</td><td>Text</td></tr>
+        <tr><td>nächste Woche</td><td>Posts 07–10</td><td>Mix</td></tr>
+      </table>
+      <p><strong>Beste Zeiten:</strong> Di 8:00, Mi 8:30, Do 8:00 (MESZ)<br>
+      <strong>Hashtags pro Post (max 5):</strong> #WissKomm #Wissenschaftskommunikation #Filmproduktion #Imagefilm + 1 themenspezifischer</p>
     </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Drei Minuten. 800 Forschende. Eine Konferenz, die seit Jahren stattfindet — und jetzt zum ersten Mal ein Video hat, das zeigt, warum.</div>
-    <div class="post-body">Drei Minuten. 800 Forschende. Eine Konferenz, die seit Jahren stattfindet — und jetzt zum ersten Mal ein Video hat, das zeigt, warum.
 
-Das EHPS 2024 in Bremen war die Jahrestagung der European Health Psychology Society. Internationale Gesundheitsforschung, viele Sessions, viele Menschen.
-
-Was mich interessiert hat: der Moment, in dem jemand jemandem erklärt, was er wirklich herausgefunden hat. Nicht das Poster. Nicht der Abstract. Die Unterhaltung dazwischen.
-
-Wir haben fünf Tage gefilmt. Aus allem entstand ein drei-Minuten-Film.
-
-Das ist Wissenschaftskommunikation, die ich mir vorstelle.
-
-📍 Bremen | 🔗 Referenzen im Bio-Link
-
-#EHPS #Wissenschaft #Filmproduktion #SciComm #Konferenz #Aftermovie #Bremen #Storytelling</div>
-  </div>
-
-  <h2>Post 9 — Instagram: Positionierung Reel</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-red">Instagram</span>
-      <span class="tag tag-orange">Reel-Caption</span>
-      <span class="tag tag-yellow">TAYA: Versus</span>
+    <!-- Karussel Ideas -->
+    <div class="section">
+      <span class="section-label">Karussell-Ideen</span>
+      <p><strong>Karussell 1:</strong> "Was kostet ein Wissenschaftsvideo?" — 5 Slides: Intro → Einfach → Mittel → Komplex → CTA</p>
+      <p><strong>Karussell 2:</strong> "5 Fehler bei Wissenschaftsvideos" — 6 Slides: Intro → Fehler 1–4 → CTA</p>
+      <p><strong>Karussell 3:</strong> "Mein Prozess in 5 Schritten" — 7 Slides: Intro → Schritt 1–5 → CTA</p>
     </div>
-    <div class="hook-box"><div class="hook-label">Hook</div>Was ist der Unterschied zwischen einem Filmemacher und einem Filmemacher, der deine Forschung auch versteht?</div>
-    <div class="post-body">Was ist der Unterschied zwischen einem Filmemacher und einem Filmemacher, der deine Forschung auch versteht?
 
-Neben der Kamera arbeite ich als Advisor of Digital Media beim Leibniz-Institut für Präventionsforschung und Epidemiologie (BIPS) in Bremen.
-
-Das bedeutet: Ich muss dir nicht erklären, was ein Forschungsinstitut ist. Ich weiß, wie Förderanträge klingen. Ich verstehe, warum p-Werte für die Öffentlichkeit erstmal nichts bedeuten — und wie man trotzdem zeigt, dass die Ergebnisse relevant sind.
-
-Kein wochenlanger Briefing-Marathon. Kein Erklären von Grundlagen.
-
-Einfach: Wir fangen an.
-
-📩 DM für ein Erstgespräch — 15 Min, kein Pitch, nur ein Gespräch.
-
-#Filmemacher #Wissenschaftskommunikation #BIPS #Leibniz #Bremen #WissKomm #Videoproduktion</div>
-  </div>
-
-  <h2>Post 10 — LinkedIn Karussell: "5 Fehler bei Wissenschaftsvideos"</h2>
-  <div class="post-card">
-    <div class="post-meta">
-      <span class="tag tag-blue">LinkedIn</span>
-      <span class="tag tag-purple">Karussell (10 Slides)</span>
-      <span class="tag tag-yellow">TAYA + Content Fortress: Guiding</span>
+    <div class="rec">
+      <span class="rec-tag">Status</span>
+      <p class="rec-body">10 Posts, alle als Volltext vorhanden, keine Platzhalter. Anti-KI geprüft: Keine "revolutionär", "ganzheitlich", "game-changer". Alle haben Hook + Framework + CTA.</p>
     </div>
-    <div class="hook-box"><div class="hook-label">Cover-Hook</div>"5 Fehler die Forschungsinstitute bei ihrer Video-Kommunikation machen (und wie man sie vermeidet)"</div>
-    <div class="post-body">Slide 01 — Cover: "5 Fehler die Forschungsinstitute bei ihrer Video-Kommunikation machen"
-Slide 02 — Fehler 1: "Kein Ziel vor dem Dreh" → Fix: 3 Fragen beantworten
-Slide 03 — Fehler 2: "Zu viel Inhalt, zu wenig Fokus" → Fix: Eine Kernbotschaft pro Video
-Slide 04 — Fehler 3: "Kein emotionaler Einstieg" → Fix: Mit Konflikt oder Frage beginnen
-Slide 05 — Fehler 4: "Falsche Vereinfachung" → Fix: Zugänglich, nicht simpel
-Slide 06 — Fehler 5: "Kein Vertrauen in den Zuschauer" → Fix: Analogien verwenden
-Slide 07 — Bonus: "Keine Verbreitungsstrategie" → Fix: Distribution im Briefing planen
-Slide 08 — Über Sebastian: BIPS, Referenzen, Kurz-Bio
-Slide 09 — CTA: "Kostenloser Video-Audit — DM oder business@sebastianbudde.de"
-Slide 10 — Follow: Folgen für wöchentliche Einblicke</div>
-    <div class="post-cta">CTA: Kostenloser Video-Audit anbieten | Hashtags: #WissKomm #Wissenschaft #Filmproduktion #Imagefilm #Hochschule #Forschung</div>
-  </div>
 
-  <h2>Posting-Plan — Erste 2 Wochen</h2>
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;">
-    <table>
-      <thead><tr><th>Tag</th><th>Post</th><th>Format</th><th>Framework</th></tr></thead>
-      <tbody>
-        <tr><td>Montag W1</td><td>Post 1 — Repelling</td><td>Text</td><td>Content Fortress</td></tr>
-        <tr><td>Mittwoch W1</td><td>Post 2 — Pricing</td><td>Text</td><td>TAYA</td></tr>
-        <tr><td>Freitag W1</td><td>Post 3 — Case Study AI Health</td><td>Text</td><td>Content Fortress</td></tr>
-        <tr><td>Montag W2</td><td>Post 4 — BTS Culture</td><td>Foto</td><td>Content Fortress</td></tr>
-        <tr><td>Mittwoch W2</td><td>Post 5 — Problems</td><td>Text</td><td>TAYA</td></tr>
-        <tr><td>Freitag W2</td><td>Post 10 — Karussell</td><td>Karussell</td><td>TAYA + CF</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:12px;font-size:13px;color:var(--muted)">Beste Zeiten: Di 8:00 / Mi 8:30 / Do 8:00 MESZ | Max 5 Hashtags pro Post</p>
-  </div>
+    <div class="legal">
+      <p><strong>Hinweis:</strong> Alle Posts sind Entwürfe zur Verwendung durch Sebastian Budde. Keine automatische Veröffentlichung vorgesehen. Manuelle Prüfung und Freigabe durch Sebastian Budde vor Veröffentlichung erforderlich.</p>
+    </div>
 
-  <div class="disclaimer">
-    <h4>Rechtlicher Hinweis — DSGVO Art. 6(1)(f)</h4>
-    <p>Dieser Report wurde auf Basis öffentlich zugänglicher Informationen erstellt. Die Inhalte sind Entwürfe für Sebastian Budde zur eigenen Nutzung. Alle genannten Marken und Unternehmensnamen sind Eigentum ihrer jeweiligen Inhaber. Handlungsempfehlungen stellen keine Rechts- oder Steuerberatung dar.</p>
-  </div>
-  <div class="footer"><p>Erstellt: 2026-03-26 | Film-labor Business OS | Vision Pipeline Stufe 03</p></div>
+  </main>
+
+  <footer class="footer">
+    <span class="footer-brand">Sebastian Budde</span>
+    <span class="footer-meta">Vision &middot; Stufe 03 von 07 &middot; Film-labor OS &middot; 26.03.2026</span>
+    <span class="footer-conf">Vertraulich</span>
+  </footer>
+
 </div>
 </body>
 </html>

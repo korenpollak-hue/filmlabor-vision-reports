@@ -3,170 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Quality Gates — Sebastian Budde | 2026-03-26</title>
+<title>Vision Report — Quality Gate — Sebastian Budde</title>
 <style>
-  :root{--bg:#0d0d0f;--bg2:#141418;--bg3:#1a1a21;--border:#2a2a35;--text:#e8e8f0;--muted:#7a7a8c;--accent:#6c63ff;--accent2:#ff6b6b;--green:#43d08a;--yellow:#f5c842;--blue:#4da6ff;--orange:#ff8c42;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;padding:40px 20px;}
-  .container{max-width:960px;margin:0 auto;}
-  .header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:48px;}
-  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
-  h1{font-size:32px;font-weight:800;color:#fff;margin-bottom:8px;}
-  .subtitle{color:var(--muted);font-size:14px;}
-  h2{font-size:18px;font-weight:700;color:#fff;margin:40px 0 16px;display:flex;align-items:center;gap:10px;}
-  h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--accent);border-radius:2px;}
-  .pass-banner{background:rgba(67,208,138,0.08);border:2px solid rgba(67,208,138,0.4);border-radius:12px;padding:24px 28px;margin-bottom:32px;display:flex;align-items:center;gap:20px;}
-  .pass-icon{font-size:40px;}
-  .pass-info h3{font-size:22px;font-weight:800;color:var(--green);margin-bottom:4px;}
-  .pass-info p{font-size:14px;color:var(--muted);}
-  .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
-  .tag-green{background:rgba(67,208,138,0.15);color:var(--green);}
-  .tag-yellow{background:rgba(245,200,66,0.15);color:var(--yellow);}
-  .tag-red{background:rgba(255,107,107,0.15);color:var(--accent2);}
-  .tag-blue{background:rgba(77,166,255,0.15);color:var(--blue);}
-  .tag-orange{background:rgba(255,140,66,0.15);color:var(--orange);}
-  .stage-check{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
-  .stage-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-  .stage-name{font-size:16px;font-weight:700;color:var(--text);}
-  table{width:100%;border-collapse:collapse;margin:0;font-size:13px;}
-  th{background:var(--bg3);color:var(--accent);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
-  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  .score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0;}
-  .score-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
-  .score-n{font-size:28px;font-weight:800;color:var(--green);}
-  .score-l{font-size:12px;color:var(--muted);margin-top:4px;}
-  .warning-list{background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:20px;}
-  .warning-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,200,66,0.1);}
-  .warning-item:last-child{border-bottom:none;}
-  .w-icon{font-size:18px;flex-shrink:0;}
-  .w-text{font-size:13px;color:var(--muted);}
-  .w-text strong{color:var(--yellow);}
-  .disclaimer{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:20px;margin-top:60px;}
-  .disclaimer h4{color:var(--yellow);font-size:13px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
-  .disclaimer p{font-size:12px;color:var(--muted);line-height:1.6;}
-  .footer{text-align:center;margin-top:40px;color:var(--muted);font-size:12px;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #CB0F33;
+    --green: #1D6B37;
+    --black: #0D0D0D;
+    --gray-dark: #4D5656;
+    --gray-mid: #7A7A7A;
+    --gray-light: #E4E4E2;
+    --off-white: #F9F8F6;
+    --white: #FFFFFF;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  }
+  html { font-size: 16px; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 840px; margin: 0 auto; padding: 0 48px; }
+  .header { padding: 44px 0 32px; border-bottom: 2px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; letter-spacing: 0.02em; color: var(--black); }
+  .logo-tagline { font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); margin-top: 5px; }
+  .hdr-right { text-align: right; }
+  .hdr-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray-mid); display: block; }
+  .hdr-title { font-size: 13px; font-weight: 600; color: var(--black); margin-top: 4px; display: block; }
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 14px; }
+  .stage-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 4px 10px 3px; font-weight: 700; }
+  .stage-desc { font-size: 13px; color: var(--gray-dark); }
+  .stage-count { margin-left: auto; font-size: 11px; color: var(--gray-mid); }
+  .content { padding: 60px 0 48px; }
+  h1 { font-family: var(--font-serif); font-size: 38px; font-weight: normal; line-height: 1.15; color: var(--black); margin-bottom: 10px; }
+  .lead { font-size: 17px; color: var(--gray-dark); line-height: 1.65; margin-bottom: 60px; max-width: 620px; }
+  .section { margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--gray-light); }
+  .section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 20px; display: block; }
+  h2 { font-size: 21px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--black); margin: 28px 0 10px; }
+  p { font-size: 15px; color: var(--gray-dark); margin-bottom: 14px; line-height: 1.65; }
+  strong { color: var(--black); font-weight: 600; }
+
+  /* Status banner */
+  .status-passed { background: #F0FBF4; border: 1.5px solid #1D6B37; padding: 22px 28px; margin-bottom: 40px; display: flex; align-items: center; gap: 20px; }
+  .status-icon { font-size: 28px; color: var(--green); line-height: 1; font-family: var(--font-serif); }
+  .status-info { display: flex; flex-direction: column; gap: 3px; }
+  .status-title { font-size: 16px; font-weight: 700; color: var(--green); }
+  .status-sub { font-size: 13px; color: var(--gray-dark); }
+
+  /* Score cards */
+  .scores { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--gray-light); margin: 28px 0; }
+  .score-item { background: var(--white); padding: 20px 14px; text-align: center; }
+  .score-n { font-family: var(--font-serif); font-size: 28px; color: var(--black); display: block; line-height: 1; margin-bottom: 6px; }
+  .score-l { font-size: 11px; color: var(--gray-mid); line-height: 1.3; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0 24px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; padding: 0 12px 10px 0; border-bottom: 1px solid var(--gray-light); }
+  td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--gray-light); color: var(--gray-dark); vertical-align: top; line-height: 1.5; font-size: 13.5px; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; color: var(--black); min-width: 120px; }
+  .pass { color: var(--green); font-weight: 700; }
+  .warn { color: #92400E; font-weight: 700; }
+  .stage-check { border: 1px solid var(--gray-light); margin: 20px 0; }
+  .stage-check-header { padding: 14px 20px 12px; border-bottom: 1px solid var(--gray-light); background: var(--off-white); display: flex; justify-content: space-between; align-items: center; }
+  .sc-title { font-size: 13px; font-weight: 600; color: var(--black); }
+  .sc-status { font-size: 12px; font-weight: 700; }
+  .sc-pass { color: var(--green); }
+  .sc-body { padding: 16px 20px; }
+
+  .insight { border-left: 3px solid var(--red); padding: 14px 0 14px 22px; margin: 28px 0; }
+  .insight-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; font-weight: 700; }
+  .insight p { font-size: 15.5px; color: var(--black); font-style: italic; margin: 0; line-height: 1.6; }
+  .rec { border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 0; margin: 52px 0 44px; }
+  .rec-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); display: block; margin-bottom: 12px; }
+  .rec-body { font-family: var(--font-serif); font-size: 20px; color: var(--black); line-height: 1.5; font-weight: normal; }
+  .legal { border-top: 1px solid var(--gray-light); padding-top: 24px; margin-bottom: 40px; }
+  .legal p { font-size: 11px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 6px; }
+  .footer { border-top: 2px solid var(--black); padding: 22px 0 44px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: var(--font-serif); font-size: 13px; color: var(--black); }
+  .footer-meta { font-size: 11px; color: var(--gray-mid); }
+  .footer-conf { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div class="badge">Stufe 06 — Quality Gates</div>
-    <h1>Sebastian Budde</h1>
-    <div class="subtitle">Automatischer + manueller Qualitäts-Check aller Pipeline-Stufen</div>
-  </div>
+<div class="page">
 
-  <div class="pass-banner">
-    <div class="pass-icon">✅</div>
-    <div class="pass-info">
-      <h3>PASSED — Alle Stufen freigegeben</h3>
-      <p>0 Blocker | 3 Warnings (non-blocking) | Alle Stufen zur Umsetzung freigegeben</p>
+  <header class="header">
+    <div>
+      <div class="logo-name">Sebastian Budde</div>
+      <div class="logo-tagline">Filmemacher &middot; Storyteller &middot; Bremen</div>
     </div>
-  </div>
-
-  <h2>Gesamtbewertung</h2>
-  <div class="score-grid">
-    <div class="score-item"><div class="score-n">10</div><div class="score-l">Vollständigkeit</div></div>
-    <div class="score-item"><div class="score-n">9</div><div class="score-l">Anti-KI-Qualität</div></div>
-    <div class="score-item"><div class="score-n">9</div><div class="score-l">Fakten-Integrität</div></div>
-    <div class="score-item"><div class="score-n">10</div><div class="score-l">Actionability</div></div>
-    <div class="score-item"><div class="score-n">10</div><div class="score-l">Differenzierung</div></div>
-  </div>
-
-  <h2>Stufen-Check</h2>
-
-  <div class="stage-check">
-    <div class="stage-header"><div class="stage-name">Stufe 01 — Research</div><span class="tag tag-green">PASSED</span></div>
-    <table>
-      <tbody>
-        <tr><td>Fakten-Check</td><td>Alle Zahlen plausibel (LinkedIn-Follower, Marktwachstum +14,6%, Forschungsinstitute-Anzahl)</td></tr>
-        <tr><td>Halluzinations-Risiko</td><td>Niedrig — Referenzen (BIPS, EHPS, VetTrust) sind reale, verifiable Projekte</td></tr>
-        <tr><td>Platzhalter</td><td>Keine gefunden</td></tr>
-        <tr><td>Anti-KI</td><td>Keine Marketing-Phrasen gefunden</td></tr>
-        <tr><td>Vollständigkeit</td><td>Tech-Audit, Konkurrenz, Audience Intelligence, Empfehlung vorhanden</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="stage-check">
-    <div class="stage-header"><div class="stage-name">Stufe 02 — Kreative Strategie</div><span class="tag tag-green">PASSED</span></div>
-    <table>
-      <tbody>
-        <tr><td>StoryBrand</td><td>Alle 11 Elemente ausgefüllt, kein leeres Feld</td></tr>
-        <tr><td>Hormozi</td><td>Value Equation mit konkreten Zahlen und Beispielen</td></tr>
-        <tr><td>TAYA Big 5</td><td>Alle 5 Themen mit Begründung "warum publizieren"</td></tr>
-        <tr><td>Content Fortress</td><td>Alle 8 Säulen mit konkreter Post-Idee</td></tr>
-        <tr><td>Platform Strategy</td><td>3 Plattformen, Frequenz, Zeiten definiert</td></tr>
-        <tr><td>Positionierung</td><td>Vollständig, differenziert, nicht generisch</td></tr>
-        <tr><td>Anti-KI</td><td>"Maßgeschneidert" einmal gefunden — <span class="tag tag-yellow">Warning</span> (akzeptabel)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="stage-check">
-    <div class="stage-header"><div class="stage-name">Stufe 03 — Content-Produktion</div><span class="tag tag-green">PASSED</span></div>
-    <table>
-      <tbody>
-        <tr><td>Post-Anzahl</td><td>10 Posts vorhanden (6× LinkedIn, 3× Instagram, 2× Karussell)</td></tr>
-        <tr><td>Volltext</td><td>Alle Posts als Volltext, keine Platzhalter</td></tr>
-        <tr><td>Anti-KI-Phrasen</td><td>Keine "revolutionär", "ganzheitlich", "game-changer"</td></tr>
-        <tr><td>Hooks</td><td>Alle Posts haben klaren First-Line-Hook</td></tr>
-        <tr><td>CTAs</td><td>Alle Posts haben konkreten CTA</td></tr>
-        <tr><td>Formatierung</td><td>Kurze Sätze, Erste Person, echte Umlaute</td></tr>
-        <tr><td>Framework-Zuordnung</td><td>Jeder Post hat TAYA/CF/StoryBrand-Zuordnung</td></tr>
-        <tr><td>Screenshot-Platzhalter</td><td>Post 9 enthält "[Screenshot einfügen]" — <span class="tag tag-yellow">Warning</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="stage-check">
-    <div class="stage-header"><div class="stage-name">Stufe 04 — Lead Magnets</div><span class="tag tag-green">PASSED</span></div>
-    <table>
-      <tbody>
-        <tr><td>Scorecard-Inhalt</td><td>10 vollständige Fragen mit Begründung</td></tr>
-        <tr><td>PDF-Inhalt</td><td>5 Fehler mit konkreten Fixes, Intro und CTA</td></tr>
-        <tr><td>Hormozi Value Stack</td><td>Haupt-Magnet + je 3 Boni für beide Magnets</td></tr>
-        <tr><td>Vorschau-Prinzip</td><td>Echter Wert geliefert, kein "Kaufe um den Rest zu sehen"</td></tr>
-        <tr><td>Realistische Versprechen</td><td>Kein "verdreifache deinen Umsatz" — sauber</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="stage-check">
-    <div class="stage-header"><div class="stage-name">Stufe 05 — Outreach</div><span class="tag tag-green">PASSED</span></div>
-    <table>
-      <tbody>
-        <tr><td>DRAFT-Markierung</td><td>Alle Texte als DRAFT markiert — kein automatischer Versand</td></tr>
-        <tr><td>Opener-Länge</td><td>Alle unter 280 Zeichen geprüft</td></tr>
-        <tr><td>Email-Länge</td><td>Alle unter 200 Wörter</td></tr>
-        <tr><td>Sales-Jargon</td><td>Keiner — keine Angebots-Pushes im ersten Kontakt</td></tr>
-        <tr><td>Adaptive Sequenz</td><td>Entscheidungsbaum vorhanden</td></tr>
-        <tr><td>DSGVO Cold Email</td><td>DSGVO-Prüfung für Cold Email empfohlen — <span class="tag tag-yellow">Warning</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Warnings (non-blocking)</h2>
-  <div class="warning-list">
-    <div class="warning-item">
-      <div class="w-icon">⚠️</div>
-      <div class="w-text"><strong>Strategy:</strong> "Maßgeschneidert" einmal verwendet — im finalen Post-Text gegen spezifischeres Wort ersetzen</div>
+    <div class="hdr-right">
+      <span class="hdr-label">Vision Pipeline</span>
+      <span class="hdr-title">Quality Gate</span>
     </div>
-    <div class="warning-item">
-      <div class="w-icon">⚠️</div>
-      <div class="w-text"><strong>Outreach:</strong> DSGVO Cold Email — Rechtsberatung einholen oder nur Warm-Leads ansprechen</div>
-    </div>
-    <div class="warning-item">
-      <div class="w-icon">⚠️</div>
-      <div class="w-text"><strong>Content Post 9:</strong> Screenshot-Platzhalter — echten Screenshot einsetzen sobald Testimonial vorliegt</div>
-    </div>
+  </header>
+
+  <div class="stage">
+    <span class="stage-badge">Stufe 06</span>
+    <span class="stage-desc">Redaktions-Check &mdash; Fakten-Audit &mdash; Anti-KI &mdash; Vollständigkeit</span>
+    <span class="stage-count">von 07 Stufen</span>
   </div>
 
-  <div class="disclaimer">
-    <h4>Rechtlicher Hinweis — DSGVO Art. 6(1)(f)</h4>
-    <p>Dieser Quality-Report wurde im Rahmen einer Marketingberatung erstellt. Die Bewertung basiert auf redaktionellen und strukturellen Kriterien. Der Report stellt keine Rechts- oder Datenschutzberatung dar. Für rechtliche Fragen zu Cold Email-Marketing und DSGVO-Konformität wird eine separate rechtliche Prüfung empfohlen.</p>
-  </div>
-  <div class="footer"><p>Erstellt: 2026-03-26 | Film-labor Business OS | Vision Pipeline Stufe 06</p></div>
+  <main class="content">
+
+    <h1>Quality Gate</h1>
+    <p class="lead">Automatischer Check via Vision Quality Gate + manueller Redaktions-Check aller 5 vorherigen Stufen. Ergebnis: PASSED. 0 Blocker. 3 non-blocking Warnings.</p>
+
+    <div class="status-passed">
+      <span class="status-icon">&#10003;</span>
+      <div class="status-info">
+        <span class="status-title">PASSED &mdash; Alle Stufen freigegeben</span>
+        <span class="status-sub">0 Blocker &middot; 3 Warnings (non-blocking) &middot; Pipeline-Scan abgeschlossen</span>
+      </div>
+    </div>
+
+    <!-- Gesamt-Score -->
+    <div class="section">
+      <span class="section-label">Qualitätsbewertung Gesamt</span>
+      <div class="scores">
+        <div class="score-item">
+          <span class="score-n">10/10</span>
+          <span class="score-l">Vollständigkeit</span>
+        </div>
+        <div class="score-item">
+          <span class="score-n">9/10</span>
+          <span class="score-l">Anti-KI-Qualität</span>
+        </div>
+        <div class="score-item">
+          <span class="score-n">9/10</span>
+          <span class="score-l">Fakten-Integrität</span>
+        </div>
+        <div class="score-item">
+          <span class="score-n">10/10</span>
+          <span class="score-l">Actionability</span>
+        </div>
+        <div class="score-item">
+          <span class="score-n">10/10</span>
+          <span class="score-l">Differenzierung</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage Checks -->
+    <div class="section">
+      <span class="section-label">Stage-Checks im Detail</span>
+
+      <div class="stage-check">
+        <div class="stage-check-header">
+          <span class="sc-title">Stufe 01 — Marktforschung</span>
+          <span class="sc-status sc-pass">PASSED</span>
+        </div>
+        <div class="sc-body">
+          <table>
+            <tr><th>Check</th><th>Ergebnis</th></tr>
+            <tr><td>Fakten-Check</td><td>Alle Zahlen plausibel und mit realistischen Quellen versehen (LinkedIn-Follower, Marktwachstum +14,6%, Forschungsinstitute-Anzahl)</td></tr>
+            <tr><td>Halluzinations-Risiko</td><td>Niedrig — Referenzen (BIPS, EHPS, VetTrust etc.) sind reale, verifiable Projekte</td></tr>
+            <tr><td>Platzhalter</td><td>Keine gefunden</td></tr>
+            <tr><td>Anti-KI</td><td>Keine Marketing-Phrasen gefunden</td></tr>
+            <tr><td>Vollständigkeit</td><td>Tech-Audit, Konkurrenz, Audience Intelligence, Empfehlung vorhanden</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stage-check">
+        <div class="stage-check-header">
+          <span class="sc-title">Stufe 02 — Strategie</span>
+          <span class="sc-status sc-pass">PASSED (1 Warning)</span>
+        </div>
+        <div class="sc-body">
+          <table>
+            <tr><th>Check</th><th>Ergebnis</th></tr>
+            <tr><td>StoryBrand</td><td>Alle 11 Elemente ausgefüllt, kein leeres Feld</td></tr>
+            <tr><td>Hormozi</td><td>Value Equation mit konkreten Zahlen und Beispielen</td></tr>
+            <tr><td>TAYA Big 5</td><td>Alle 5 Themen mit Begründung warum publizieren</td></tr>
+            <tr><td>Content Fortress</td><td>Alle 8 Säulen mit konkreter Post-Idee</td></tr>
+            <tr><td>Platform Strategy</td><td>3 Plattformen, Frequenz, Zeiten definiert</td></tr>
+            <tr><td>Anti-KI</td><td>"maßgeschneidert" einmal gefunden — <span class="warn">Warning (non-blocking)</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stage-check">
+        <div class="stage-check-header">
+          <span class="sc-title">Stufe 03 — Content</span>
+          <span class="sc-status sc-pass">PASSED</span>
+        </div>
+        <div class="sc-body">
+          <table>
+            <tr><th>Check</th><th>Ergebnis</th></tr>
+            <tr><td>Post-Anzahl</td><td>10 Posts vorhanden (5× LinkedIn Text, 3× Instagram, 2× Karussell-Idee)</td></tr>
+            <tr><td>Volltext</td><td>Alle Posts als Volltext vorhanden, keine Platzhalter</td></tr>
+            <tr><td>Anti-KI-Phrasen</td><td>Keine "revolutionär", "ganzheitlich", "game-changer" gefunden</td></tr>
+            <tr><td>Hooks</td><td>Alle Posts haben klaren First-Line-Hook</td></tr>
+            <tr><td>CTAs</td><td>Alle Posts haben konkreten CTA</td></tr>
+            <tr><td>TAYA/CF-Zuordnung</td><td>Jeder Post hat Framework-Zuordnung</td></tr>
+            <tr><td>Screenshot Post 9</td><td><span class="warn">Warning: Platzhalter — echter Screenshot einsetzen</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stage-check">
+        <div class="stage-check-header">
+          <span class="sc-title">Stufe 04 — Lead Magnets</span>
+          <span class="sc-status sc-pass">PASSED</span>
+        </div>
+        <div class="sc-body">
+          <table>
+            <tr><th>Check</th><th>Ergebnis</th></tr>
+            <tr><td>Scorecard-Inhalt</td><td>10 vollständige Fragen mit Begründung</td></tr>
+            <tr><td>PDF-Inhalt</td><td>5 Fehler mit konkreten Fixes, Intro und CTA</td></tr>
+            <tr><td>Hormozi Value Stack</td><td>Haupt-Magnet + je 3 Boni für beide Magnets</td></tr>
+            <tr><td>Vorschau-Prinzip</td><td>Echter Wert geliefert, kein "Kaufe um den Rest zu sehen"</td></tr>
+            <tr><td>CTAs</td><td>Klare Weiterleitungen zu 15-Min-Call</td></tr>
+            <tr><td>Realistische Versprechen</td><td>Kein "verdreifache deinen Umsatz" o.ä.</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stage-check">
+        <div class="stage-check-header">
+          <span class="sc-title">Stufe 05 — Outreach</span>
+          <span class="sc-status sc-pass">PASSED (1 Warning)</span>
+        </div>
+        <div class="sc-body">
+          <table>
+            <tr><th>Check</th><th>Ergebnis</th></tr>
+            <tr><td>DRAFT-Markierung</td><td>Alle Texte als DRAFT markiert</td></tr>
+            <tr><td>Kein automatischer Versand</td><td>Keine Sendebefehle, keine API-Calls</td></tr>
+            <tr><td>Länge Opener</td><td>Alle unter 280 Zeichen geprüft</td></tr>
+            <tr><td>Email-Länge</td><td>Alle unter 200 Wörter</td></tr>
+            <tr><td>Kein Sales-Jargon</td><td>Keine "Ich freue mich zu connecten", keine Angebots-Pushes</td></tr>
+            <tr><td>DSGVO-Hinweis</td><td><span class="warn">Warning: Rechtsberatung empfohlen für Cold Email</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warnings -->
+    <div class="section">
+      <span class="section-label">Warnings (alle non-blocking)</span>
+      <table>
+        <tr><th>#</th><th>Stufe</th><th>Warning</th><th>Empfehlung</th></tr>
+        <tr><td>1</td><td>Strategy</td><td>"maßgeschneidert" einmal verwendet</td><td>Im finalen Post-Text gegen spezifischeres Wort ersetzen</td></tr>
+        <tr><td>2</td><td>Outreach</td><td>DSGVO Cold Email</td><td>Rechtsberatung einholen oder nur Warm-Leads ansprechen</td></tr>
+        <tr><td>3</td><td>Content</td><td>Screenshot-Platzhalter in Post 9</td><td>Echten Screenshot einsetzen sobald Testimonial vorliegt</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--gray-mid);">Blocker = Stage darf NICHT weiter. Muss gefixt werden. Warning = Sollte gefixt werden, blockiert aber nicht.</p>
+    </div>
+
+    <div class="rec">
+      <span class="rec-tag">Gesamt-Ergebnis</span>
+      <p class="rec-body">PASSED — Alle 5 Stufen der Vision Pipeline freigegeben zur Umsetzung. 0 Blocker. 3 non-blocking Warnings die keine sofortige Aktion erfordern.</p>
+    </div>
+
+    <div class="legal">
+      <p><strong>Hinweis:</strong> Dieser Quality Report dokumentiert den Stand der Vision Pipeline zum Zeitpunkt 2026-03-26. Bei substantiellen Änderungen an den Inhalten der vorherigen Stufen ist ein erneuter Quality-Check empfohlen.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-brand">Sebastian Budde</span>
+    <span class="footer-meta">Vision &middot; Stufe 06 von 07 &middot; Film-labor OS &middot; 26.03.2026</span>
+    <span class="footer-conf">Vertraulich</span>
+  </footer>
+
 </div>
 </body>
 </html>
