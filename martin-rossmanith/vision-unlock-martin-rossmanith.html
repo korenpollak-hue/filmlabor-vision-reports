@@ -53,41 +53,65 @@ input.error{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
 <body>
 <div class="card">
   <a class="logo" href="#">Film<em>-labor</em></a>
-  <div id="form-wrap">
-    <h1>Strategie-Report freischalten</h1>
-    <p class="subtitle">Vier kurze Fragen &mdash; dann erstellt Koren Ihren pers&ouml;nlichen Wachstumsplan f&uuml;r Promega Deutschland.</p>
-    <div class="form-group">
-      <label>E-Mail-Adresse <span class="required">*</span></label>
-      <input type="email" id="f-email" placeholder="name@promega.com" autocomplete="email">
-    </div>
-    <div class="form-group">
-      <label>Telefonnummer <span class="optional">(optional)</span></label>
-      <input type="tel" id="f-tel" placeholder="+49 ..." autocomplete="tel">
-    </div>
-    <div class="divider"></div>
-    <div class="form-group">
-      <label>Teamgr&ouml;&szlig;e</label>
-      <div class="tile-row">
-        <div class="tile" onclick="pickTile(this,'Solo')"><div class="tile-val">Solo</div><div class="tile-sub">1 Person</div></div>
-        <div class="tile" onclick="pickTile(this,'2-5')"><div class="tile-val">Klein</div><div class="tile-sub">2&ndash;5</div></div>
-        <div class="tile" onclick="pickTile(this,'6-20')"><div class="tile-val">Mittel</div><div class="tile-sub">6&ndash;20</div></div>
-        <div class="tile" onclick="pickTile(this,'20+')"><div class="tile-val">Wachsend</div><div class="tile-sub">20+</div></div>
+
+  <!-- === FORM (regular POST to FormSubmit) === -->
+  <form id="vision-form" method="POST" action="https://formsubmit.co/koren@film-labor.de">
+    <div id="form-wrap">
+      <h1>Strategie-Report freischalten</h1>
+      <p class="subtitle">Vier kurze Fragen &mdash; dann erstellt Koren Ihren pers&ouml;nlichen Wachstumsplan f&uuml;r Promega Deutschland.</p>
+
+      <div class="form-group">
+        <label>E-Mail-Adresse <span class="required">*</span></label>
+        <input type="email" name="Email" id="f-email" placeholder="name@promega.com" autocomplete="email" required>
       </div>
-    </div>
-    <div class="form-group">
-      <label>Ihre Ziele <span class="optional">(mehrere m&ouml;glich)</span></label>
-      <div class="ziele-grid">
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#127919;</span><span class="ziel-lbl">Mehr Kunden gewinnen</span></div>
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128221;</span><span class="ziel-lbl">Content-Strategie aufbauen</span></div>
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128247;</span><span class="ziel-lbl">Social Media st&auml;rken</span></div>
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128202;</span><span class="ziel-lbl">Thought Leadership aufbauen</span></div>
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128227;</span><span class="ziel-lbl">Werbeanzeigen schalten</span></div>
-        <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#10024;</span><span class="ziel-lbl">Marke st&auml;rken</span></div>
+      <div class="form-group">
+        <label>Telefonnummer <span class="optional">(optional)</span></label>
+        <input type="tel" name="Telefon" id="f-tel" placeholder="+49 ..." autocomplete="tel">
       </div>
+
+      <div class="divider"></div>
+
+      <div class="form-group">
+        <label>Teamgr&ouml;&szlig;e</label>
+        <div class="tile-row">
+          <div class="tile" onclick="pickTile(this,'Solo (1)')"><div class="tile-val">Solo</div><div class="tile-sub">1 Person</div></div>
+          <div class="tile" onclick="pickTile(this,'Klein (2-5)')"><div class="tile-val">Klein</div><div class="tile-sub">2&ndash;5</div></div>
+          <div class="tile" onclick="pickTile(this,'Mittel (6-20)')"><div class="tile-val">Mittel</div><div class="tile-sub">6&ndash;20</div></div>
+          <div class="tile" onclick="pickTile(this,'Wachsend (20+)')"><div class="tile-val">Wachsend</div><div class="tile-sub">20+</div></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ihre Ziele <span class="optional">(mehrere m&ouml;glich)</span></label>
+        <div class="ziele-grid">
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#127919;</span><span class="ziel-lbl">Mehr Kunden gewinnen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128221;</span><span class="ziel-lbl">Content-Strategie aufbauen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128247;</span><span class="ziel-lbl">Social Media st&auml;rken</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128202;</span><span class="ziel-lbl">Thought Leadership aufbauen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128227;</span><span class="ziel-lbl">Werbeanzeigen schalten</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#10024;</span><span class="ziel-lbl">Marke st&auml;rken</span></div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Strategie jetzt freischalten &#8594;</button>
+      <div class="trust">KOSTENLOS &middot; KEINE VERPFLICHTUNG &middot; ANTWORT INNERHALB VON 24H</div>
     </div>
-    <button class="submit-btn" id="submit-btn" onclick="submitForm()">Strategie jetzt freischalten &#8594;</button>
-    <div class="trust">KOSTENLOS &middot; KEINE VERPFLICHTUNG &middot; ANTWORT INNERHALB VON 24H</div>
-  </div>
+
+    <!-- Hidden fields populated by JS before submit -->
+    <input type="hidden" name="Teamgroesse" id="h-team" value="keine Angabe">
+    <input type="hidden" name="Ziele" id="h-ziele" value="keine Angabe">
+    <input type="hidden" name="Kunde" value="Promega GmbH / Martin Rossmanith">
+    <input type="hidden" name="Report_URL" value="https://korenpollak-hue.github.io/filmlabor-vision-reports/martin-rossmanith/vision-research-2026-03-31.html">
+
+    <!-- FormSubmit config -->
+    <input type="hidden" name="_subject" value="VISION LEAD: Promega / Rossmanith">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://korenpollak-hue.github.io/filmlabor-vision-reports/martin-rossmanith/vision-unlock-martin-rossmanith.html?success=1">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+  </form>
+
+  <!-- === SUCCESS SCREEN (shown after redirect with ?success=1) === -->
   <div id="success">
     <div class="success-circle">&#10003;</div>
     <div class="success-title">Anfrage gesendet!</div>
@@ -95,25 +119,44 @@ input.error{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
     <a class="back-link" href="vision-research-2026-03-31.html">&#8592; Zur&uuml;ck zur Marktanalyse</a>
   </div>
 </div>
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
 <script>
 var selectedTeam='',selectedZiele=[];
-function pickTile(el,val){document.querySelectorAll('.tile').forEach(function(t){t.classList.remove('sel')});el.classList.add('sel');selectedTeam=val}
-function toggleZiel(el){var lbl=el.querySelector('.ziel-lbl').textContent;var idx=selectedZiele.indexOf(lbl);if(idx>-1){selectedZiele.splice(idx,1);el.classList.remove('sel')}else{selectedZiele.push(lbl);el.classList.add('sel')}}
-function showSuccess(){document.getElementById('form-wrap').style.display='none';document.getElementById('success').classList.add('show')}
-async function submitForm(){
-  var emailEl=document.getElementById('f-email');var email=emailEl.value.trim();
-  if(!email||!email.includes('@')){emailEl.classList.add('error');emailEl.focus();emailEl.addEventListener('input',function(){emailEl.classList.remove('error')},{once:true});return}
-  var btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Wird gesendet …';
-  var tel=document.getElementById('f-tel').value.trim();
-  var fd=new FormData();
-  fd.append('email',email);fd.append('telefon',tel||'keine Angabe');fd.append('teamgroesse',selectedTeam||'keine Angabe');
-  fd.append('ziele',selectedZiele.length?selectedZiele.join(', '):'keine Angabe');
-  fd.append('kunde','Promega GmbH / Martin Rossmanith');
-  fd.append('report_url','https://korenpollak-hue.github.io/filmlabor-vision-reports/martin-rossmanith/vision-research-2026-03-31.html');
-  fd.append('_subject','VISION LEAD: '+email+' (Promega)');fd.append('_replyto',email);fd.append('_template','table');fd.append('_captcha','false');
-  try{var res=await fetch('https://formsubmit.co/ajax/koren@film-labor.de',{method:'POST',body:fd,headers:{'Accept':'application/json'}});var data=await res.json();if(data.success==='true'||data.success===true){showSuccess();return}throw new Error('fail')}
-  catch(e){var body='Email: '+email+'\nTelefon: '+(tel||'k.A.')+'\nTeam: '+(selectedTeam||'k.A.')+'\nZiele: '+(selectedZiele.join(', ')||'k.A.')+'\nKunde: Promega / Rossmanith';window.location.href='mailto:koren@film-labor.de?subject='+encodeURIComponent('Strategie-Anfrage: '+email)+' (Promega)&body='+encodeURIComponent(body);showSuccess()}
+
+function pickTile(el,val){
+  document.querySelectorAll('.tile').forEach(function(t){t.classList.remove('sel')});
+  el.classList.add('sel');
+  selectedTeam=val;
+}
+
+function toggleZiel(el){
+  var lbl=el.querySelector('.ziel-lbl').textContent;
+  var idx=selectedZiele.indexOf(lbl);
+  if(idx>-1){selectedZiele.splice(idx,1);el.classList.remove('sel')}
+  else{selectedZiele.push(lbl);el.classList.add('sel')}
+}
+
+// Before form submits: fill hidden fields + update subject with email
+document.getElementById('vision-form').addEventListener('submit',function(){
+  document.getElementById('h-team').value=selectedTeam||'keine Angabe';
+  document.getElementById('h-ziele').value=selectedZiele.length?selectedZiele.join(', '):'keine Angabe';
+  // Dynamic subject with lead email
+  var email=document.getElementById('f-email').value;
+  var subj=document.querySelector('[name="_subject"]');
+  if(subj&&email) subj.value='VISION LEAD: '+email+' (Promega)';
+  // Show loading state
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='Wird gesendet \u2026';
+});
+
+// Check for ?success=1 after redirect back from FormSubmit
+if(window.location.search.indexOf('success=1')>-1){
+  var fw=document.getElementById('form-wrap');
+  if(fw) fw.style.display='none';
+  var s=document.getElementById('success');
+  if(s) s.classList.add('show');
+  // Clean URL
+  history.replaceState(null,'',window.location.pathname);
 }
 </script>
 </body>
