@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vision Research: IOI Oleo GmbH &mdash; 2026-03-31</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#1A8FBF;--accent-rgb:26,143,191;
+  --navy:#0A1525;--navy2:#0D1E3A;
+  --bg:#F5F4F1;--card:#FFFFFF;--border:#E5E3DF;
+  --text:#0D0D0D;--t2:#4B4B4B;--t3:#8B8A87;
+  --green:#16A34A;--green-bg:#F0FDF4;
+  --amber:#D97706;--amber-bg:#FFFBEB;
+  --blue:#2563EB;--blue-bg:#EFF6FF;
+  --red:#DC2626;--red-bg:#FFF1F2;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6}
+
+.hero-wrap{
+  background:linear-gradient(145deg,#060D1A 0%,#0A1525 35%,#0D1E3A 65%,#080F1E 100%);
+  position:relative;overflow:hidden;padding:0 0 48px;
+}
+.hero-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 700px 500px at 75% 60%,rgba(var(--accent-rgb),0.09) 0%,transparent 65%),
+              radial-gradient(ellipse 500px 350px at 15% 85%,rgba(37,99,235,0.06) 0%,transparent 60%);
+  animation:heroGlow 10s ease-in-out infinite alternate;pointer-events:none;
+}
+@keyframes heroGlow{0%{opacity:.7}100%{opacity:1;transform:scale(1.05)}}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;position:relative;z-index:2}
+.logo{font-size:1rem;font-weight:800;color:#fff;letter-spacing:-.03em;text-decoration:none}
+.logo em{color:var(--accent);font-style:normal}
+.stage-badge{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase}
+.stage-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0.5)}50%{box-shadow:0 0 0 8px rgba(var(--accent-rgb),0)}}
+
+.hero-content{text-align:center;padding:48px 48px 0;position:relative;z-index:2}
+.eyebrow{display:inline-block;background:rgba(var(--accent-rgb),0.15);border:1px solid rgba(var(--accent-rgb),0.35);border-radius:20px;padding:5px 16px;font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:16px}
+.hero-lead{font-size:1rem;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto 28px;line-height:1.75}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#0A1525);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2rem;font-weight:800;color:#fff;box-shadow:0 0 0 3px rgba(var(--accent-rgb),0.3);animation:pulse 3s ease-in-out infinite}
+
+.nav-tabs{display:flex;justify-content:center;gap:4px;padding:28px 48px 0;position:relative;z-index:2;flex-wrap:wrap}
+.nav-tab{font-size:11px;font-weight:600;color:rgba(255,255,255,.35);padding:8px 14px;border-radius:8px;letter-spacing:.04em;cursor:default}
+.nav-tab.active{background:rgba(var(--accent-rgb),0.15);color:var(--accent);border:1px solid rgba(var(--accent-rgb),0.3)}
+
+.content{max-width:1000px;margin:0 auto;padding:48px 48px 0}
+.section{margin-bottom:40px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:var(--serif);font-size:1.6rem;color:var(--text);margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px}
+.card+.card{margin-top:12px}
+
+.donut-wrap{text-align:center;margin:20px 0 32px}
+.donut-wrap svg{width:200px;height:200px}
+.donut-score{font-family:var(--serif);font-size:28px;fill:var(--text);font-weight:400}
+.donut-sub{font-size:11px;fill:var(--t3)}
+.donut-arc{stroke-dasharray:0 346;animation:arcDraw 1.8s ease forwards .4s}
+@keyframes arcDraw{to{stroke-dasharray:294 346}}
+
+.wow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.wow-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;transition:transform .2s,box-shadow .2s;cursor:default}
+.wow-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.wow-num{font-family:var(--serif);font-size:1.6rem;color:var(--accent);margin-bottom:4px;line-height:1}
+.wow-label{font-size:12px;color:var(--t2);line-height:1.5}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;border-top:3px solid var(--accent)}
+.stat-val{font-family:var(--serif);font-size:1.5rem;color:var(--text)}
+.stat-label{font-size:11px;color:var(--t3);margin-top:2px}
+
+.bar-row{margin:10px 0}
+.bar-label{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:4px;display:flex;justify-content:space-between}
+.bar-track{height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),#0E6B8F);animation:barIn 1.2s ease forwards}
+@keyframes barIn{from{width:0}}
+
+.clean-table{width:100%;border-collapse:collapse;font-size:13px}
+.clean-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--t3);text-transform:uppercase;padding:10px 12px;border-bottom:2px solid var(--border)}
+.clean-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--t2)}
+.clean-table td:first-child{font-weight:600;color:var(--text)}
+
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.platform-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;border-top:3px solid var(--accent);transition:transform .25s}
+.platform-card:hover{transform:translateY(-2px)}
+.platform-card:nth-child(2){border-top-color:var(--amber)}
+.platform-card:nth-child(3){border-top-color:var(--blue)}
+.platform-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.platform-desc{font-size:12px;color:var(--t3);line-height:1.5}
+
+.insight{border-left:3px solid var(--accent);background:#F2F9FC;border-radius:0 10px 10px 0;padding:20px 24px;margin:20px 0}
+.insight p{font-size:13px;color:var(--t2);font-style:italic;line-height:1.7}
+
+.rec-block{background:linear-gradient(145deg,#0A1525,#0D1E3A);border-radius:16px;padding:48px;text-align:center;margin:40px 0;position:relative;overflow:hidden}
+.rec-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 500px 400px at 50% 50%,rgba(var(--accent-rgb),0.08) 0%,transparent 65%);pointer-events:none}
+.rec-block h3{font-family:var(--serif);font-size:1.5rem;color:#fff;margin-bottom:16px;position:relative}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left;position:relative}
+.rec-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px}
+.rec-item-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.rec-item-text{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin:20px 0}
+.chart-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:16px}
+
+.cta-unlock{background:linear-gradient(135deg,#081222 0%,#0d1f3c 55%,#081222 100%);padding:72px 40px;margin:48px 0;border-radius:20px;text-align:center;position:relative;overflow:hidden}
+.cta-unlock::before{content:'';position:absolute;top:-100px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.13) 0%,transparent 65%);pointer-events:none}
+.cta-unlock::after{content:'';position:absolute;bottom:-100px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.09) 0%,transparent 65%);pointer-events:none}
+.cta-badge{display:inline-block;background:rgba(var(--accent-rgb),0.15);border:1px solid rgba(var(--accent-rgb),0.45);border-radius:20px;padding:5px 16px;font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--accent);text-transform:uppercase;margin-bottom:22px;position:relative;z-index:1}
+.cta-unlock h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;color:#fff;margin:0 0 14px;line-height:1.25;position:relative;z-index:1}
+.cta-unlock p{font-size:.95rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 44px;line-height:1.75;position:relative;z-index:1}
+.locked-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;max-width:620px;margin:0 auto 44px;position:relative;z-index:1}
+.locked-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 18px;position:relative;overflow:hidden}
+.locked-overlay{position:absolute;inset:0;background:rgba(8,18,34,0.72);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px;gap:7px}
+.locked-overlay span:first-child{font-size:24px}
+.locked-overlay span:last-child{font-size:9px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.45);text-transform:uppercase}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),#0E6B8F);color:#fff;font-size:1rem;font-weight:700;padding:17px 50px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(var(--accent-rgb),0.42);transition:all .25s;letter-spacing:.025em;position:relative;z-index:1}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 14px 42px rgba(var(--accent-rgb),0.58)}
+.cta-trust{margin-top:16px;font-size:10px;color:rgba(255,255,255,.22);letter-spacing:.07em;position:relative;z-index:1}
+
+.legal{background:var(--amber-bg);border:1px solid #FDE68A;border-radius:12px;padding:28px 32px;margin:40px 0}
+.legal-head{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#92400E;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 32px}
+.legal-grid .lbl{font-size:11px;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.legal-grid p{font-size:12px;color:#78350F;line-height:1.6}
+
+.footer-wrap{background:var(--navy);padding:32px 48px;text-align:center;margin-top:40px;border-radius:16px 16px 0 0}
+.footer-logo{font-size:.9rem;font-weight:800;color:rgba(255,255,255,.5);letter-spacing:-.02em;margin-bottom:8px}
+.footer-logo em{color:var(--accent);font-style:normal}
+.footer-text{font-size:11px;color:rgba(255,255,255,.25)}
+
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:700px){
+  .wow-grid,.stats-row,.platform-grid,.rec-grid,.legal-grid{grid-template-columns:1fr}
+  .topbar,.hero-content,.content{padding-left:20px;padding-right:20px}
+  .nav-tabs{padding:20px 12px 0}
+  .cta-unlock{padding:48px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="topbar">
+    <span class="logo">Film<em>-labor</em></span>
+    <div class="stage-badge"><span class="stage-dot"></span> STAGE 01 OF 07</div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">VISION RESEARCH</div>
+    <h1 class="hero-title">IOI Oleo GmbH</h1>
+    <p class="hero-lead">Deep market research for oleochemical specialties &amp; cosmetic lipid technology &mdash; market validation, competitive analysis and growth opportunities for Julien Janson.</p>
+    <div class="avatar">JJ</div>
+  </div>
+  <div class="nav-tabs">
+    <span class="nav-tab active">01 Research</span>
+    <span class="nav-tab">02 Strategy</span>
+    <span class="nav-tab">03 Content</span>
+    <span class="nav-tab">04 Magnets</span>
+    <span class="nav-tab">05 Outreach</span>
+    <span class="nav-tab">06 Quality</span>
+    <span class="nav-tab">07 Measure</span>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- MARKET VALIDATION -->
+  <div class="section fade-in">
+    <div class="section-label">Market Validation</div>
+    <div class="section-title">Starving Crowd Score</div>
+
+    <div class="donut-wrap">
+      <svg viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="55" fill="none" stroke="#eee" stroke-width="11"/>
+        <circle class="donut-arc" cx="80" cy="80" r="55" fill="none" stroke="url(#grad)" stroke-width="11" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+        <text class="donut-score" x="80" y="76" text-anchor="middle" dominant-baseline="middle">8.5</text>
+        <text class="donut-sub" x="80" y="96" text-anchor="middle">out of 10</text>
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#1A8FBF"/></linearGradient></defs>
+      </svg>
+      <p style="font-size:13px;color:var(--t2);margin-top:8px"><strong>8.5 / 10</strong> &mdash; Starving Crowd Confirmed</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-val">$45B</div>
+        <div class="stat-label">Global Oleochemicals Market 2033</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--amber)">
+        <div class="stat-val">5.9% CAGR</div>
+        <div class="stat-label">Oleochemicals Growth to 2033</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--blue)">
+        <div class="stat-val">&euro;2.4B</div>
+        <div class="stat-label">IOI Group Revenue (FY2025)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="clean-table">
+        <tr><th style="width:30%">Factor</th><th style="width:15%">Score</th><th>Rationale</th></tr>
+        <tr><td>Problem exists?</td><td><strong>2.5/3</strong></td><td>Cosmetic and pharma formulators need high-purity, sustainable lipid excipients. Clean Beauty regulations and RSPO requirements are intensifying supply chain pressure. IOI Oleo delivers exactly these specialties.</td></tr>
+        <tr><td>Willingness to pay?</td><td><strong>2.5/3</strong></td><td>B2B customers (L&rsquo;Or&eacute;al, Beiersdorf, pharma corporations) have large budgets. Specialty oleochemistry is not a commodity &mdash; quality and certification justify premium pricing.</td></tr>
+        <tr><td>Market large enough?</td><td><strong>2/2</strong></td><td>$28&ndash;33B oleochemicals market (2025), $4.66B for cosmetic bioactive ingredients alone. IOI is the largest plant-based oleochemical manufacturer in Asia.</td></tr>
+        <tr><td>Trend rising?</td><td><strong>1.5/2</strong></td><td>Sustainability, vegan formulations, lipid nanoparticles for drug delivery &mdash; all mega-trends support the business. However: EUDR regulation and palm oil criticism require proactive communication.</td></tr>
+      </table>
+    </div>
+
+    <div class="insight">
+      <p><strong>Gate result: Full speed ahead.</strong> IOI Oleo combines German precision manufacturing with Asian scale &mdash; 890,000 tonnes annual capacity, FDA-approved production in Witten, and a brand portfolio (MIGLYOL, IMWITOR, SOFTISAN) that holds reference status in pharma and cosmetics. The new Lipid Excellence Center signals innovation ambition. The biggest opportunity: Julien Janson&rsquo;s scientific background (publications, patent, 4 languages) is untapped potential to position IOI Oleo as a thought leader.</p>
+    </div>
+  </div>
+
+  <!-- WOW FACTS -->
+  <div class="section fade-in">
+    <div class="section-label">Market Insights</div>
+    <div class="section-title">WOW Facts for Your Market</div>
+    <div class="wow-grid">
+      <div class="wow-card">
+        <div class="wow-num">$45B</div>
+        <div class="wow-label">Global oleochemicals market by 2033 &mdash; growing at 5.9% CAGR. Sustainable alternatives are driving demand (Source: Grand View Research)</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">73%</div>
+        <div class="wow-label">Of B2B decision-makers trust thought leadership more than product marketing &mdash; exactly what IOI Oleo is currently missing</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">$810M</div>
+        <div class="wow-label">Clariant paid in 2024 for Lucas Meyer Cosmetics &mdash; Julien Janson&rsquo;s former company. This proves the enormous value of cosmetic ingredient expertise</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">890,000t</div>
+        <div class="wow-label">Annual oleochemical capacity of the IOI Group &mdash; 4 production plants across Malaysia and Germany. Asia&rsquo;s largest plant-based oleochemical manufacturer</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">4 Languages</div>
+        <div class="wow-label">Julien Janson speaks French, English and Italian at native level plus professional German &mdash; perfect for international thought leadership content</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">2K vs. 2.5K</div>
+        <div class="wow-label">Julien Janson&rsquo;s LinkedIn followers (2,000) approach IOI Oleo&rsquo;s company page (2,470) &mdash; a single expert can double the company&rsquo;s reach</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECH AUDIT -->
+  <div class="section fade-in">
+    <div class="section-label">Tech Audit</div>
+    <div class="section-title">Website &amp; Digital Presence</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Check</th><th>Status</th><th>Details</th></tr>
+        <tr><td>Website accessible</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>ioioleo.de &mdash; solid appearance with product catalog and news section</td></tr>
+        <tr><td>SSL certificate</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>Valid certificate, HTTPS active</td></tr>
+        <tr><td>Mobile responsive</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>Responsive design, mobile-friendly</td></tr>
+        <tr><td>LinkedIn company</td><td><span style="color:var(--amber)">&#9888; Moderate</span></td><td>~2,470 followers &mdash; significantly below potential for a 330+ employee company</td></tr>
+        <tr><td>YouTube</td><td><span style="color:var(--amber)">&#9888; Weak</span></td><td>Channel exists with corporate film, but barely any strategic content</td></tr>
+        <tr><td>Blog / News</td><td><span style="color:var(--amber)">&#9888; Basic</span></td><td>Trade show announcements and product news &mdash; no educational content</td></tr>
+        <tr><td>Formulator tool</td><td><span style="color:var(--red)">&#10007; Missing</span></td><td>No digital formulation tool (Evonik and Symrise already have this)</td></tr>
+        <tr><td>Employee advocacy</td><td><span style="color:var(--red)">&#10007; Gap</span></td><td>Employee expertise not systematically used as content</td></tr>
+        <tr><td>SEO for key terms</td><td><span style="color:var(--red)">&#10007; Gap</span></td><td>Barely visible for &ldquo;oleochemical emollients&rdquo;, &ldquo;sustainable cosmetic esters&rdquo; or &ldquo;lipid excipients&rdquo;</td></tr>
+      </table>
+    </div>
+    <div class="insight">
+      <p><strong>Assessment: 4/9 passed.</strong> IOI Oleo has a functional digital foundation, but falls significantly behind competitors like Evonik (Innovation Studio), Symrise (hogo platform) and Croda (sustainability storytelling). The biggest gaps: no thought leadership content, no formulator tool, no employee advocacy strategy. Julien Janson &mdash; with his publications, patent and multilingual abilities &mdash; is the ideal person to become IOI Oleo&rsquo;s &ldquo;Scientific Voice&rdquo; and close these gaps.</p>
+    </div>
+  </div>
+
+  <!-- CHARTS: MARKET -->
+  <div class="section fade-in">
+    <div class="section-label">Market Development</div>
+    <div class="section-title">Oleochemicals Market &mdash; Global Growth</div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Market Volume 2022&ndash;2033 (in USD Billion)</div>
+      <svg viewBox="0 0 500 200" style="width:100%;height:auto">
+        <line x1="50" y1="170" x2="470" y2="170" stroke="#E5E3DF" stroke-width="1"/>
+        <line x1="50" y1="130" x2="470" y2="130" stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="50" y1="90" x2="470"  y2="90"  stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="50" y1="50" x2="470"  y2="50"  stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <text x="40" y="174" text-anchor="end" font-size="10" fill="#8B8A87">20</text>
+        <text x="40" y="134" text-anchor="end" font-size="10" fill="#8B8A87">30</text>
+        <text x="40" y="94"  text-anchor="end" font-size="10" fill="#8B8A87">40</text>
+        <text x="40" y="54"  text-anchor="end" font-size="10" fill="#8B8A87">50</text>
+        <polyline points="80,154 170,142 260,130 370,102 460,70" fill="none" stroke="#1A8FBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="500" stroke-dashoffset="500" style="animation:drawLine 2s ease forwards .6s"/>
+        <circle cx="80"  cy="154" r="4" fill="#1A8FBF"/>
+        <circle cx="170" cy="142" r="4" fill="#1A8FBF"/>
+        <circle cx="260" cy="130" r="5" fill="#1A8FBF" stroke="#fff" stroke-width="2"/>
+        <circle cx="370" cy="102" r="4" fill="#1A8FBF"/>
+        <circle cx="460" cy="70"  r="5" fill="#1A8FBF" stroke="#fff" stroke-width="2"/>
+        <text x="80"  y="148" text-anchor="middle" font-size="9" font-weight="600" fill="#1A8FBF">$24B</text>
+        <text x="170" y="136" text-anchor="middle" font-size="9" font-weight="600" fill="#1A8FBF">$27B</text>
+        <text x="260" y="124" text-anchor="middle" font-size="9" font-weight="700" fill="#1A8FBF">$30B</text>
+        <text x="370" y="96"  text-anchor="middle" font-size="9" font-weight="600" fill="#1A8FBF">$37B</text>
+        <text x="460" y="64"  text-anchor="middle" font-size="9" font-weight="700" fill="#1A8FBF">$45B</text>
+        <text x="80"  y="180" text-anchor="middle" font-size="8" fill="#8B8A87">2022</text>
+        <text x="170" y="180" text-anchor="middle" font-size="8" fill="#8B8A87">2024</text>
+        <text x="260" y="180" text-anchor="middle" font-size="8" fill="#8B8A87">2026</text>
+        <text x="370" y="180" text-anchor="middle" font-size="8" fill="#8B8A87">2029</text>
+        <text x="460" y="180" text-anchor="middle" font-size="8" fill="#8B8A87">2033</text>
+      </svg>
+      <style>@keyframes drawLine{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}</style>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Competitive Landscape: Oleochemistry for Cosmetics &amp; Pharma</div>
+      <div class="bar-row"><div class="bar-label"><span>Croda International (UK)</span><span>Premium Leader</span></div><div class="bar-track"><div class="bar-fill" style="width:82%;animation-delay:.2s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Evonik Personal Care (DE)</span><span>Innovation</span></div><div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#D97706,#B45309);animation-delay:.4s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Symrise Cosmetic Ingredients</span><span>$5B Revenue</span></div><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#2563EB,#1D4ED8);animation-delay:.6s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>BASF Care Chemicals</span><span>Broad Focus</span></div><div class="bar-track"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#8B5CF6,#6D28D9);animation-delay:.8s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span style="color:var(--accent);font-weight:700">IOI Oleo (Hamburg)</span><span style="color:var(--accent);font-weight:700">Lipid Specialist</span></div><div class="bar-track"><div class="bar-fill" style="width:45%;animation-delay:1s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>KLK Oleo, Wilmar, Oleon, others</span><span>Fragmented</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#9CA3AF,#6B7280);animation-delay:1.2s"></div></div></div>
+    </div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div class="section fade-in">
+    <div class="section-label">Competitive Analysis</div>
+    <div class="section-title">Top 5 Competitors</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Company</th><th>Focus</th><th>Strength</th><th>Weakness</th></tr>
+        <tr><td>Croda International</td><td>Premium specialty oleochemistry, sustainability</td><td>RSPO pioneer, strong R&amp;D, excellent storytelling, premium positioning</td><td>High prices, limited capacity compared to IOI</td></tr>
+        <tr><td>Evonik Personal Care</td><td>Specialty esters, microbiome research</td><td>Innovation Studio (AI tool), &ldquo;Soul &amp; Science of Beauty&rdquo; blog, strong digital presence</td><td>Broad focus, oleochemistry not core business</td></tr>
+        <tr><td>Symrise</td><td>Cosmetic actives, fragrance</td><td>&euro;5B revenue, dedicated LinkedIn page for Cosmetic Ingredients, hogo platform</td><td>Huge corporation, less personal relationships</td></tr>
+        <tr><td>BASF Care Chemicals</td><td>Broad-spectrum chemistry incl. oleochemistry</td><td>98.1% RSPO-certified palm oil, massive budget, knowledge hub</td><td>Corporate inertia, cosmetic specialties not primary focus</td></tr>
+        <tr><td>KLK Oleo</td><td>Fatty acids, esters, glycerine</td><td>Vertically integrated, large capacities, ~30% market share (with Wilmar/IOI)</td><td>Less specialty expertise in pharma and cosmetics</td></tr>
+      </table>
+    </div>
+    <div class="insight">
+      <p><strong>IOI Oleo advantage:</strong> The unique combination of German precision manufacturing (FDA-certified in Witten) and Asian scale (890,000 t/a capacity) is hard to replicate. Brands like MIGLYOL and IMWITOR hold reference status in pharma and cosmetics. What&rsquo;s missing: the digital visibility that Croda, Evonik and Symrise already have. Julien Janson&rsquo;s expertise at the cosmetic/pharma interface and his experience at Lucas Meyer Cosmetics (acquired by Clariant for $810M in 2024) are exactly the credibility advantage IOI Oleo should leverage digitally.</p>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODELS -->
+  <div class="section fade-in">
+    <div class="section-label">Success Models</div>
+    <div class="section-title">Who&rsquo;s Doing It Right?</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Company</th><th>What They Do Right</th><th>Transferable?</th></tr>
+        <tr><td>Croda International</td><td>Sustainability storytelling as brand core, RSPO-certified oleochemistry range as PR theme, innovation stories on LinkedIn</td><td><strong>Yes:</strong> IOI Oleo&rsquo;s RSPO certification and Lipid Excellence Center are equally strong stories &mdash; they just aren&rsquo;t being told</td></tr>
+        <tr><td>Evonik Personal Care</td><td>&ldquo;Innovation Studio&rdquo; as digital AI tool for formulators, &ldquo;Soul &amp; Science of Beauty&rdquo; blog with trend insights</td><td><strong>Yes:</strong> Julien Janson can leverage his publication history to immediately start a similar content series &mdash; without the budget for an AI tool</td></tr>
+        <tr><td>Symrise Cosmetic Ingredients</td><td>Dedicated LinkedIn page for cosmetic ingredients only, hogo platform with personalized solutions, awards actively communicated</td><td><strong>Yes:</strong> IOI Oleo could position personal care content separately and build Julien as the &ldquo;face&rdquo; of the cosmetics division</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUDIENCE INTELLIGENCE -->
+  <div class="section fade-in">
+    <div class="section-label">Audience Intelligence</div>
+    <div class="section-title">Where Is the Target Audience?</div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-name">LinkedIn</div>
+        <div class="platform-desc">Primary platform for B2B cosmetics &amp; pharma: formulators, procurement, R&amp;D leaders. IOI Oleo posts regularly &mdash; but employee expertise is completely absent.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potential</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">Trade Shows</div>
+        <div class="platform-desc">in-cosmetics Global, CPhI, Vitafoods, SEPAWA &mdash; IOI Oleo is a regular exhibitor. Digital amplification (pre/post-content, video recaps) is missing.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potential</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,#D97706,#B45309)"></div></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">SEO / Expert Content</div>
+        <div class="platform-desc">Formulators google &ldquo;sustainable cosmetic esters&rdquo;, &ldquo;lipid excipients pharma&rdquo; &mdash; IOI Oleo doesn&rsquo;t show up. Massive gap.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potential</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#2563EB,#1D4ED8)"></div></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="chart-title">Target Audience Search Terms</div>
+      <table class="clean-table">
+        <tr><th>Search Term</th><th>Intent</th><th>Content Opportunity</th></tr>
+        <tr><td>sustainable oleochemical emollients</td><td>Solution search</td><td>Evergreen guide: &ldquo;Sustainable Emollients Compared&rdquo; with MIGLYOL positioning</td></tr>
+        <tr><td>lipid excipients drug delivery</td><td>Technical research</td><td>Technical application note on IMWITOR/SOFTISAN for lipid nanoparticles</td></tr>
+        <tr><td>RSPO certified cosmetic ingredients</td><td>Supplier search</td><td>Landing page with RSPO certifications and traceable supply chain</td></tr>
+        <tr><td>MCT oil cosmetic formulation</td><td>Formulation help</td><td>Practical guide on MIGLYOL esters in personal care formulations</td></tr>
+        <tr><td>vegan cosmetic ingredients supplier</td><td>Buying decision</td><td>Case study: IOI Oleo&rsquo;s vegan film-former (2025 launch)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="rec-block fade-in">
+    <h3>Recommendation</h3>
+    <div class="rec-grid">
+      <div class="rec-item">
+        <div class="rec-item-label">Market Viable?</div>
+        <div class="rec-item-text"><strong>Absolutely.</strong> $28&ndash;33B oleochemicals market with 5.9% CAGR. Plus $4.66B for cosmetic bioactive ingredients (7.8% CAGR). IOI Oleo has the production, the brands and the certifications &mdash; only digital visibility is missing.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-label">Biggest Opportunity</div>
+        <div class="rec-item-text">Position Julien Janson as the &ldquo;Scientific Voice&rdquo; of IOI Oleo on LinkedIn. His publications, patent and multilingual abilities are unusually strong in the industry. Additionally: digitize trade show content, derive SEO articles from domain expertise.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-label">Biggest Risk</div>
+        <div class="rec-item-text">Croda (sustainability), Evonik (AI tool) and Symrise (hogo platform) dominate digital perception. If IOI Oleo doesn&rsquo;t act now, the brand will become invisible to new formulators despite superior production capacity &mdash; especially with the next generation of cosmetic chemists.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA: UNLOCK STRATEGY -->
+  <div class="cta-unlock fade-in">
+    <div class="cta-badge">NEXT STEP</div>
+    <h2>Your Personal Strategy Report</h2>
+    <p>Based on this market analysis, we create your concrete 90-day growth plan &mdash; tailored to IOI Oleo and your role.</p>
+    <div class="locked-grid">
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Locked</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#127919;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">LinkedIn Thought Leadership</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">Scientific Voice for Oleochemistry &amp; Lipids</div>
+      </div>
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Locked</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#128197;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">90-Day Content Plan</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">From Trade Show Presence to Digital Leadership</div>
+      </div>
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Locked</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#128232;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">SEO Content Strategy</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">Dominate key terms, generate leads</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="vision-unlock-julien-janson.html">Unlock Strategy Now &#8594;</a>
+    <div class="cta-trust">FREE &nbsp;&#183;&nbsp; NO OBLIGATION &nbsp;&#183;&nbsp; RESPONSE WITHIN 24H</div>
+  </div>
+
+  <!-- GDPR -->
+  <div class="legal">
+    <div class="legal-head"><span style="font-size:16px">&#9878;&#65039;</span> Privacy &amp; Legal Notice</div>
+    <div class="legal-grid">
+      <div>
+        <div class="lbl">Legal Basis</div>
+        <p>Processing based on <strong>Art. 6(1)(f) GDPR</strong> (legitimate interest &mdash; internal market analysis). No processing of special categories per Art. 9 GDPR.</p>
+      </div>
+      <div>
+        <div class="lbl">Data Processed</div>
+        <p>Exclusively <strong>publicly available company data</strong> and aggregated market data. No personal data within the meaning of Art. 4(1) GDPR processed.</p>
+      </div>
+      <div>
+        <div class="lbl">Retention Period</div>
+        <p>Per <strong>Art. 5(1)(e) GDPR</strong>: Data deleted once the analysis purpose is fulfilled, at latest after 12 months. Immediate deletion available upon request.</p>
+      </div>
+      <div>
+        <div class="lbl">Your Rights</div>
+        <p><strong>Art. 15&ndash;22 GDPR:</strong> Access, rectification, erasure, restriction, portability, objection. Contact: <strong>koren@film-labor.de</strong></p>
+      </div>
+      <div>
+        <div class="lbl">Legal Framework</div>
+        <p><strong>BDSG 2018, TTDSG, UWG:</strong> This report serves legitimate market research per &sect;30 BDSG. No unsolicited advertising per &sect;7 UWG.</p>
+      </div>
+      <div>
+        <div class="lbl">Supervisory Authority</div>
+        <p>Competent: <strong>LfDI Hamburg</strong>. You have the right to lodge a complaint with the supervisory authority (Art. 77 GDPR).</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer-wrap">
+  <div class="footer-logo">Film<em>-labor</em></div>
+  <div class="footer-text">Vision Research Report &mdash; created 2026-03-31 &mdash; confidential</div>
+</div>
+
+<!-- ANIMATIONS -->
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:0.15});
+  document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
