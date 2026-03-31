@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vision Research: Promega GmbH &mdash; 2026-03-31</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#7AB648;--accent-rgb:122,182,72;
+  --navy:#0A1525;--navy2:#0D1E3A;
+  --bg:#F5F4F1;--card:#FFFFFF;--border:#E5E3DF;
+  --text:#0D0D0D;--t2:#4B4B4B;--t3:#8B8A87;
+  --green:#16A34A;--green-bg:#F0FDF4;
+  --amber:#D97706;--amber-bg:#FFFBEB;
+  --blue:#2563EB;--blue-bg:#EFF6FF;
+  --red:#DC2626;--red-bg:#FFF1F2;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6}
+
+/* ── HERO ── */
+.hero-wrap{
+  background:linear-gradient(145deg,#060D1A 0%,#0A1525 35%,#0D1E3A 65%,#080F1E 100%);
+  position:relative;overflow:hidden;padding:0 0 48px;
+}
+.hero-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 700px 500px at 75% 60%,rgba(var(--accent-rgb),0.09) 0%,transparent 65%),
+              radial-gradient(ellipse 500px 350px at 15% 85%,rgba(37,99,235,0.06) 0%,transparent 60%);
+  animation:heroGlow 10s ease-in-out infinite alternate;pointer-events:none;
+}
+@keyframes heroGlow{0%{opacity:.7}100%{opacity:1;transform:scale(1.05)}}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;position:relative;z-index:2}
+.logo{font-size:1rem;font-weight:800;color:#fff;letter-spacing:-.03em;text-decoration:none}
+.logo em{color:var(--accent);font-style:normal}
+.stage-badge{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase}
+.stage-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0.5)}50%{box-shadow:0 0 0 8px rgba(var(--accent-rgb),0)}}
+
+.hero-content{text-align:center;padding:48px 48px 0;position:relative;z-index:2}
+.eyebrow{display:inline-block;background:rgba(var(--accent-rgb),0.15);border:1px solid rgba(var(--accent-rgb),0.35);border-radius:20px;padding:5px 16px;font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:16px}
+.hero-lead{font-size:1rem;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto 28px;line-height:1.75}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#0A1525);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2rem;font-weight:800;color:#fff;box-shadow:0 0 0 3px rgba(var(--accent-rgb),0.3);animation:pulse 3s ease-in-out infinite}
+
+/* ── NAV TABS ── */
+.nav-tabs{display:flex;justify-content:center;gap:4px;padding:28px 48px 0;position:relative;z-index:2;flex-wrap:wrap}
+.nav-tab{font-size:11px;font-weight:600;color:rgba(255,255,255,.35);padding:8px 14px;border-radius:8px;letter-spacing:.04em;cursor:default}
+.nav-tab.active{background:rgba(var(--accent-rgb),0.15);color:var(--accent);border:1px solid rgba(var(--accent-rgb),0.3)}
+
+/* ── CONTENT ── */
+.content{max-width:1000px;margin:0 auto;padding:48px 48px 0}
+.section{margin-bottom:40px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:var(--serif);font-size:1.6rem;color:var(--text);margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px}
+.card+.card{margin-top:12px}
+
+/* ── DONUT ── */
+.donut-wrap{text-align:center;margin:20px 0 32px}
+.donut-wrap svg{width:200px;height:200px}
+.donut-score{font-family:var(--serif);font-size:28px;fill:var(--text);font-weight:400}
+.donut-sub{font-size:11px;fill:var(--t3)}
+.donut-arc{stroke-dasharray:0 346;animation:arcDraw 1.8s ease forwards .4s}
+@keyframes arcDraw{to{stroke-dasharray:294 346}}
+
+/* ── WOW CARDS ── */
+.wow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.wow-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;transition:transform .2s,box-shadow .2s;cursor:default}
+.wow-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.wow-num{font-family:var(--serif);font-size:1.6rem;color:var(--accent);margin-bottom:4px;line-height:1}
+.wow-label{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;border-top:3px solid var(--accent)}
+.stat-val{font-family:var(--serif);font-size:1.5rem;color:var(--text)}
+.stat-label{font-size:11px;color:var(--t3);margin-top:2px}
+
+/* ── BARS ── */
+.bar-row{margin:10px 0}
+.bar-label{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:4px;display:flex;justify-content:space-between}
+.bar-track{height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),#5a9e2e);animation:barIn 1.2s ease forwards}
+@keyframes barIn{from{width:0}}
+
+/* ── TABLE ── */
+.clean-table{width:100%;border-collapse:collapse;font-size:13px}
+.clean-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--t3);text-transform:uppercase;padding:10px 12px;border-bottom:2px solid var(--border)}
+.clean-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--t2)}
+.clean-table td:first-child{font-weight:600;color:var(--text)}
+
+/* ── PLATFORM CARDS ── */
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.platform-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;border-top:3px solid var(--accent);transition:transform .25s}
+.platform-card:hover{transform:translateY(-2px)}
+.platform-card:nth-child(2){border-top-color:var(--amber)}
+.platform-card:nth-child(3){border-top-color:var(--blue)}
+.platform-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.platform-desc{font-size:12px;color:var(--t3);line-height:1.5}
+
+/* ── INSIGHT ── */
+.insight{border-left:3px solid var(--accent);background:#F8FBF5;border-radius:0 10px 10px 0;padding:20px 24px;margin:20px 0}
+.insight p{font-size:13px;color:var(--t2);font-style:italic;line-height:1.7}
+
+/* ── RECOMMENDATION (navy block) ── */
+.rec-block{background:linear-gradient(145deg,#0A1525,#0D1E3A);border-radius:16px;padding:48px;text-align:center;margin:40px 0;position:relative;overflow:hidden}
+.rec-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 500px 400px at 50% 50%,rgba(var(--accent-rgb),0.08) 0%,transparent 65%);pointer-events:none}
+.rec-block h3{font-family:var(--serif);font-size:1.5rem;color:#fff;margin-bottom:16px;position:relative}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left;position:relative}
+.rec-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px}
+.rec-item-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.rec-item-text{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+
+/* ── SVG CHARTS ── */
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin:20px 0}
+.chart-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:16px}
+
+/* ── CTA ── */
+.cta-unlock{background:linear-gradient(135deg,#081222 0%,#0d1f3c 55%,#081222 100%);padding:72px 40px;margin:48px 0;border-radius:20px;text-align:center;position:relative;overflow:hidden}
+.cta-unlock::before{content:'';position:absolute;top:-100px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.13) 0%,transparent 65%);pointer-events:none}
+.cta-unlock::after{content:'';position:absolute;bottom:-100px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(var(--accent-rgb),0.09) 0%,transparent 65%);pointer-events:none}
+.cta-badge{display:inline-block;background:rgba(var(--accent-rgb),0.15);border:1px solid rgba(var(--accent-rgb),0.45);border-radius:20px;padding:5px 16px;font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--accent);text-transform:uppercase;margin-bottom:22px;position:relative;z-index:1}
+.cta-unlock h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;color:#fff;margin:0 0 14px;line-height:1.25;position:relative;z-index:1}
+.cta-unlock p{font-size:.95rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 44px;line-height:1.75;position:relative;z-index:1}
+.locked-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;max-width:620px;margin:0 auto 44px;position:relative;z-index:1}
+.locked-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 18px;position:relative;overflow:hidden}
+.locked-overlay{position:absolute;inset:0;background:rgba(8,18,34,0.72);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px;gap:7px}
+.locked-overlay span:first-child{font-size:24px}
+.locked-overlay span:last-child{font-size:9px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.45);text-transform:uppercase}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),#5a9e2e);color:#fff;font-size:1rem;font-weight:700;padding:17px 50px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(var(--accent-rgb),0.42);transition:all .25s;letter-spacing:.025em;position:relative;z-index:1}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 14px 42px rgba(var(--accent-rgb),0.58)}
+.cta-trust{margin-top:16px;font-size:10px;color:rgba(255,255,255,.22);letter-spacing:.07em;position:relative;z-index:1}
+
+/* ── LEGAL ── */
+.legal{background:var(--amber-bg);border:1px solid #FDE68A;border-radius:12px;padding:28px 32px;margin:40px 0}
+.legal-head{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#92400E;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 32px}
+.legal-grid .lbl{font-size:11px;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.legal-grid p{font-size:12px;color:#78350F;line-height:1.6}
+
+/* ── FOOTER ── */
+.footer-wrap{background:var(--navy);padding:32px 48px;text-align:center;margin-top:40px;border-radius:16px 16px 0 0}
+.footer-logo{font-size:.9rem;font-weight:800;color:rgba(255,255,255,.5);letter-spacing:-.02em;margin-bottom:8px}
+.footer-logo em{color:var(--accent);font-style:normal}
+.footer-text{font-size:11px;color:rgba(255,255,255,.25)}
+
+/* ── ANIMATIONS ── */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:700px){
+  .wow-grid,.stats-row,.platform-grid,.rec-grid,.legal-grid{grid-template-columns:1fr}
+  .topbar,.hero-content,.content{padding-left:20px;padding-right:20px}
+  .nav-tabs{padding:20px 12px 0}
+  .cta-unlock{padding:48px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ HERO ════════ -->
+<div class="hero-wrap">
+  <div class="topbar">
+    <span class="logo">Film<em>-labor</em></span>
+    <div class="stage-badge"><span class="stage-dot"></span> STUFE 01 VON 07</div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">VISION RESEARCH</div>
+    <h1 class="hero-title">Promega GmbH</h1>
+    <p class="hero-lead">Deep-Market-Research f&uuml;r Life-Science-Reagenzien &amp; Lab-Tools &mdash; Marktvalidierung, Wettbewerbsanalyse und Wachstumschancen f&uuml;r Martin Rossmanith.</p>
+    <div class="avatar">MR</div>
+  </div>
+  <div class="nav-tabs">
+    <span class="nav-tab active">01 Research</span>
+    <span class="nav-tab">02 Strategie</span>
+    <span class="nav-tab">03 Content</span>
+    <span class="nav-tab">04 Magnets</span>
+    <span class="nav-tab">05 Outreach</span>
+    <span class="nav-tab">06 Quality</span>
+    <span class="nav-tab">07 Measure</span>
+  </div>
+</div>
+
+<!-- ════════ CONTENT ════════ -->
+<div class="content">
+
+  <!-- ── MARKT-VALIDIERUNG ── -->
+  <div class="section fade-in">
+    <div class="section-label">Markt-Validierung</div>
+    <div class="section-title">Starving Crowd Score</div>
+
+    <div class="donut-wrap">
+      <svg viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="55" fill="none" stroke="#eee" stroke-width="11"/>
+        <circle class="donut-arc" cx="80" cy="80" r="55" fill="none" stroke="url(#grad)" stroke-width="11" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+        <text class="donut-score" x="80" y="76" text-anchor="middle" dominant-baseline="middle">8.5</text>
+        <text class="donut-sub" x="80" y="96" text-anchor="middle">von 10</text>
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#7AB648"/></linearGradient></defs>
+      </svg>
+      <p style="font-size:13px;color:var(--t2);margin-top:8px"><strong>8,5 / 10</strong> &mdash; Starving Crowd Best&auml;tigt</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-val">$66,9 Mrd.</div>
+        <div class="stat-label">Globaler Reagenzien-Markt 2025</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--amber)">
+        <div class="stat-val">6,1% CAGR</div>
+        <div class="stat-label">J&auml;hrliches Wachstum bis 2035</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--blue)">
+        <div class="stat-val">$744 Mio.</div>
+        <div class="stat-label">Promega Jahresumsatz (est. 2026)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="clean-table">
+        <tr><th style="width:30%">Faktor</th><th style="width:15%">Score</th><th>Begr&uuml;ndung</th></tr>
+        <tr><td>Problem existiert?</td><td><strong>3/3</strong></td><td>Forschungslabore brauchen zuverl&auml;ssige, reproduzierbare Reagenzien &mdash; Qualit&auml;tsschwankungen kosten Monate an Forschungszeit</td></tr>
+        <tr><td>Zahlungsbereitschaft?</td><td><strong>3/3</strong></td><td>Lab-Budgets &euro;50K&ndash;500K+ j&auml;hrlich f&uuml;r Verbrauchsmaterial; Promega-Kits kosten &euro;200&ndash;5.000 pro St&uuml;ck</td></tr>
+        <tr><td>Markt gro&szlig; genug?</td><td><strong>1,5/2</strong></td><td>$66,9 Mrd. global, aber stark fragmentiert &mdash; Top 3 halten nur ~42% Marktanteil</td></tr>
+        <tr><td>Trend steigend?</td><td><strong>1/2</strong></td><td>+27% Genomik-Nachfrage in Europa, +35% Next-Gen-Sequencing-Adoption; aber auch Preisdruck durch Generika-Hersteller</td></tr>
+      </table>
+    </div>
+
+    <div class="insight">
+      <p><strong>Gate-Ergebnis: Vollgas.</strong> Der Life-Science-Reagenzien-Markt w&auml;chst solide und Promega ist mit $744 Mio. Umsatz ein etablierter Player. Die Herausforderung liegt nicht im &ldquo;ob&rdquo;, sondern im &ldquo;wie&rdquo;: Differenzierung gegen Thermo Fisher und Merck in einem Markt, der zunehmend von Content-Marketing und Thought-Leadership getrieben wird.</p>
+    </div>
+  </div>
+
+  <!-- ── WOW-FAKTEN ── -->
+  <div class="section fade-in">
+    <div class="section-label">Markt-Insights</div>
+    <div class="section-title">WOW-Fakten f&uuml;r Ihren Markt</div>
+    <div class="wow-grid">
+      <div class="wow-card">
+        <div class="wow-num">$120,9 Mrd.</div>
+        <div class="wow-label">So gro&szlig; wird der globale Reagenzien-Markt bis 2035 &mdash; fast eine Verdopplung in 10 Jahren (Quelle: Research Nester 2026)</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">27%</div>
+        <div class="wow-label">Anstieg der Nachfrage nach Genomik- und Proteomik-Tools allein in Europa &mdash; getrieben durch personalisierte Medizin</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">&euro;300 Mio.</div>
+        <div class="wow-label">Investment von Merck KGaA in ein neues Advanced Research Center in Darmstadt (2024) &mdash; Ihr direkter Nachbar investiert massiv</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">72.031</div>
+        <div class="wow-label">LinkedIn-Follower hat Promega global &mdash; die Plattform liefert 50% bessere Performance als der Branchen-Durchschnitt</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">35%</div>
+        <div class="wow-label">Adoptionsrate von Next-Generation Sequencing in europ&auml;ischen Laboren &mdash; ein Technologieschub, der neue Reagenzien-Nachfrage erzeugt</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-num">2.000+</div>
+        <div class="wow-label">Mitarbeiter auf 5 Kontinenten, davon ~70 in Walldorf &mdash; globale Reichweite mit lokaler Pr&auml;senz in Baden-W&uuml;rttemberg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TECH AUDIT ── -->
+  <div class="section fade-in">
+    <div class="section-label">Tech-Audit</div>
+    <div class="section-title">Website &amp; Digital Presence</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Check</th><th>Status</th><th>Details</th></tr>
+        <tr><td>Website erreichbar</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>promega.de (Redirect von .com f&uuml;r DE-Besucher)</td></tr>
+        <tr><td>SSL-Zertifikat</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>G&uuml;ltiges Zertifikat, HTTPS aktiv</td></tr>
+        <tr><td>Mobile-Responsive</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>Viewport Meta vorhanden, responsive Design</td></tr>
+        <tr><td>LinkedIn</td><td><span style="color:var(--green)">&#10003; 72K</span></td><td>Aktiver Account, regelm&auml;&szlig;ige Posts, Lead-Gen-Forms</td></tr>
+        <tr><td>Instagram</td><td><span style="color:var(--green)">&#10003; Aktiv</span></td><td>@promega_corporation &mdash; Fokus auf Scientist Stories</td></tr>
+        <tr><td>Cookie-Banner</td><td><span style="color:var(--green)">&#10003; OK</span></td><td>DSGVO-konformes Consent-Management</td></tr>
+        <tr><td>Newsletter</td><td><span style="color:var(--green)">&#10003; Aktiv</span></td><td>Prominente Anmeldem&ouml;glichkeit auf Startseite</td></tr>
+        <tr><td>Blog/Wissen</td><td><span style="color:var(--green)">&#10003; Umfangreich</span></td><td>Artikel, Webinare, Protokolle, Video-Serie</td></tr>
+      </table>
+    </div>
+    <div class="insight">
+      <p><strong>Bewertung: 8/8 bestanden.</strong> Promega.de ist technisch solide aufgestellt. Die digitale Pr&auml;senz ist professionell und DSGVO-konform. Optimierungspotenzial liegt weniger im Technischen als im strategischen Content-Marketing und Thought-Leadership-Positionierung von Key Persons wie Martin Rossmanith.</p>
+    </div>
+  </div>
+
+  <!-- ── CHARTS: MARKT ── -->
+  <div class="section fade-in">
+    <div class="section-label">Marktentwicklung</div>
+    <div class="section-title">Life-Science-Reagenzien &mdash; Globales Wachstum</div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Marktvolumen 2022&ndash;2026 (in Mrd. USD)</div>
+      <svg viewBox="0 0 500 200" style="width:100%;height:auto">
+        <line x1="50" y1="170" x2="470" y2="170" stroke="#E5E3DF" stroke-width="1"/>
+        <line x1="50" y1="130" x2="470" y2="130" stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="50" y1="90" x2="470"  y2="90"  stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="50" y1="50" x2="470"  y2="50"  stroke="#E5E3DF" stroke-width="0.5" stroke-dasharray="4"/>
+        <text x="40" y="174" text-anchor="end" font-size="10" fill="#8B8A87">50</text>
+        <text x="40" y="134" text-anchor="end" font-size="10" fill="#8B8A87">60</text>
+        <text x="40" y="94"  text-anchor="end" font-size="10" fill="#8B8A87">70</text>
+        <text x="40" y="54"  text-anchor="end" font-size="10" fill="#8B8A87">80</text>
+        <!-- data: 2022:54, 2023:57.5, 2024:62.1, 2025:66.9, 2026:70.6 -->
+        <!-- y = 170 - (val-50)*4 -->
+        <polyline points="92,154 197,140 302,121.6 407,102.4 460,87.6" fill="none" stroke="#7AB648" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="500" stroke-dashoffset="500" style="animation:drawLine 2s ease forwards .6s"/>
+        <circle cx="92"  cy="154"   r="4" fill="#7AB648"/>
+        <circle cx="197" cy="140"   r="4" fill="#7AB648"/>
+        <circle cx="302" cy="121.6" r="4" fill="#7AB648"/>
+        <circle cx="407" cy="102.4" r="5" fill="#7AB648" stroke="#fff" stroke-width="2"/>
+        <circle cx="460" cy="87.6"  r="5" fill="#7AB648" stroke="#fff" stroke-width="2"/>
+        <text x="92"  y="186" text-anchor="middle" font-size="10" fill="#8B8A87">2022</text>
+        <text x="197" y="186" text-anchor="middle" font-size="10" fill="#8B8A87">2023</text>
+        <text x="302" y="186" text-anchor="middle" font-size="10" fill="#8B8A87">2024</text>
+        <text x="407" y="186" text-anchor="middle" font-size="10" fill="#8B8A87">2025</text>
+        <text x="460" y="186" text-anchor="middle" font-size="10" fill="#8B8A87">2026</text>
+        <text x="92"  y="148" text-anchor="middle" font-size="9" font-weight="600" fill="#7AB648">$54</text>
+        <text x="197" y="134" text-anchor="middle" font-size="9" font-weight="600" fill="#7AB648">$57,5</text>
+        <text x="302" y="115" text-anchor="middle" font-size="9" font-weight="600" fill="#7AB648">$62,1</text>
+        <text x="407" y="96"  text-anchor="middle" font-size="9" font-weight="700" fill="#7AB648">$66,9</text>
+        <text x="460" y="81"  text-anchor="middle" font-size="9" font-weight="700" fill="#7AB648">$70,6</text>
+      </svg>
+      <style>@keyframes drawLine{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}</style>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Marktanteil der Top-Player (Life Science Tools &amp; Reagents)</div>
+      <div class="bar-row"><div class="bar-label"><span>Thermo Fisher Scientific</span><span>15,4%</span></div><div class="bar-track"><div class="bar-fill" style="width:77%;animation-delay:.2s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Danaher Corporation</span><span>15,4%</span></div><div class="bar-track"><div class="bar-fill" style="width:77%;background:linear-gradient(90deg,#D97706,#B45309);animation-delay:.4s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Merck KGaA</span><span>10,9%</span></div><div class="bar-track"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#2563EB,#1D4ED8);animation-delay:.6s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Qiagen NV</span><span>~4%</span></div><div class="bar-track"><div class="bar-fill" style="width:20%;background:linear-gradient(90deg,#8B5CF6,#6D28D9);animation-delay:.8s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span style="color:var(--accent);font-weight:700">Promega Corporation</span><span style="color:var(--accent);font-weight:700">~2%</span></div><div class="bar-track"><div class="bar-fill" style="width:10%;animation-delay:1s"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Sonstige (~58%)</span><span>58,3%</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#9CA3AF,#6B7280);animation-delay:1.2s"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ── KONKURRENZ ── -->
+  <div class="section fade-in">
+    <div class="section-label">Wettbewerbsanalyse</div>
+    <div class="section-title">Top 5 Konkurrenten</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Firma</th><th>Umsatz</th><th>St&auml;rke</th><th>Schw&auml;che</th></tr>
+        <tr><td>Thermo Fisher Scientific</td><td>$44 Mrd.</td><td>Gr&ouml;&szlig;tes Portfolio, dominante Brand</td><td>&Uuml;berkomplex, langsamer Support</td></tr>
+        <tr><td>Danaher (Beckman)</td><td>$31 Mrd.</td><td>Starke Akquisitions-Strategie</td><td>Wenig eigene Innovation</td></tr>
+        <tr><td>Merck KGaA</td><td>&euro;21 Mrd.</td><td>Lokale Pr&auml;senz DE, &euro;300M Darmstadt-Invest</td><td>Breites Portfolio verw&auml;ssert Fokus</td></tr>
+        <tr><td>Qiagen NV</td><td>$2 Mrd.</td><td>Stark in Molecular Diagnostics</td><td>Eng fokussiert, wenig Breite</td></tr>
+        <tr><td>Bio-Rad Laboratories</td><td>$2,8 Mrd.</td><td>Starke Forschungstools</td><td>Schwache digitale Pr&auml;senz</td></tr>
+      </table>
+    </div>
+    <div class="insight">
+      <p><strong>Promega-Vorteil:</strong> Als mittelgro&szlig;er Player ($744M) hat Promega die Agilit&auml;t, die den Gro&szlig;en fehlt. W&auml;hrend Thermo Fisher und Danaher auf Volumen setzen, kann Promega mit Spezialisierung (Biolumineszenz, NanoLuc), pers&ouml;nlichem Support und Thought-Leadership punkten.</p>
+    </div>
+  </div>
+
+  <!-- ── ERFOLGSMODELLE ── -->
+  <div class="section fade-in">
+    <div class="section-label">Erfolgsmodelle</div>
+    <div class="section-title">Wer macht es richtig?</div>
+    <div class="card">
+      <table class="clean-table">
+        <tr><th>Firma</th><th>Was sie richtig machen</th><th>&Uuml;bertragbar?</th></tr>
+        <tr><td>Insilico Medicine</td><td>CEO-LinkedIn als Hauptkanal: Alex Zhavoronkov postet 3&times;/Woche &uuml;ber AI Drug Discovery &rarr; h&ouml;chster Follower-zu-Employee-Ratio der Branche</td><td><strong>Ja:</strong> Martin Rossmanith als Thought Leader f&uuml;r Lab-Innovation positionieren</td></tr>
+        <tr><td>10x Genomics</td><td>Video-first-Strategie: Scientist Stories, Lab-Tutorials auf YouTube &rarr; Community-Aufbau &uuml;ber Bildungscontent</td><td><strong>Ja:</strong> Promega hat &ldquo;Develop Yourself&rdquo;-Videoserie &mdash; ausbauen</td></tr>
+        <tr><td>Promega (eigenes Best Practice)</td><td>LinkedIn-Kampagnen performen 50% besser als Industrie-Durchschnitt; Lead-Gen-Forms statt Brand-Awareness-Only</td><td><strong>Ja:</strong> Bestehendes Erfolgsrezept skalieren, auf DE-Markt fokussieren</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── AUDIENCE INTELLIGENCE ── -->
+  <div class="section fade-in">
+    <div class="section-label">Audience Intelligence</div>
+    <div class="section-title">Wo ist die Zielgruppe?</div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-name">LinkedIn</div>
+        <div class="platform-desc">Prim&auml;r-Plattform: B2B-Entscheider, Lab-Manager, Einkauf. Promega bereits stark hier (72K). Lead-Gen-Forms f&uuml;r Webinar-Anmeldungen.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potenzial</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">ResearchGate</div>
+        <div class="platform-desc">Wissenschaftler-Netzwerk: Paper-Sharing, Method-Diskussionen. Ideal f&uuml;r Protokoll-Sharing und Application Notes.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potenzial</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#D97706,#B45309)"></div></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">YouTube</div>
+        <div class="platform-desc">Video-Tutorials, Lab-Protokolle, Produktdemos. 10x Genomics zeigt wie es geht. Promega &ldquo;Develop Yourself&rdquo; ausbauf&auml;hig.</div>
+        <div class="bar-row" style="margin-top:12px"><div class="bar-label"><span>Potenzial</span><span>60%</span></div><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#2563EB,#1D4ED8)"></div></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="chart-title">Suchbegriffe der Zielgruppe</div>
+      <table class="clean-table">
+        <tr><th>Suchbegriff</th><th>Intent</th><th>Content-Chance</th></tr>
+        <tr><td>cell viability assay protocol</td><td>How-to</td><td>Tutorial + Produktempfehlung</td></tr>
+        <tr><td>DNA extraction kit comparison</td><td>Kaufentscheidung</td><td>Vergleichsartikel (They Ask You Answer)</td></tr>
+        <tr><td>luciferase reporter assay</td><td>Methode</td><td>Promega = Marktf&uuml;hrer &rarr; Thought Leadership</td></tr>
+        <tr><td>CRISPR reagents best</td><td>Kaufentscheidung</td><td>Best-in-Class-Content</td></tr>
+        <tr><td>lab reagent supplier Germany</td><td>Lokal</td><td>Lokale SEO + Walldorf-Standort-Vorteil</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── EMPFEHLUNG ── -->
+  <div class="rec-block fade-in">
+    <h3>Empfehlung</h3>
+    <div class="rec-grid">
+      <div class="rec-item">
+        <div class="rec-item-label">Markt viable?</div>
+        <div class="rec-item-text"><strong>Ja.</strong> $66,9 Mrd. Markt mit 6,1% CAGR. Promega ist mit $744M ein etablierter Mittelfeld-Player mit klarer Spezialisierung.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-label">Gr&ouml;&szlig;te Chance</div>
+        <div class="rec-item-text">Thought-Leadership im DACH-Raum: Martin Rossmanith als &ldquo;Gesicht von Promega Deutschland&rdquo; auf LinkedIn positionieren. Promega&rsquo;s bestehende LinkedIn-St&auml;rke auf Personenmarke &uuml;bertragen.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-label">Gr&ouml;&szlig;tes Risiko</div>
+        <div class="rec-item-text">Merck investiert &euro;300M in Darmstadt &mdash; direkte regionale Konkurrenz w&auml;chst. Ohne differenzierten Content verschwindet Promega DE in der Masse der Anbieter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ CTA: STRATEGIE FREISCHALTEN ══════ -->
+  <div class="cta-unlock fade-in">
+    <div class="cta-badge">N&Auml;CHSTER SCHRITT</div>
+    <h2>Ihr pers&ouml;nlicher Strategie-Report</h2>
+    <p>Basierend auf dieser Marktanalyse erstellen wir Ihren konkreten 90-Tage-Wachstumsplan &mdash; ma&szlig;geschneidert f&uuml;r Promega Deutschland.</p>
+    <div class="locked-grid">
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Gesperrt</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#127919;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">Positionierung &amp; USP</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">Ihre Marktposition gegen Thermo Fisher &amp; Merck</div>
+      </div>
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Gesperrt</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#128197;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">90-Tage Content-Plan</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">W&ouml;chentliche Themen &amp; Formate</div>
+      </div>
+      <div class="locked-card">
+        <div class="locked-overlay"><span>&#128274;</span><span>Gesperrt</span></div>
+        <div style="font-size:22px;margin-bottom:10px">&#128232;</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:5px">Outreach-Sequenz</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35)">5-Schritt Kontakt-Strategie f&uuml;r DACH-Labs</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="vision-unlock-martin-rossmanith.html">Strategie jetzt freischalten &#8594;</a>
+    <div class="cta-trust">KOSTENLOS &nbsp;&#183;&nbsp; KEINE VERPFLICHTUNG &nbsp;&#183;&nbsp; ANTWORT IN 24H</div>
+  </div>
+
+  <!-- ══════ DSGVO ══════ -->
+  <div class="legal">
+    <div class="legal-head"><span style="font-size:16px">&#9878;&#65039;</span> Datenschutz &amp; rechtliche Hinweise</div>
+    <div class="legal-grid">
+      <div>
+        <div class="lbl">Rechtsgrundlage</div>
+        <p>Verarbeitung auf Basis von <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (berechtigtes Interesse &mdash; interne Marktanalyse). Keine Verarbeitung besonderer Kategorien gem. Art. 9 DSGVO.</p>
+      </div>
+      <div>
+        <div class="lbl">Verarbeitete Daten</div>
+        <p>Ausschlie&szlig;lich <strong>&ouml;ffentlich zug&auml;ngliche Unternehmensdaten</strong> und aggregierte Marktdaten. Keine personenbezogenen Daten im Sinne von Art. 4 Nr. 1 DSGVO verarbeitet.</p>
+      </div>
+      <div>
+        <div class="lbl">Speicherdauer</div>
+        <p>Gem. <strong>Art. 5 Abs. 1 lit. e DSGVO</strong>: Daten werden gel&ouml;scht, sobald der Analysezweck erf&uuml;llt ist, sp&auml;testens nach 12 Monaten. Auf Wunsch sofortige L&ouml;schung m&ouml;glich.</p>
+      </div>
+      <div>
+        <div class="lbl">Ihre Rechte</div>
+        <p><strong>Art. 15&ndash;22 DSGVO:</strong> Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung, Daten&uuml;bertragbarkeit, Widerspruch. Kontakt: <strong>koren@film-labor.de</strong></p>
+      </div>
+      <div>
+        <div class="lbl">Gesetzliche Grundlagen</div>
+        <p><strong>BDSG 2018, TTDSG, UWG:</strong> Dieser Report dient der legitimen Marktforschung gem. &sect;30 BDSG. Keine unerw&uuml;nschte Werbung gem. &sect;7 UWG.</p>
+      </div>
+      <div>
+        <div class="lbl">Aufsichtsbeh&ouml;rde</div>
+        <p>Zust&auml;ndig: <strong>LfDI Hamburg</strong>. Sie haben das Recht, sich bei Bedenken an die Aufsichtsbeh&ouml;rde zu wenden (Art. 77 DSGVO).</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- ════════ FOOTER ════════ -->
+<div class="footer-wrap">
+  <div class="footer-logo">Film<em>-labor</em></div>
+  <div class="footer-text">Vision Research Report &mdash; erstellt am 2026-03-31 &mdash; vertraulich</div>
+</div>
+
+<!-- ════════ ANIMATIONS ════════ -->
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:0.15});
+  document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
+
+  // Animated donut score counter
+  var scoreEl = document.querySelector('.donut-score');
+  if(scoreEl){
+    var target = 8.5, current = 0;
+    var step = function(){
+      current += 0.1;
+      if(current > target) current = target;
+      scoreEl.textContent = current.toFixed(1);
+      if(current < target) requestAnimationFrame(step);
+    };
+    setTimeout(step, 800);
+  }
+})();
+</script>
+</body>
+</html>
