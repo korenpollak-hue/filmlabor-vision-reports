@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strategie-Report freischalten &mdash; Budenheim</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#1A8FBF;--accent-dark:#0E6B8F;--navy:#0a1628;--text:#111827;--muted:#6b7280;--border:#e5e7eb}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(145deg,#081222 0%,#0d1f3c 55%,#07101e 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.card{background:#fff;border-radius:24px;padding:52px 48px;max-width:560px;width:100%;box-shadow:0 40px 100px rgba(0,0,0,.55)}
+.logo{display:inline-block;font-size:1.1rem;font-weight:800;color:var(--navy);letter-spacing:-.03em;margin-bottom:36px;text-decoration:none}
+.logo em{color:var(--accent);font-style:normal}
+h1{font-size:clamp(1.5rem,4vw,1.9rem);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:10px}
+.subtitle{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:36px}
+.form-group{margin-bottom:26px}
+.form-group label{display:block;font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.optional{font-weight:400;text-transform:none;letter-spacing:0;color:#9ca3af;font-size:11px}
+.required{color:var(--accent)}
+input[type=email],input[type=tel]{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:.95rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,143,191,.12)}
+input.error{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
+.divider{height:1px;background:var(--border);margin:8px 0 26px}
+.tile-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tile{border:1.5px solid var(--border);border-radius:10px;padding:13px 8px;text-align:center;cursor:pointer;transition:all .18s;user-select:none}
+.tile:hover{border-color:var(--accent);background:rgba(26,143,191,.04)}
+.tile.sel{border-color:var(--accent);background:rgba(26,143,191,.08)}
+.tile-val{font-size:13px;font-weight:700;color:#374151}
+.tile-sub{font-size:10px;color:#9ca3af;margin-top:3px}
+.tile.sel .tile-val{color:var(--accent)}
+.ziele-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ziel{border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px;user-select:none}
+.ziel:hover{border-color:var(--accent);background:rgba(26,143,191,.04);transform:translateY(-1px)}
+.ziel.sel{border-color:var(--accent);background:rgba(26,143,191,.08)}
+.ziel-ico{font-size:18px;flex-shrink:0}
+.ziel-lbl{font-size:12.5px;font-weight:600;color:#374151;line-height:1.3}
+.ziel.sel .ziel-lbl{color:var(--accent)}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;border:none;border-radius:50px;padding:16px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:32px;transition:all .22s;letter-spacing:.025em;box-shadow:0 6px 22px rgba(26,143,191,.38);font-family:inherit}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,143,191,.52)}
+.submit-btn:disabled{opacity:.65;cursor:not-allowed}
+.trust{text-align:center;margin-top:14px;font-size:10px;color:#9ca3af;letter-spacing:.06em}
+#success{display:none;text-align:center;padding:16px 0 8px;animation:fadeIn .4s ease}
+#success.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.success-circle{width:80px;height:80px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px;color:#fff;box-shadow:0 8px 28px rgba(26,143,191,.4)}
+.success-title{font-size:1.7rem;font-weight:800;color:var(--navy);margin-bottom:14px}
+.success-text{font-size:.92rem;color:var(--muted);line-height:1.75}
+.back-link{display:inline-block;margin-top:28px;font-size:13px;color:var(--accent);text-decoration:none;font-weight:600}
+.back-link:hover{text-decoration:underline}
+@media(max-width:500px){.card{padding:36px 24px}.tile-row{grid-template-columns:repeat(2,1fr)}.ziele-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="card">
+  <a class="logo" href="#">Film<em>-labor</em></a>
+
+  <form id="vision-form" method="POST" action="https://formsubmit.co/koren@film-labor.de">
+    <div id="form-wrap">
+      <h1>Strategie-Report freischalten</h1>
+      <p class="subtitle">Vier kurze Fragen &mdash; dann erstellt Koren Ihren pers&ouml;nlichen Wachstumsplan f&uuml;r Chemische Fabrik Budenheim.</p>
+
+      <div class="form-group">
+        <label>E-Mail-Adresse <span class="required">*</span></label>
+        <input type="email" name="Email" id="f-email" placeholder="name@budenheim.com" autocomplete="email" required>
+      </div>
+      <div class="form-group">
+        <label>Telefonnummer <span class="optional">(optional)</span></label>
+        <input type="tel" name="Telefon" id="f-tel" placeholder="+49 ..." autocomplete="tel">
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="form-group">
+        <label>Teamgr&ouml;&szlig;e</label>
+        <div class="tile-row">
+          <div class="tile" onclick="pickTile(this,'Solo (1)')"><div class="tile-val">Solo</div><div class="tile-sub">1 Person</div></div>
+          <div class="tile" onclick="pickTile(this,'Klein (2-5)')"><div class="tile-val">Klein</div><div class="tile-sub">2&ndash;5</div></div>
+          <div class="tile" onclick="pickTile(this,'Mittel (6-20)')"><div class="tile-val">Mittel</div><div class="tile-sub">6&ndash;20</div></div>
+          <div class="tile" onclick="pickTile(this,'Wachsend (20+)')"><div class="tile-val">Wachsend</div><div class="tile-sub">20+</div></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ihre Ziele <span class="optional">(mehrere m&ouml;glich)</span></label>
+        <div class="ziele-grid">
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#127919;</span><span class="ziel-lbl">Mehr Kunden gewinnen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128221;</span><span class="ziel-lbl">Content-Strategie aufbauen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128247;</span><span class="ziel-lbl">Social Media st&auml;rken</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128202;</span><span class="ziel-lbl">Thought Leadership aufbauen</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#128227;</span><span class="ziel-lbl">Werbeanzeigen schalten</span></div>
+          <div class="ziel" onclick="toggleZiel(this)"><span class="ziel-ico">&#10024;</span><span class="ziel-lbl">Marke st&auml;rken</span></div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Strategie jetzt freischalten &#8594;</button>
+      <div class="trust">KOSTENLOS &middot; KEINE VERPFLICHTUNG &middot; ANTWORT INNERHALB VON 24H</div>
+    </div>
+
+    <input type="hidden" name="Teamgroesse" id="h-team" value="keine Angabe">
+    <input type="hidden" name="Ziele" id="h-ziele" value="keine Angabe">
+    <input type="hidden" name="Kunde" value="Chemische Fabrik Budenheim / Andrej Weber">
+    <input type="hidden" name="Report_URL" value="https://korenpollak-hue.github.io/filmlabor-vision-reports/andrej-weber/vision-research-2026-03-31.html">
+
+    <input type="hidden" name="_subject" value="VISION LEAD: Budenheim / Andrej Weber">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://korenpollak-hue.github.io/filmlabor-vision-reports/andrej-weber/vision-unlock-andrej-weber.html?success=1">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+  </form>
+
+  <div id="success">
+    <div class="success-circle">&#10003;</div>
+    <div class="success-title">Anfrage gesendet!</div>
+    <p class="success-text">Koren von Film-labor meldet sich pers&ouml;nlich &mdash; in der Regel innerhalb von 24 Stunden.<br><br>Sobald Ihr Strategie-Report fertig ist, bekommen Sie ihn direkt per E-Mail zugeschickt.</p>
+    <a class="back-link" href="vision-research-2026-03-31.html">&#8592; Zur&uuml;ck zur Marktanalyse</a>
+  </div>
+</div>
+
+<script>
+var selectedTeam='',selectedZiele=[];
+
+function pickTile(el,val){
+  document.querySelectorAll('.tile').forEach(function(t){t.classList.remove('sel')});
+  el.classList.add('sel');
+  selectedTeam=val;
+}
+
+function toggleZiel(el){
+  var lbl=el.querySelector('.ziel-lbl').textContent;
+  var idx=selectedZiele.indexOf(lbl);
+  if(idx>-1){selectedZiele.splice(idx,1);el.classList.remove('sel')}
+  else{selectedZiele.push(lbl);el.classList.add('sel')}
+}
+
+document.getElementById('vision-form').addEventListener('submit',function(){
+  document.getElementById('h-team').value=selectedTeam||'keine Angabe';
+  document.getElementById('h-ziele').value=selectedZiele.length?selectedZiele.join(', '):'keine Angabe';
+  var email=document.getElementById('f-email').value;
+  var subj=document.querySelector('[name="_subject"]');
+  if(subj&&email) subj.value='VISION LEAD: '+email+' (Budenheim)';
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='Wird gesendet \u2026';
+});
+
+if(window.location.search.indexOf('success=1')>-1){
+  var fw=document.getElementById('form-wrap');
+  if(fw) fw.style.display='none';
+  var s=document.getElementById('success');
+  if(s) s.classList.add('show');
+  history.replaceState(null,'',window.location.pathname);
+}
+</script>
+</body>
+</html>
